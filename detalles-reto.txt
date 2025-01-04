@@ -1,0 +1,42 @@
+Detalles del Reto Mensual #1 (Enero 2025)
+
+Objetivo:
+Crea un diseño responsivo que imite el feed de X. Puedes elegir la versión de Android, iOS o PC.
+
+Puntos a Evaluar
+
+1. Orden del Código (100 puntos):
+
+- Estructura organizada y bien comentada.
+
+- Uso adecuado de etiquetas semánticas en HTML.
+
+- Separación clara entre HTML y CSS.
+
+2. Diseño (200 puntos):
+
+- Debe parecerse lo más posible a la UI de Twitter.
+
+- Tipografía y colores coherentes.
+
+- Soporte para dispositivos móviles y pantallas grandes.
+
+Incluye elementos clave como:
+
+- Barra de navegación superior.
+
+- Contenedor de tweets.
+
+- Botones y enlaces básicos.
+
+Reglas
+
+- No se permite usar librerías o frameworks como Bootstrap.
+
+- No es necesario agregar funcionalidad con JavaScript, solo HTML y CSS.
+
+- Puedes usar imágenes y contenido ficticio para los tweets.
+
+Entregable
+
+Entrega la URL de tu trabajo en GitHub y del hosting para la preview.
