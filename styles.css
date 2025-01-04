@@ -16,6 +16,23 @@ body{
     color: var(--color-fuente);
 }
 
+.container-app{
+    padding: 20px;
+}
+
+/* Estilos del tweet */
 img{
-    width: 100px;
+    width: 50px;
+    border-radius: 100%;
+}
+
+section{
+    display: flex;
+    gap: 10px;
+
+    && article{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
 }
