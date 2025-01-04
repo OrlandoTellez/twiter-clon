@@ -16,7 +16,26 @@ class Tweet extends HTMLElement{
     }
 }
 
-customElements.define("tweet-user", Tweet)
+class Header extends HTMLElement{
+    constructor(){
+        super()
+        this.attachShadow({mode: "open"})
+    }
 
+    async connectedCallback(){
+        const shadow = this.shadowRoot
+        shadow.innerHTML = await this.getTemplate()
+    }
+
+    async getTemplate(){
+        const archivo = await fetch("../componentes/header.html")
+        const plantilla = await archivo.text()
+        return plantilla
+    }
+}
+
+
+customElements.define("tweet-user", Tweet)
+customElements.define("header-app", Header)
 
 
