@@ -3,7 +3,7 @@
     <style>
         header{
             width: 100%;
-            padding-bottom: 20px;
+
         }
     
         img{
@@ -15,18 +15,41 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .container-links{
+            width: 100%;
+        }
+
+        a{
+            padding: 40px 50px;
+            width: 100%;
+            text-align: center;
+        }
+        a:hover{
+            background-color: rgb(116, 116, 116);
+        }
+        
+       
     </style>
 </head>
 
 
 
 <header>
-    <div>
+    <div class="container-imagen-logo">
         <figure>
             <img src="https://unavatar.io/x/TheGrefg" alt="imagen-usuario">
         </figure>
         <figure>
             <img src="assets/iconos/logo-x.svg" alt="">
         </figure>
+    </div>
+    <div class="container-links">
+        <a href="">
+            <h2>Para Ti</h2>
+        </a>
+        <a href="">
+            <h2>Siguiendo</h2>
+        </a>
     </div>
 </header>

@@ -43,7 +43,6 @@
 }
 
 
-
 :root{
     --color-principal: #000000;
     --color-fuente: #ffffff;
@@ -55,6 +54,8 @@
     box-sizing: border-box;
 }
 
+
+
 body{
     width: 100%;
     background-color: var(--color-principal);
@@ -64,6 +65,11 @@ body{
 
 .container-app{
     padding: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
 
 
