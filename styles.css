@@ -54,6 +54,13 @@
     box-sizing: border-box;
 }
 
+html{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 body{
     width: 100%;
     background-color: var(--color-principal);
@@ -91,7 +98,6 @@ body{
 .header{
     width: 100%;
     max-width: 600px;
-
 }
 
 a{
@@ -101,24 +107,21 @@ a{
     text-decoration: none;
     color: white;
 }
+
 a:hover{
     background-color: rgb(116, 116, 116);
 }
 
 main{
     width: 100%;
-
 }
 
- 
 img{
     width: 100%;
     max-width: 30px;
 }
 
 @media only screen and (min-width: 1024px){
-    
-
     body {
         display: flex;
         flex-direction: row; 
@@ -134,8 +137,6 @@ img{
         width: 10%;
     
     }
-    
-    
     
     .body-container {
         width: 90%; 
