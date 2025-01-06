@@ -58,7 +58,7 @@ class Tweet extends HTMLElement{
     }
 }
 
-class Header extends HTMLElement{
+class HeaderUp extends HTMLElement{
     constructor(){
         super()
         this.attachShadow({mode: "open"})
@@ -70,14 +70,33 @@ class Header extends HTMLElement{
     }
 
     async getTemplate(){
-        const archivo = await fetch("../componentes/header.html")
+        const archivo = await fetch("../componentes/header-up.html")
         const plantilla = await archivo.text()
         return plantilla
     }
 }
 
+class HeaderInline extends HTMLElement{
+    constructor(){
+        super()
+        this.attachShadow({mode: "open"})
+    }
+
+    async connectedCallback(){
+        const shadow = this.shadowRoot
+        shadow.innerHTML = await this.getTemplate()
+    }
+
+    async getTemplate(){
+        const archivo = await fetch("../componentes/header-inline.html")
+        const plantilla = await archivo.text()
+        return plantilla
+    }
+}
 
 customElements.define("tweet-user", Tweet)
-customElements.define("header-app", Header)
+customElements.define("header-app", HeaderUp)
+customElements.define("header-inline", HeaderInline)
+
 
 
