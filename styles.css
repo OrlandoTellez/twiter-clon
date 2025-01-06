@@ -101,11 +101,12 @@ body{
 }
 
 a{
-    padding: 20px;
+    padding: 10px;
     width: 100%;
     text-align: center;
     text-decoration: none;
     color: white;
+    font-size: 14px;
 }
 
 a:hover{
@@ -119,6 +120,29 @@ main{
 img{
     width: 100%;
     max-width: 30px;
+}
+
+.container-article{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarjeta-suscribirse{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #2f3336;
+    border-radius: 20px;
+    width: 80%;
+
+}
+
+.suscribete{
+    background: #1d9bf0;
+    border-radius: 20px;
+    padding: 10px 15px;
+   
 }
 
 @media only screen and (min-width: 1024px){
@@ -139,12 +163,15 @@ img{
     }
     
     .body-container {
-        width: 90%; 
+        width: 100%; 
         max-width: 600px; 
-        padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start; 
         align-items: center;
+
+        && main{
+
+        }
     }
 }
