@@ -63,7 +63,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    max-width: 1024px;
 }
 
 .container-app{
@@ -73,6 +73,17 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 600px;
+
+}
+
+.header-inline-container {
+    width: 10%; 
+    max-width: 100px; 
+}
+
+.header-inline-width{
+    width: 100%;
     max-width: 600px;
 
 }
@@ -99,7 +110,40 @@ main{
 
 }
 
+ 
+img{
+    width: 100%;
+    max-width: 30px;
+}
+
 @media only screen and (min-width: 1024px){
-    body{
+    
+
+    body {
+        display: flex;
+        flex-direction: row; 
+        justify-content: flex-start; 
+        align-items: flex-start; 
+        width: 100%;
+        background-color: var(--color-principal);
+        color: var(--color-fuente);
+        font-family: "Twitter Chirp";
+    }
+
+    .header-inline-width{
+        width: 10%;
+    
+    }
+    
+    
+    
+    .body-container {
+        width: 90%; 
+        max-width: 600px; 
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        align-items: center;
     }
 }
