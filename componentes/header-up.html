@@ -4,7 +4,11 @@
         header{
             width: 100%;
             border-bottom: 1px solid #2f3336;
+            border-right: 1px solid #2f3336;
             padding: 0px 0px 0px 20px;
+            position: fixed;
+            max-width: 600px;
+            background-color: black;
         }
 
         .container-imagen-logo{
@@ -25,7 +29,11 @@
             width: 100%;
         }
         
-       
+        @media only screen and (min-width: 1024px){
+            header{
+                width: 554px;
+            }
+        }
     </style>
 </head>
 
