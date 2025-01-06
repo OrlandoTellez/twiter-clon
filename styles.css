@@ -54,17 +54,40 @@
     box-sizing: border-box;
 }
 
+html{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 body{
     width: 100%;
     background-color: var(--color-principal);
     color: var(--color-fuente);
-    font-family: "Twitter Chirp"
+    font-family: "Twitter Chirp";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .container-app{
     padding: 20px 20px 100px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+
+}
+
+.header{
+    width: 100%;
+    max-width: 600px;
 
 }
 
@@ -73,4 +96,11 @@ a{
     color: white;
 }
 
+main{
+    width: 100%;
+}
 
+@media only screen and (min-width: 1024px){
+    body{
+    }
+}
