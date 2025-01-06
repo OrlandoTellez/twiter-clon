@@ -88,7 +88,7 @@ class HeaderInline extends HTMLElement{
     }
 
     async getTemplate(){
-        const archivo = await fetch("../componentes/header-inline.html")
+        const archivo = await fetch("../../componentes/header-inline.html")
         const plantilla = await archivo.text()
         return plantilla
     }
