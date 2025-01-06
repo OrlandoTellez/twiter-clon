@@ -58,24 +58,50 @@
 //     }
 // }
 
-class TweetUser extends HTMLElement {
-    connectedCallback() {
-        const imagenPerfil = this.getAttribute('imagenPerfil');
-        const nombre = this.getAttribute('nombre');
-        const nombreUsuario = this.getAttribute('nombreUsuario');
-        const tweet = this.getAttribute('tweet');
+// class TweetUser extends HTMLElement {
+//     connectedCallback() {
+//         const imagenPerfil = this.getAttribute('imagenPerfil');
+//         const nombre = this.getAttribute('nombre');
+//         const nombreUsuario = this.getAttribute('nombreUsuario');
+//         const tweet = this.getAttribute('tweet');
 
-        this.innerHTML = `
-            <div class="tweet">
-                <figure>
-                    <img src="${imagenPerfil}" alt="${nombre}" class="perfil-imagen">
-                </figure>
-                <div>
-                    <h3>${nombre} <span>${nombreUsuario}</span></h3>
-                    <p>${tweet}</p>
-                </div>
-            </div>
-        `;
+//         this.innerHTML = `
+//             <div class="tweet">
+//                 <figure>
+//                     <img src="${imagenPerfil}" alt="${nombre}" class="perfil-imagen">
+//                 </figure>
+//                 <div>
+//                     <h3>${nombre} <span>${nombreUsuario}</span></h3>
+//                     <p>${tweet}</p>
+//                 </div>
+//             </div>
+//         `;
+//     }
+// }
+
+class TweetUser extends HTMLElement {
+    async connectedCallback() {
+        const imagenPerfil = this.getAttribute('imagenPerfil') || '';
+        const nombre = this.getAttribute('nombre') || '';
+        const nombreUsuario = this.getAttribute('nombreUsuario') || '';
+        const tweet = this.getAttribute('tweet') || '';
+
+        try {
+            const response = await fetch('../componentes/tweets.html');
+            if (!response.ok) {
+                throw new Error('No se pudo cargar el archivo HTML');
+            }
+
+            const template = await response.text();
+
+            this.innerHTML = template
+                .replace('{{imagenPerfil}}', imagenPerfil)
+                .replace('{{nombre}}', nombre)
+                .replace('{{nombreUsuario}}', nombreUsuario)
+                .replace('{{tweet}}', tweet);
+        } catch (error) {
+            console.error('Error cargando el archivo HTML:', error);
+        }
     }
 }
 
