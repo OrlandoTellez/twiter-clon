@@ -98,6 +98,17 @@ span{
     color: rgb(116, 116, 116);
 }
 
+.search{
+    position:fixed;
+    top: 0;
+    width: 350px;
+    margin-top: 10px;
+    background: black;
+    && input{
+        width: 100%;
+    }
+}
+
 .container-app{
     padding: 120px 0px 100px 20px;
     width: 100%;
