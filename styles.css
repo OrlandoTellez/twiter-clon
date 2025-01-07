@@ -102,8 +102,8 @@ span{
     position:fixed;
     top: 0;
     width: 350px;
-    margin-top: 10px;
     background: black;
+    padding: 10px;
     && input{
         width: 100%;
     }
@@ -162,6 +162,7 @@ img{
     border-radius: 20px;
     width: 80%;
     gap: 20px;
+    margin-top: 90px;
 }
 
 .suscribete{
