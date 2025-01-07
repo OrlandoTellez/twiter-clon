@@ -154,7 +154,7 @@ img{
 }
 
 .suscribete{
-    background: #1d9bf0;
+    background-color: #1d9bf0;
     border-radius: 20px;
     padding: 10px 15px;
    
@@ -180,6 +180,27 @@ img{
 
     && div a:hover{
         background: none;
+    }
+}
+
+.container-follow{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #2f3336;
+    border-radius: 20px;
+    width: 80%;
+
+    && div div article{
+        display: flex;
+        justify-content: space-between;
+        && a{
+            background-color:rgb(255, 255, 255);
+            color: black;
+            border-radius: 20px;
+            width: 30%;
+            text-align: center;
+        }
     }
 }
 
