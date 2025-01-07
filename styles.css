@@ -193,13 +193,19 @@ img{
 
     && div div article{
         display: flex;
-        justify-content: space-between;
-        && a{
-            background-color:rgb(255, 255, 255);
-            color: black;
-            border-radius: 20px;
-            width: 30%;
-            text-align: center;
+        padding: 20px 0px;
+        gap: 10px;
+        && .usuario{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            && a{
+                background-color:rgb(255, 255, 255);
+                color: black;
+                border-radius: 20px;
+                width: 30%;
+                text-align: center;
+            }
         }
     }
 }
