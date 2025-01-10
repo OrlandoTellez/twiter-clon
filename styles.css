@@ -277,19 +277,32 @@ img{
                 border: none;
             }
 
-            && div{
+            && .container-postear--iconos{
                 padding: 0px 50px;
+                display: flex;
+                justify-content: space-between;
 
-                && a{
-                    width: 100%;
+                && .container-iconos{
+                    
+                    && a:hover{
+                        background: none;
+                    }
 
-                    && img{
+                    && a img{
                         width: 20px;
                     }
                 }
+            }
 
-                && a:hover{
-                    background: none;   
+            && .container-postear--iconos{
+                display: flex;
+
+                && .container-postear--iconos__postear a{
+                    background: white;
+                    color: black;
+                    border-radius: 20px;
+                    padding: 5px 30px;
+                    font-size: 16px;
                 }
             }
         }
