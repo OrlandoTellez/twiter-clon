@@ -285,6 +285,10 @@ img{
                         width: 20px;
                     }
                 }
+
+                && a:hover{
+                    background: none;   
+                }
             }
         }
     }
