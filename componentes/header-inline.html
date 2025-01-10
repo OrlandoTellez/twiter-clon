@@ -14,8 +14,13 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+
+                && .logo{
+                    display: none;
+                }
             }
         } 
+
 
         @media only screen and (min-width: 1024px){
             .navegacion{
@@ -28,6 +33,10 @@
                     width: 100%;
                     display: flex;
                     flex-wrap: wrap;
+
+                    && .logo{
+                        display: block ;
+                    }
                 }
             } 
 
@@ -38,6 +47,9 @@
 
 <div class="navegacion">
     <nav>
+        <a class="logo">
+            <img src="assets/iconos/logo-x.svg" alt="lgo">
+        </a>
         <a href="">
             <img src="../assets/iconos/home.svg" alt="icono-home">
         </a>

@@ -39,7 +39,7 @@ class HeaderInline extends HTMLElement {
 }
 
 customElements.define("tweet-user", TweetUser)
-customElements.define("header-app", HeaderUp)
+customElements.define("header-up", HeaderUp)
 customElements.define("header-inline", HeaderInline)
 
 

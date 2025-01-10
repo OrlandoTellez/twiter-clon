@@ -87,7 +87,7 @@ a{
     text-align: center;
     text-decoration: none;
     color: white;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 a:hover{
@@ -151,7 +151,6 @@ img{
     align-items: center;
     justify-content: center;
     gap: 30px;
-    padding-top: 20px;
     display: none;
 }
 
@@ -242,7 +241,6 @@ img{
     
     .body-container {
         width: 100%; 
-        max-width: 600px; 
         display: flex;
         flex-direction: column;
         justify-content: flex-start; 
@@ -254,8 +252,6 @@ img{
     .container-app{
         padding: 60px 0px 100px 20px;
     }
-
-   
 
     .container-article{
         display: flex;
