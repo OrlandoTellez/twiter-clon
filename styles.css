@@ -79,6 +79,7 @@ input{
     border-radius: 20px;
     padding: 15px;
     width: 80%;
+    color: white;
 }
 
 a{
@@ -250,11 +251,42 @@ img{
     }
 
     .container-app{
-        padding: 60px 0px 100px 20px;
+        padding: 0px 0px 100px 20px;
     }
 
     .container-article{
         display: flex;
+    }
+
+    .container-postear{
+        padding: 50px 0px;
+        width: 100%;
+        display: flex;
+        padding-left: 25px;
+        && article{
+            width: 100%;
+            
+            && input{
+                width: 100%;
+                background: black;
+                padding: 30px 50px;
+                font-size: 20px;
+                border-radius: 0px;
+                border: none;
+            }
+
+            && div{
+                padding: 0px 50px;
+
+                && a{
+                    width: 100%;
+
+                    && img{
+                        width: 20px;
+                    }
+                }
+            }
+        }
     }
 
     
