@@ -80,6 +80,8 @@ input{
     padding: 15px;
     width: 80%;
     color: white;
+    outline: none;
+
 }
 
 a{
