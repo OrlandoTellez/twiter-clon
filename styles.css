@@ -120,7 +120,6 @@ span{
     justify-content: center;
     align-items: center;
     max-width: 600px;
-
 }
 
 .header-inline-container {
@@ -136,19 +135,22 @@ span{
 
 .header{
     width: 100%;
-    max-width: 554px;
     position: fixed;
-
+    max-width: 600px;
 }
 
 main{
     width: 100%;
+    display: grid;
+    place-items: center;
 }
 
 img{
     width: 100%;
     max-width: 30px;
 }
+
+
 
 .container-article{
     display: flex;
@@ -206,7 +208,6 @@ img{
     padding: 20px;
     border: 1px solid #2f3336;
     border-radius: 20px;
-    width: 80%;
 
     && div div article{
         display: flex;
@@ -227,6 +228,10 @@ img{
     }
 }
 
+.container-postear{
+    display: none;
+}
+
 @media only screen and (min-width: 1024px){
     body {
         display: flex;
@@ -239,10 +244,7 @@ img{
         font-family: "Twitter Chirp";
     }
 
-    .header-inline-width{
-        width: 10%;
     
-    }
     
     .body-container {
         width: 100%; 
@@ -266,6 +268,7 @@ img{
         width: 100%;
         display: flex;
         padding-left: 25px;
+        width: 600px;
         && article{
             width: 100%;
             
