@@ -270,7 +270,7 @@ img{
     display:  flex;
     flex-direction: column;
     align-items: flex-start;
-
+    padding-left: 10px;
     && div{
         width: 100%;
     }
@@ -288,6 +288,9 @@ img{
     }
 }
 
+.container-article-explore{
+    display: none;
+}
 
 @media only screen and (min-width: 1024px){
     body {
@@ -374,6 +377,16 @@ img{
     }
 
     /* PAGINA EXPLORE */
+    .container-app-explore{
+        padding: 0px 0px 100px 55px;
+    }
+
+    .container-article-explore{
+        display: block;
+        width:50%;
+        padding: 20px;
+    }
+
     .container-search{
         padding-left: 60px;
 
