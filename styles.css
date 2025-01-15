@@ -325,6 +325,8 @@ img{
 /* PAGINA NOTIFICACIONES */
 .header-notificaciones{
     width: 100%;
+    border: 1px solid #2f3336;
+
     && figure{
         display: flex;
         gap: 20px;
@@ -353,6 +355,15 @@ img{
                 }
             }
         }
+    }
+}
+
+.container-app-notification{
+    && .notifications{
+        padding: 20px 40px;
+        border-top: 1px solid #2f3336;
+        border-bottom: 1px solid #2f3336;
+
     }
 }
 
