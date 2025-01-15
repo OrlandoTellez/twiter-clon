@@ -475,5 +475,24 @@ img{
     .container-follow{
         width: 95%;
     }
+
+    .container-header--explore{
+        padding-left: 40px;
+    }
+
+    /* PAGINA NOTIFICACIONES */
+
+    .header-notificaciones{
+        padding-left: 39px;
+    }
+
+    .body-container-notification{
+        margin-left: 40px;
+    }
+
+    .container-app-notification{
+        width: 600px;
+        padding-left:40px;
+    }
     
 }
