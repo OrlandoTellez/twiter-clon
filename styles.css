@@ -81,7 +81,7 @@ input{
     background-color: black;
     border: 1px solid #2f3336;
     border-radius: 20px;
-    padding: 15px;
+    padding: 10px 20px;
     width: 80%;
     color: white;
     outline: none;
@@ -91,7 +91,8 @@ input{
 a{
     padding: 10px;
     width: 100%;
-    text-align: center;
+    display: grid;
+    place-items: center;
     text-decoration: none;
     color: white;
     font-size: 10px;
@@ -297,7 +298,8 @@ img{
 
 .container-header--explore{
     width: 100%;
-    
+    border-bottom: 1px solid #2f3336;
+
     && nav{
         width: 100%;
 
@@ -345,8 +347,8 @@ img{
 
 
             && li{
-                width: 100%;
                 text-align: center;
+                width: 100%;
 
                 && a{
                     display: block;
@@ -427,7 +429,7 @@ img{
                 justify-content: space-between;
 
                 && .container-iconos{
-                    
+                    display: flex;
                     && a:hover{
                         background: none;
                     }
