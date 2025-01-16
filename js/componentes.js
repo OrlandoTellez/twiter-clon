@@ -1,4 +1,7 @@
 class TweetUser extends HTMLElement {
+    constructor(){
+        super()
+    }
     async connectedCallback() {
         const imagenPerfil = this.getAttribute('imagenPerfil') || '';
         const nombre = this.getAttribute('nombre') || '';
@@ -25,6 +28,9 @@ class TweetUser extends HTMLElement {
 }
 
 class HeaderUp extends HTMLElement {
+    constructor(){
+        super()
+    }
     async connectedCallback() {
         const response = await fetch('../componentes/header-up.html');
         this.innerHTML = await response.text();
@@ -32,6 +38,9 @@ class HeaderUp extends HTMLElement {
 }
 
 class HeaderInline extends HTMLElement {
+    constructor(){
+        super()
+    }
     async connectedCallback() {
         const response = await fetch('../componentes/header-inline.html');
         this.innerHTML = await response.text();
