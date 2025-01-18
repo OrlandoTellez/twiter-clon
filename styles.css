@@ -139,6 +139,23 @@ li{
     max-width: 600px;
 }
 
+.header-perfil{
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    max-width: 600px;
+    position: fixed;
+    background: black;
+    padding: 10px 20px;
+    border-bottom: 1px solid #2f3336;
+    border-right: 1px solid #2f3336;
+
+    && picture{
+        display: grid;
+        place-items: center;
+    }
+}
+
 main{
     width: 100%;
     display: grid;
@@ -369,6 +386,44 @@ img{
     }
 }
 
+/* PAGINA PERFIL */
+
+.perfil-container{
+    margin-top: 70px;
+    width: 100%;
+
+    && .picture-fondo{
+        && img{
+            max-width: 100%;
+        }
+    }
+
+    && .article-container {
+        padding: 0px 20px;
+        width: 100%;
+        && picture{
+            display: flex;
+            width: 100px;
+            && img{
+                width:100%;
+                border-radius: 50%;
+                max-width: 70px;
+            }
+        }
+    }    
+
+    && div{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        gap: 5px;
+        && div{
+            flex-direction: row;
+            gap: 20px;
+        }
+    }
+}
+
 
 @media only screen and (min-width: 1024px){
 
@@ -479,7 +534,7 @@ img{
         }
     }
 
-    .container-follow{
+    .container-follow--explore{
         width: 95%;
     }
 
@@ -500,6 +555,12 @@ img{
     .container-app-notification{
         width: 600px;
         padding-left:40px;
+    }
+
+    /* PAGINA PERFIL */
+
+    .perfil-container{
+        margin-left: 60px;
     }
     
 }
