@@ -495,7 +495,10 @@ img{
         width: 600px;
         && article{
             width: 100%;
+            padding-bottom: 20px;
             border-right: 1px solid  #2f3336;
+            border-bottom: 1px solid  #2f3336;
+            
             && input{
                 width: 100%;
                 background: black;
