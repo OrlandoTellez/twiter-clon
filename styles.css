@@ -424,6 +424,28 @@ img{
     }
 }
 
+.horizontal-slider {
+    display: flex; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    list-style: none; 
+    margin-top: 10px;
+}
+
+.horizontal-slider a {
+    text-decoration: none; 
+    color: white; 
+    padding: 10px 15px; 
+    transition: background-color 0.3s; 
+    font-size: 16px;
+}
+
+.horizontal-slider a:hover {
+    background-color: #f0f0f0; 
+    color: black;
+}
+
+
 
 @media only screen and (min-width: 1024px){
 
