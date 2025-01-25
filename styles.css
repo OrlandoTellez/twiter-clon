@@ -424,6 +424,11 @@ img{
     }
 }
 
+.header-perfil picture a:hover{
+    background: none;
+
+}
+
 .horizontal-slider {
     display: flex; 
     overflow-x: auto; 
@@ -584,6 +589,11 @@ img{
 
     /* PAGINA PERFIL */
         
+    .header-perfil{
+        padding-left: 50px;
+        gap: 10px;
+
+    }
     .perfil-container{
         margin-top: 70px;
         width: 100%;
@@ -619,6 +629,10 @@ img{
                 gap: 20px;
             }
         }
+    }
+
+    .container-app--perfil{
+        padding-left: 20px;
     }
     
 }
