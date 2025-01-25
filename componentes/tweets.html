@@ -1,10 +1,7 @@
 <head>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .perfil-imagen {
-            width: 50px;
-            border-radius: 100%;
-        }
+        
     
 
         .iconos{
@@ -25,6 +22,17 @@
             padding: 20px 20px 20px 0px;
             border-bottom: 0.1px solid #2f3336;
             max-width: 650;
+
+            && .perfil-figure{
+                width: 140px;
+                max-width: 100%;
+                && .perfil-imagen {
+                    width: 150px;
+                    max-width: 100%;
+                    border-radius: 100%;
+                }
+            }
+
             && .tweet-article {
                 display: flex;
                 flex-direction: column;
@@ -52,7 +60,7 @@
 </head>
 
 <section class="tweets-container">
-    <figure>
+    <figure class="perfil-figure">
         <img src="{{imagenPerfil}}" alt="imagen-perfil" class="perfil-imagen">
     </figure>
     <article class="tweet-article">
