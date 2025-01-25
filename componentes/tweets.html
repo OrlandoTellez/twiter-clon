@@ -22,13 +22,23 @@
             width: 100%;
             display: flex;
             gap: 10px;
-            padding: 20px 20px;
+            padding: 20px 20px 20px 0px;
             border-bottom: 0.1px solid #2f3336;
             max-width: 650;
             && .tweet-article {
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
+            }
+        }
+
+        .picture-imagen--tweet{
+            width: 100%;
+            
+            && img{
+                max-width: 100%;
+                border-radius: 0px;
+
             }
         }
 
@@ -52,6 +62,9 @@
         </div>
         <div>
             <p class="tweet">{{tweet}}</p>
+            <picture class="picture-imagen--tweet">
+                <img src="{{imagenTweet}}" alt="">
+            </picture>
         </div>
         <div class="iconos">
             <figure>
