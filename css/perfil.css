@@ -1,0 +1,127 @@
+/* PAGINA PERFIL */
+.header-perfil{
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    max-width: 600px;
+    position: fixed;
+    background: black;
+    padding: 10px 20px;
+    border-bottom: 1px solid #2f3336;
+    border-right: 1px solid #2f3336;
+
+    && picture{
+        display: grid;
+        place-items: center;
+    }
+}
+
+.perfil-container{
+    margin-top: 70px;
+    width: 100%;
+
+    && .picture-fondo{
+        && img{
+            max-width: 100%;
+        }
+    }
+
+    && .article-container {
+        padding: 0px 20px;
+        width: 100%;
+        && picture{
+            display: flex;
+            width: 100px;
+            && img{
+                width:100%;
+                border-radius: 50%;
+                max-width: 70px;
+            }
+        }
+    }    
+
+    && div{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        gap: 5px;
+        && div{
+            flex-direction: row;
+            gap: 20px;
+        }
+    }
+}
+
+.header-perfil picture a:hover{
+    background: none;
+
+}
+
+.horizontal-slider {
+    display: flex; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    list-style: none; 
+    margin-top: 10px;
+}
+
+.horizontal-slider a {
+    text-decoration: none; 
+    color: white; 
+    padding: 10px 15px; 
+    transition: background-color 0.3s; 
+    font-size: 16px;
+}
+
+.horizontal-slider a:hover {
+    background-color: #f0f0f0; 
+    color: black;
+}
+
+@media only screen and (min-width: 1024px) {        
+    .header-perfil{
+        padding-left: 50px;
+        gap: 10px;
+
+    }
+    .perfil-container{
+        margin-top: 70px;
+        width: 100%;
+        padding-left:40px;
+
+        && .picture-fondo{
+            && img{
+                max-width: 100%;
+            }
+        }
+
+        && .article-container {
+            padding: 0px 20px;
+            width: 100%;
+            && picture{
+                display: flex;
+                width: 100px;
+                && img{
+                    width:100%;
+                    border-radius: 50%;
+                    max-width: 70px;
+                }
+            }
+        }    
+
+        && div{
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            gap: 5px;
+            && div{
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+    }
+
+    .container-app--perfil{
+        padding-left: 20px;
+    }
+}

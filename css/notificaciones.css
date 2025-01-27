@@ -1,0 +1,61 @@
+/* PAGINA NOTIFICACIONES */
+.header-notificaciones{
+    width: 100%;
+    border-bottom: 1px solid #2f3336;
+
+    && figure{
+        display: flex;
+        gap: 20px;
+        padding: 20px 40px;
+        && img{
+            border-radius: 50%;
+        }
+    }
+
+    && nav{
+
+        && ul{
+            display: flex;
+            justify-content:center;
+            width: 100%;
+
+
+            && li{
+                text-align: center;
+                width: 100%;
+
+                && a{
+                    display: block;
+                    padding: 10px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+.container-app-notification{
+    && .notifications{
+        padding: 20px 40px;
+        border-top: 1px solid #2f3336;
+        border-bottom: 1px solid #2f3336;
+
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .header-notificaciones{
+        padding-left: 39px;
+    }
+
+    .body-container-notification{
+        margin-left: 40px;
+    }
+
+    .container-app-notification{
+        width: 600px;
+        padding-left:40px;
+    }
+}
+
