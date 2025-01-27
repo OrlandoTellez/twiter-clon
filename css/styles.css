@@ -74,7 +74,7 @@ body{
 }
 
 .body-container{
-    max-width: 600px;
+    width: 100%;
 }
 
 input{
@@ -156,6 +156,8 @@ img{
 }
 
 
+
+
 .container-article{
     width: 100%;
     display: flex;
@@ -235,7 +237,6 @@ img{
 }
 
 @media only screen and (min-width: 1024px){
-
     .logo{
         text-align: center;
     }
@@ -272,13 +273,5 @@ img{
 
     .header-inline-container{
         width: 0%;
-    }
-
-   
-    
-
-    
-
-    
-    
+    }   
 }
