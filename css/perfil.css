@@ -80,11 +80,10 @@
 }
 
 
-@media only screen and (min-width: 1024px) {        
+@media only screen and (min-width: 1024px){        
     .header-perfil{
-        padding-left: 50px;
+        padding-left: 60px;
         gap: 10px;
-
     }
     .perfil-container{
         margin-top: 70px;
