@@ -1,5 +1,3 @@
-
-
 .header-perfil{
     width: 100%;
     display: flex;
@@ -115,6 +113,14 @@ img{
 
 .container-postear{
     display: none;
+}
+
+.container-postear--iconos__postear button{
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: none;
+    background: white;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 1024px){
