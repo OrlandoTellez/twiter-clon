@@ -1,5 +1,14 @@
 /* PAGINA PERFIL */
 
+.body-container-perfil{
+    width: 100%;
+    display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        border-right: 1px solid #2f3336;
+        margin-left: 40px;
+}
+
 .header-perfil{
     width: 100%;
     display: flex;
