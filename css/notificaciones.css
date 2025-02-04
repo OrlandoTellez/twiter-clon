@@ -6,7 +6,7 @@
     && figure{
         display: flex;
         gap: 20px;
-        padding: 20px 40px;
+        padding: 20px;
         && img{
             border-radius: 50%;
         }
@@ -36,7 +36,7 @@
 
 .container-app-notification{
     && .notifications{
-        padding: 20px 40px;
+        padding: 20px;
         border-top: 1px solid #2f3336;
         border-bottom: 1px solid #2f3336;
 

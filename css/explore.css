@@ -90,7 +90,7 @@
 
     .container-article--explore{
         display: block;
-        width:50%;
+        width: 50%;
         padding: 20px;
     }
 
@@ -104,7 +104,29 @@
     }
 
     .container-follow--explore{
-        width: 95%;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid #2f3336;
+        border-radius: 20px;
+        width: 100%;
+        && div div article{
+            display: flex;
+            padding: 20px 0px;
+            gap: 10px;
+            && .usuario{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                && a{
+                    background-color:rgb(255, 255, 255);
+                    color: black;
+                    border-radius: 20px;
+                    width: 30%;
+                    text-align: center;
+                }
+            }
+        }
     }
 
     .container-header--explore{

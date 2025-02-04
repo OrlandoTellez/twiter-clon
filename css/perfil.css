@@ -6,7 +6,6 @@
         flex-direction: column;
         justify-content: flex-start; 
         border-right: 1px solid #2f3336;
-        margin-left: 40px;
 }
 
 .header-perfil{
@@ -89,7 +88,11 @@
 }
 
 
-@media only screen and (min-width: 1024px){        
+@media only screen and (min-width: 1024px){       
+    .body-container-perfil{
+        margin-left: 40px;
+
+    } 
     .header-perfil{
         padding-left: 60px;
         gap: 10px;
