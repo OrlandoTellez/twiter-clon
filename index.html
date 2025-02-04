@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/index.css">
 
     <script src="js/componentes.js" defer></script>
+    <script type="module" src="js/index.js"></script>
 </head>
 <body>
     <div class="header-inline-container">
@@ -20,7 +21,7 @@
 
         <div class="container-postear">
             <article>
-                <input type="text" placeholder="¡¿Que esta pasando?!">
+                <input type="text"  class="tweet-input" placeholder="¡¿Que esta pasando?!">
                 <div class="container-postear--iconos">
                     <div class="container-iconos">
                         <a class="logo">
@@ -40,15 +41,21 @@
                         </a>
                     </div>
                     <div class="container-postear--iconos__postear">
-                        <a href="#">Postear</a>
+                        <button class="btn-postear">Postear</button>
                     </div>
                 </div>
             </article>
         </div>
 
         <div class="container-app">
-            <main>
-    
+            <main class="tweet-container--index">
+                <tweet-user
+                imagenPerfil="https://unavatar.io/x/auronplay"
+                nombre="Auronplay"
+                nombreUsuario="@auronplay"
+                tweet="Lorem "
+                ></tweet-user>
+
                 <tweet-user
                 imagenPerfil="https://unavatar.io/x/IbaiLlanos"
                 nombre="IbaiLlanos"
@@ -86,14 +93,7 @@
                 facilis tenetur nisi!"
                 ></tweet-user>
 
-                <tweet-user
-                imagenPerfil="https://unavatar.io/x/auronplay"
-                nombre="Auronplay"
-                nombreUsuario="@auronplay"
-                tweet="Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti sapiente harum inventore distinctio
-                esse? Vel unde doloribus distinctio quia quae, totam quibusdam excepturi nulla ducimus, eos delectus
-                facilis tenetur nisi!"
-                ></tweet-user>
+                
 
                 <tweet-user
                 imagenPerfil="https://unavatar.io/x/SpreenDMC"

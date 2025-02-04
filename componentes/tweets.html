@@ -15,22 +15,20 @@
             padding: 5px 0px 20px 0px;
         }
     
-    
         .tweets-container {
-            width: 100%;
+            width: 100vw;
+            max-width: 580px;
             display: flex;
             gap: 10px;
-            padding: 20px 20px 20px 0px;
+            padding: 20px 20px 20px 20px;
             border-bottom: 0.1px solid #2f3336;
-            max-width: 650;
-
-            && .perfil-figure{
-                && .perfil-imagen {
+            && .perfil-figure .perfil-imagen {
                     width: 100px;
-                }
+                    border-radius: 50%;
             }
 
             && .tweet-article {
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
