@@ -58,7 +58,7 @@
         </div>
         <h2>Únete a Twitter hoy mismo</h2>
 
-        <form action="/auth/registro" method="post">
+        <form id="registro-form">
             <input type="text" name="username" class="username" placeholder="Nombre">
             <input type="email" name="email" id="email"  placeholder="Correo electrónico">
             <input type="password" name="password" id="password"  placeholder="Contraseña">
@@ -67,5 +67,35 @@
         
         <p class="terms">Al registrarte, aceptas los <a href="#">Términos de servicio</a> y la <a href="#">Política de privacidad</a>, incluida la política de <a href="#">Uso de Cookies</a>.</p>
     </div>
+
+    <script>
+       document.getElementById('registro-form').addEventListener('submit', async (e) => {
+    e.preventDefault()
+    
+    const formData = {
+      username: e.target.username.value,
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+
+    try {
+      const response = await fetch('/auth/registro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      
+      if (response.ok) {
+        window.location.href = '/perfil.html'
+      } else {
+        alert('Error en el registro')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  })
+    </script>
 </body>
 </html>
