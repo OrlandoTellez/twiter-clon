@@ -13,7 +13,7 @@ const app = express()
 // middlewares
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://twiter-clon.vercel.app/' 
+    ? 'https://twiter-clon-production.up.railway.app/' 
     : 'http://localhost:5000',
   credentials: true
 }))
