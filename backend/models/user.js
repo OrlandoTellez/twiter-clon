@@ -1,8 +1,8 @@
 import pool from "../config/db.js"
 
 export default class User {
-    static async create({email, password}){
-        const [result] = await pool.execute("INSERT INTO users (email, password) VALUES (?, ?)", [email, password])
+    static async create({username, email, password}){
+        const [result] = await pool.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", [username, email, password])
 
         return result.insertId
     }

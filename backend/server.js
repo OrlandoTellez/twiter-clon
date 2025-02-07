@@ -14,9 +14,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static(join(__dirname, '../')))
+app.use(express.urlencoded({ extended: true }))
 
 // rutas
-app.use('/api/auth', authRoutes)
+app.use('/', authRoutes)
 // app.use('/api/profile', profileRoutes)
 
 const PORT = process.env.PORT || 5000

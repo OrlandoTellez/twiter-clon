@@ -5,7 +5,7 @@ import { authenticate } from '../middlewares/authMiddleware.js'
 const router = Router()
 
 //Ruta del registro de usuario
-router.post('/register', register)
+router.post('/auth/registro', register)
 
 //Ruta del login de usuario
 router.post('/login', login)
