@@ -3,17 +3,20 @@ import jwt from "jsonwebtoken"
 const JWT_SECRET = process.env.JWT_SECRET
 
 export const authenticate = (req, res, next) => {
-    const token = req.header("Authorization")?.replace("Bearer ", "")
+    const authHeader = req.header("Authorization")
 
-    if (!token) {
-        return res.status(401).json({ error: "Acceso no autorizado" })
+    if (!authHeader?.startsWith("Bearer ")) {
+        return res.status(401).json({ error: "Formato de token inválido" });
     }
 
-    try{
-        const decoded  = jwt.verify(token, JWT_SECRET)
+    const token = authHeader.split(" ")[1]
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET)
         req.userId = decoded.userId
         next()
-    }catch(error){
-        return res.status(401).json({ error: "Token invalido" })
+    } catch (error) {
+        console.error("Error de verificación:", error.message)
+        return res.status(401).json({ error: "Token inválido o expirado" })
     }
 }

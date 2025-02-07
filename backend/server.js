@@ -1,10 +1,10 @@
 import express from 'express'
 import cors from 'cors'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
-import profileRoutes from './routes/profileRoutes.js'
+// import profileRoutes from './routes/profileRoutes.js'
 
 dotenv.config()
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -17,7 +17,7 @@ app.use(express.static(join(__dirname, '../')))
 
 // rutas
 app.use('/api/auth', authRoutes)
-app.use('/api/profile', profileRoutes)
+// app.use('/api/profile', profileRoutes)
 
 const PORT = process.env.PORT || 5000
 

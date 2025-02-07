@@ -1,4 +1,4 @@
-import pool from "../config/db"
+import pool from "../config/db.js"
 
 export default class User {
     static async create({email, password}){
