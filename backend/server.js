@@ -11,7 +11,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
 
 // middlewares
-app.use(cors())
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://twiter-clon.vercel.app/' 
+    : 'http://localhost:5000',
+  credentials: true
+}))
 app.use(express.json())
 app.use(express.static(join(__dirname, '../')))
 app.use(express.urlencoded({ extended: true }))
