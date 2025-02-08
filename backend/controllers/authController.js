@@ -12,8 +12,12 @@ export const register = async (req, res) => {
         await User.create({username, email, password: hashedPassword})
 
         res.status(201).json({message: "usuario registrado exitosamente"})
-    }catch(error){
-        res.status(500).json({error: "Error al registrar usuario"})
+    }catch (error) {
+        console.error("Error en registro:", error)
+        res.status(500).json({
+            error: "Error al registrar usuario",
+            details: error.message 
+        })
     }
 }
 
