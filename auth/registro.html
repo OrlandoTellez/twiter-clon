@@ -71,37 +71,37 @@
     </div>
 
     <script>
-
-       document.getElementById('registro-form').addEventListener('submit', async (e) => {
-    e.preventDefault()
-    
-    const formData = {
-      username: e.target.username.value,
-      email: e.target.email.value,
-      password: e.target.password.value
-    }
-
-    try {
-      const response = await fetch(
-        process.env.NODE_ENV === 'production' 
-          ? 'https://twiter-clon-production.up.railway.app/auth/registro' 
-          : '/auth/registro', 
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+      document.getElementById('registro-form').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        
+        const formData = {
+          username: e.target.username.value,
+          email: e.target.email.value,
+          password: e.target.password.value
         }
-      )
-      
-      if (response.ok) {
-        window.location.href = '/perfil.html'
-      } else {
-        alert('Error en el registro')
-      }
-    } catch (error) {
-      console.error('Error:', error)
-    }
-  })
+
+        try {
+          const API_URL = window.location.hostname === 'localhost' 
+            ? '/auth/registro' 
+            : 'https://twiter-clon-production.up.railway.app/auth/registro'
+
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          })
+          
+          if (response.ok) {
+            window.location.href = '/perfil.html'
+          } else {
+            const errorData = await response.json()
+            alert(errorData.error || 'Error en el registro')
+          }
+        } catch (error) {
+          console.error('Error:', error)
+          alert('Error de conexión con el servidor')
+        }
+      })
     </script>
 </body>
 </html>
