@@ -181,8 +181,11 @@ img{
 .suscribete{
     background-color: #1d9bf0;
     border-radius: 20px;
-    padding: 10px 15px;
-   
+    padding: 10px 15px;  
+}
+
+.suscribete:hover{
+    background: blue;
 }
 
 .tarjeta-tendencias{
