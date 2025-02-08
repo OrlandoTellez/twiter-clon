@@ -21,6 +21,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // rutas
+app.get("/", (req, res) => {
+    res.sendFile(join(__dirname, "../index.html"));
+})
+
+
 app.use('/', authRoutes)
 // app.use('/api/profile', profileRoutes)
 

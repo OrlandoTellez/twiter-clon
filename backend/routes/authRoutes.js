@@ -6,9 +6,6 @@ const router = Router()
 
 //Ruta 
 
-router.get("/", (req, res) => {
-    res.render("index.html")
-})
 
 //Ruta del registro de usuario
 router.post('/auth/registro', register)
