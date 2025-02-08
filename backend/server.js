@@ -13,17 +13,22 @@ const app = express()
 // middlewares
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://twiter-clon-production.up.railway.app/' 
+    ? 'https://twiter-clon-production.up.railway.app' 
     : 'http://localhost:5000',
   credentials: true
 }))
-app.use(express.json())
 app.use(express.static(join(__dirname, '../')))
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // rutas
 app.use('/', authRoutes)
 // app.use('/api/profile', profileRoutes)
+
+app.use((err, req, res, next) => {
+  console.error('Error en producción:', err.stack)
+  res.status(500).json({ error: 'Algo salió mal!' })
+})
 
 const PORT = process.env.PORT || 5000
 
