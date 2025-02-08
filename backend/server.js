@@ -12,7 +12,7 @@ const app = express()
 
 // middlewares
 app.use(cors({
-  origin: 'http://localhost:5000',
+  origin: 'https://twiter-clon-production.up.railway.app',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }))
@@ -23,10 +23,6 @@ app.use(express.urlencoded({ extended: true }))
 // rutas
 app.use('/', authRoutes)
 // app.use('/api/profile', profileRoutes)
-
-app.use((req, res) => {
-  res.status(404).json({ error: "Ruta no encontrada" })
-})
 
 app.use((err, req, res, next) => {
   console.error('Error en producción:', err.stack)
