@@ -11,6 +11,18 @@ const dbConfig = {
     database: process.env.DB_NAME
 } 
 
-const pool = mysql.createPool(dbConfig)
+const pool = mysql.createPool({
+    ...dbConfig,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+})
+
+pool.getConnection()
+  .then(conn => {
+    console.log('Conexión exitosa a MySQL')
+    conn.release()
+  })
+  .catch(err => console.error('Error de conexión a MySQL:', err))
 
 export default pool
