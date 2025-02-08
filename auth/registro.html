@@ -79,13 +79,16 @@
     }
 
     try {
-      const response = await fetch('/auth/registro', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
+      const response = await fetch(
+        process.env.NODE_ENV === 'production' 
+          ? 'https://twiter-clon-production.up.railway.app/auth/registro' 
+          : '/auth/registro', 
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        }
+      )
       
       if (response.ok) {
         window.location.href = '/perfil.html'
