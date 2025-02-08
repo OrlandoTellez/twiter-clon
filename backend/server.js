@@ -12,7 +12,7 @@ const app = express()
 
 // middlewares
 app.use(cors({
-  origin: 'https://twiter-clon-production.up.railway.app',
+  origin: process.env.URLFRONTEND || 'http://localhost:5000',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }))
@@ -27,6 +27,10 @@ app.use('/', authRoutes)
 app.use((err, req, res, next) => {
   console.error('Error en producción:', err.stack)
   res.status(500).json({ error: 'Algo salió mal!' })
+})
+
+app.use((req, res) => {
+  res.sendFile(join(__dirname, '../index.html'))
 })
 
 const PORT = process.env.PORT || 5000
