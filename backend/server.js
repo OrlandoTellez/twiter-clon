@@ -29,10 +29,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Algo salió mal!' })
 })
 
-app.use((req, res) => {
-  res.sendFile(join(__dirname, '../index.html'))
-})
-
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
