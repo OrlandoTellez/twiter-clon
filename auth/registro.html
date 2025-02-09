@@ -81,7 +81,7 @@
         }
 
         try {
-          const API_URL = 'https://twiter-clon-production.up.railway.app'
+          const API_URL = "http://localhost:5000/auth/registro" || "https://twiter-clon-production.up.railway.app/auth/registro"
 
           const response = await fetch(API_URL, {
             method: 'POST',

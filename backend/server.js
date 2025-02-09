@@ -16,16 +16,23 @@ app.use(cors({
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }))
-app.use(express.static(join(__dirname, '../')))
+
+// Sirviendo carpetas
+app.use('/assets', express.static(join(__dirname, '../assets')))
+app.use('/css', express.static(join(__dirname, '../css')))
+app.use('/js', express.static(join(__dirname, '../js')))
+app.use('/auth', express.static(join(__dirname, '../auth')))
+app.use('/componentes', express.static(join(__dirname, '../componentes')))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// rutas
+// Ruta principal
 app.get("/", (req, res) => {
     res.sendFile(join(__dirname, "../index.html"));
 })
 
-
+// Manejo de rutas de autenticación
 app.use('/', authRoutes)
 // app.use('/api/profile', profileRoutes)
 
@@ -38,6 +45,4 @@ const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  });
-
-
+});
