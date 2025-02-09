@@ -1,11 +1,13 @@
 import express from 'express'
 import cors from 'cors'
-import { join, resolve } from 'node:path'
+import { join, resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 
 dotenv.config()
 const app = express()
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Ruta base del proyecto (sube un nivel desde 'backend')
 const ROOT_DIR = resolve(__dirname, '..')
