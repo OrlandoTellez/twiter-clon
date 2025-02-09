@@ -30,7 +30,13 @@ app.use('/auth', express.static(join(ROOT_DIR, 'auth')))
 app.use('/componentes', express.static(join(ROOT_DIR, 'componentes')))
 
 
-app.use('/api', authRoutes) 
+app.use('/', authRoutes) 
+
+app.get('/', (req, res) => {
+  res.sendFile(join(ROOT_DIR, 'index.html'))
+})
+
+console.log('ROOT_DIR:', ROOT_DIR)
 
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack)
