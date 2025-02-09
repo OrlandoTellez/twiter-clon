@@ -9,7 +9,7 @@ dotenv.config()
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const ROOT_DIR = resolve(__dirname, '..')
+const ROOT_DIR = join(__dirname, 'frontend')
 
 // Middlewares 
 app.use(cors({
