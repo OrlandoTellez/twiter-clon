@@ -12,37 +12,38 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // Ruta base del proyecto (sube un nivel desde 'backend')
 const ROOT_DIR = resolve(__dirname, '..')
 
-// middlewares
+// Middlewares clave
 app.use(cors({
   origin: process.env.URLFRONTEND || 'http://localhost:5000',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+app.use(express.json()) // Para parsear JSON en las peticiones
 
-// Servir archivos estáticos (solo los que necesitas)
+// 1. Servir TODOS los archivos estáticos del directorio raíz
+app.use(express.static(ROOT_DIR)) // Esto servirá index.html, explore.html, etc. automáticamente
+
+// 2. Servir rutas específicas para subdirectorios (opcional pero recomendado para claridad)
 app.use('/assets', express.static(join(ROOT_DIR, 'assets')))
-app.use('/css', express.static(join(ROOT_DIR, 'css')))
-app.use('/js', express.static(join(ROOT_DIR, 'js')))
 app.use('/auth', express.static(join(ROOT_DIR, 'auth')))
 app.use('/componentes', express.static(join(ROOT_DIR, 'componentes')))
 
-// Ruta principal para servir el index.html
-app.get("/", (req, res) => {
-    res.sendFile(join(ROOT_DIR, 'index.html'))
+// 3. Manejar rutas de la aplicación (SPA) para HTML5 History Mode
+app.get(['/perfil', '/notificaciones', '/explorar'], (req, res) => {
+  res.sendFile(join(ROOT_DIR, 'index.html'))
 })
 
-// Manejo de rutas de autenticación
-app.use('/', authRoutes)
+// 4. Usar rutas de autenticación
+app.use('/api', authRoutes) // Mejor prefijo /api para endpoints
 
-// Middleware de manejo de errores
+// 5. Manejo de errores mejorado
 app.use((err, req, res, next) => {
-  console.error('Error en producción:', err.stack)
-  res.status(500).json({ error: 'Algo salió mal!' })
+  console.error('Error:', err.stack)
+  res.status(500).sendFile(join(ROOT_DIR, 'error.html')) // Crea esta página
 })
 
-// Servidor en el puerto definido
+// Iniciar servidor
 const PORT = process.env.PORT || 5000
-
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+  console.log(`Servidor listo en puerto ${PORT}`)
+})
