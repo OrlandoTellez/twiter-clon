@@ -60,8 +60,7 @@
         </div>
         <h2>Iniciar sesión</h2>
 
-        <form id="registro-form">
-            <input type="text" name="username" class="username" placeholder="Nombre">
+        <form id="login-form">
             <input type="email" name="email" id="email"  placeholder="Correo electrónico">
             <input type="password" name="password" id="password"  placeholder="Contraseña">
             <button type="submit" class="btn submit">Siguiente</button>
@@ -69,5 +68,38 @@
         
         <p class="terms">Al registrarte, aceptas los <a href="#">Términos de servicio</a> y la <a href="#">Política de privacidad</a>, incluida la política de <a href="#">Uso de Cookies</a>.</p>
     </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+          e.preventDefault()
+          
+          const formData = {
+            email: e.target.email.value,
+            password: e.target.password.value
+          }
+  
+          try {
+            const API_URL = window.location.hostname === "localhost"
+            ? "http://localhost:5000/auth/login"
+            : "https://twiter-clon-production.up.railway.app/auth/login"
+  
+            const response = await fetch(API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData)
+            })
+            
+            if (response.ok) {
+              window.location.href = '/perfil.html'
+            } else {
+              const errorData = await response.json()
+              alert(errorData.error || 'Error en el inicio de sesion')
+            }
+          } catch (error) {
+            console.error('Error:', error)
+            alert('Error de conexión con el servidor')
+          }
+        })
+      </script>
 </body>
 </html>

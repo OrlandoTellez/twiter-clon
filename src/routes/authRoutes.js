@@ -8,7 +8,7 @@ const router = Router()
 router.post('/auth/registro', register)
 
 //Ruta del login de usuario
-router.post('/login', login)
+router.post('/auth/login', login)
 
 //Ruta del perfil
 router.get("/perfil", authenticate, perfil)

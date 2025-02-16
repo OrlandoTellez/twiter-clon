@@ -1,6 +1,9 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../models/user.js"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -31,8 +34,9 @@ export const login = async (req, res) => {
             return res.status(401).json({ error: 'Credenciales inválidas' })
           }
 
-        const token = jwt.sign({userId: user.id}, JWT_SECRET, {expiresIn: "1m"})
+        const token = jwt.sign({userId: user.id}, JWT_SECRET, {expiresIn: "1h"})
         res.json({token})
+        
     }catch(error){
         res.status(500).json({error: error.message})
     }
