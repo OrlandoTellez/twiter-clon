@@ -47,6 +47,10 @@
                         <p>60 <span>Siguiendo</span></p>
                         <p>0 <span>Seguidores</span></p>
                     </div>
+
+                    <div>
+                        <button type="button" class="btn-cerrarSesion">Cerrar sesion</button>
+                    </div>
                 </div>
             </article>
 
@@ -200,5 +204,26 @@
             </div>
         </article>
     </div>
+
+    <script>
+        const btnCerrarSesion = document.querySelector(".btn-cerrarSesion")
+
+        btnCerrarSesion.addEventListener("click", cerrarSesion)
+
+        async function cerrarSesion() {
+            try{
+                const response = await fetch("auth/logout", {
+                    method: "POST"
+                })
+
+                if(response.ok){
+                    window.location.href = "/"
+                }
+            }catch(error){
+                console.error(error)
+                alert("Error al cerrar sesión")
+            }
+        }
+    </script>
 </body>
 </html>
