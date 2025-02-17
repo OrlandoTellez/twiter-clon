@@ -1,8 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import { join, resolve, dirname } from 'node:path'
+import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 import authRoutes from './routes/authRoutes.js'
 
 dotenv.config()
@@ -14,12 +15,14 @@ const ROOT_DIR = join(__dirname, 'frontend')
 // Middlewares 
 app.use(cors({
   origin: process.env.URLFRONTEND || 'http://localhost:5000',
-  credentials: true,
+  credentials: true, 
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.use(express.json()) 
-
+app.use(cookieParser())
 app.use(express.static(ROOT_DIR)) 
+
+app.use('/', authRoutes) 
 
 app.get(['/perfil', '/notificaciones', '/explorar'], (req, res) => {
   res.sendFile(join(ROOT_DIR, 'index.html'))
@@ -30,13 +33,11 @@ app.use('/auth', express.static(join(ROOT_DIR, 'auth')))
 app.use('/componentes', express.static(join(ROOT_DIR, 'componentes')))
 
 
-app.use('/', authRoutes) 
+
 
 app.get('/', (req, res) => {
   res.sendFile(join(ROOT_DIR, 'index.html'))
 })
-
-console.log('ROOT_DIR:', ROOT_DIR)
 
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack)
