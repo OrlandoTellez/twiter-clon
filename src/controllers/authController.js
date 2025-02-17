@@ -9,10 +9,10 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export const register = async (req, res) => {
     try{
-        const {username, email, password} = req.body
+        const {nombre_usuario, nombre, apellido, email, password} = req.body
         const hashedPassword = await bcrypt.hash(password, 10)
 
-        await User.create({username, email, password: hashedPassword})
+        await User.create({nombre_usuario, nombre, apellido, email, password: hashedPassword})
 
         res.status(201).json({message: "usuario registrado exitosamente"})
     }catch (error) {
@@ -50,6 +50,18 @@ export const login = async (req, res) => {
     }
 }
 
-export const perfil = (req, res) => {
-    res.json({ message: "Bienvenido a tu perfil", userId: req.userId })
+export const perfil = async (req, res) => {
+    try{
+        const user = await User.findById(req.userId)
+        if(!user){
+            return res.status(404).json({
+                error: "Usuario no encontrado"
+            })
+        }
+
+        const {password, ...safeuserData} = user
+        res.json(safeuserData)
+    }catch(error){
+        res.status(500).json({error: error.message})
+    }
 }
