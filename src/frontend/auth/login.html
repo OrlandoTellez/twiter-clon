@@ -61,8 +61,8 @@
         <h2>Iniciar sesión</h2>
 
         <form id="login-form">
-            <input type="email" name="email" id="email"  placeholder="Correo electrónico">
-            <input type="password" name="password" id="password"  placeholder="Contraseña">
+            <input type="email" name="email" id="email"  placeholder="Correo electrónico" required>
+            <input type="password" name="password" id="password"  placeholder="Contraseña" required>
             <button type="submit" class="btn submit">Siguiente</button>
         </form>
         
@@ -71,35 +71,38 @@
 
     <script>
         document.getElementById('login-form').addEventListener('submit', async (e) => {
-          e.preventDefault()
-          
-          const formData = {
-            email: e.target.email.value,
-            password: e.target.password.value
-          }
-  
-          try {
-            const API_URL = window.location.hostname === "localhost"
-            ? "http://localhost:5000/auth/login"
-            : "https://twiter-clon-production.up.railway.app/auth/login"
-  
-            const response = await fetch(API_URL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(formData)
-            })
-            
-            if (response.ok) {
-              window.location.href = '/perfil.html'
-            } else {
-              const errorData = await response.json()
-              alert(errorData.error || 'Error en el inicio de sesion')
+            e.preventDefault()
+        
+            const formData = {
+                email: e.target.email.value,
+                password: e.target.password.value
             }
-          } catch (error) {
-            console.error('Error:', error)
-            alert('Error de conexión con el servidor')
-          }
+
+            try {
+                const API_URL = window.location.hostname === "localhost"
+                    ? "http://localhost:5000/auth/login"
+                    : "https://twiter-clon-production.up.railway.app/auth/login"
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                
+                const data = await response.json()
+
+                if (response.ok) {
+                    localStorage.setItem('token', data.token)
+                    localStorage.setItem('user', JSON.stringify(data.user))
+                    window.location.href = '/perfil.html'
+                } else {
+                    alert(data.error || 'Error en el inicio de sesión')
+                }
+            } catch (error) {
+                console.error('Error:', error)
+                alert('Error de conexión con el servidor')
+            }
         })
-      </script>
+    </script>
 </body>
 </html>

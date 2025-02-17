@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/perfil.css">
     <script src="js/componentes.js" defer></script>
+    <script type="module" src="js/profile.js"></script>
 </head>
 <body>
     <div class="header-inline-container">
@@ -22,7 +23,7 @@
                 
             </picture>
             <article>
-                <h2>TheGrefg </h2>
+                <h2 id="profileName"></h2>
                 <span>51,6 mil posts</span>
             </article>
         </div>
@@ -33,12 +34,12 @@
             </picture>
             <article class="article-container">
                 <picture>
-                    <img src="https://unavatar.io/x/TheGrefg" alt="avatar">
+                    <img src="https://unavatar.io/x/${userData.username}" alt="avatar">
                 </picture>
                 <div>
                     <article>
-                        <h3>TheGrefg</h3>
-                        <span>@thegrefg</span>
+                        <h3 id="profileUsername"></h3>
+                        <span id="profileHandle"></span>
                     </article>
                     <p>Creador de Contenido, @TeamHeretics & @Saiyans_FC_ Owner 🔥💙 Business: contact@thegrefg.com</p>
                     <span>Se unió en marzo de 2014</span>
