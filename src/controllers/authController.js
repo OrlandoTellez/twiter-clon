@@ -40,7 +40,7 @@ export const login = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "Strict",
-            maxAge: 60000
+            maxAge: 600000 // 10 minutos
         })
 
         res.json({
@@ -71,4 +71,11 @@ export const perfil = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
+}
+
+export const logout = (req, res) => {
+    res.clearCookie("token")
+    res.json({
+        message: "Sesion cerrada exitosamente"
+    })
 }

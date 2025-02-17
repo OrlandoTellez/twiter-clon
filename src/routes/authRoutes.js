@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import {register, login, perfil} from '../controllers/authController.js'
+import { register, login, perfil, logout } from '../controllers/authController.js'
 import { authenticate } from '../middlewares/authMiddleware.js'
 
 const router = Router()
@@ -12,5 +12,7 @@ router.post('/auth/login', login)
 
 //Ruta del perfil
 router.get("/perfil", authenticate, perfil)
+
+router.post("/auth/logout", logout)
 
 export default router
