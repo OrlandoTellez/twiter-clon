@@ -92,8 +92,6 @@
                 const data = await response.json()
 
                 if (response.ok) {
-                    localStorage.setItem('token', data.token)
-                    localStorage.setItem('user', JSON.stringify(data.user))
                     window.location.href = '/perfil.html'
                 } else {
                     alert(data.error || 'Error en el inicio de sesión')
