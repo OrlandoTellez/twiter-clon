@@ -26,17 +26,17 @@ export const register = async (req, res) => {
 
 
 export const login = async (req, res) => {
-    try{
-        const {email, password} = req.body
+    try {
+        const { email, password } = req.body
         const user = await User.findByEmail(email)
 
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(401).json({ error: 'Credenciales inválidas' })
-          }
+        }
 
-        const token = jwt.sign({userId: user.id}, JWT_SECRET, {expiresIn: "1h"})
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" })
         res.json({
-            message: "Inicio de sesion exitoso",
+            message: "Inicio de sesión exitoso",
             token,
             user: {
                 id: user.id,
@@ -44,24 +44,23 @@ export const login = async (req, res) => {
                 email: user.email
             }
         })
-        
-    }catch(error){
-        res.status(500).json({error: error.message})
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
 }
 
 export const perfil = async (req, res) => {
-    try{
+    try {
         const user = await User.findById(req.userId)
-        if(!user){
+        if (!user) {
             return res.status(404).json({
                 error: "Usuario no encontrado"
             })
         }
 
-        const {password, ...safeuserData} = user
-        res.json(safeuserData)
-    }catch(error){
-        res.status(500).json({error: error.message})
+        const { password, ...safeUserData } = user
+        res.json(safeUserData)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
 }
