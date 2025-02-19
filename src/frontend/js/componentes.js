@@ -65,7 +65,8 @@ class HeaderInline extends HTMLElement {
     const usuarioAutenticado = await this.verificarSesion()
 
     if(usuarioAutenticado){
-      btnCerrarSesion.style.display = "block"
+      btnCerrarSesion.style.display = "flex"
+      btnCerrarSesion.style.justifyContent = "center"
     }else{
       btnCerrarSesion.style.display = "none"
     }

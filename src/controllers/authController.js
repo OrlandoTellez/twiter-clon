@@ -94,9 +94,7 @@ export const checkSesion = async (req, res) => {
         if(!user){
             return res.json({ isAuth: false })
         }
-
         
-
         res.json({
             isAuth: true,
             user: {
