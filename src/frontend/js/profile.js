@@ -1,5 +1,6 @@
-document.addEventListener("DOMContentLoaded", async () => {
+const $ = (e) => document.querySelector(e)
 
+document.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await fetch('/perfil', {
             credentials: 'include' 
@@ -10,11 +11,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         const userData = await response.json()
+        const $headerName = $('#profileName')
+        const $profileName = $('#profileUsername')
+        const $profileHandle = $('#profileHandle')
+        const $createDate = $('#createDate')
+
+        //FORMATEAR FECHA EN FORMATO 00-00-0000
+        const createDate = userData.fecha_creacion
+        const date = createDate.split('T')[0]
 
         //ACTUALIZAR EL DOM
-        document.querySelector(".header-perfil h2").textContent = userData.nombre
-        document.querySelector(".article-container h3").textContent = userData.nombre
-        document.querySelector(".article-container span").textContent = `@${userData.nombre_usuario.toLowerCase()}`
+        $headerName.textContent = userData.nombre
+        $profileName.textContent = userData.nombre
+        $profileHandle.textContent = `@${userData.nombre_usuario.toLowerCase()}`
+        $createDate.textContent = date
     } catch (error) {
         console.error(error)
         window.location.href = "/auth/login.html"
