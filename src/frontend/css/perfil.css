@@ -38,13 +38,29 @@
     && .article-container {
         padding: 0px 20px;
         width: 100%;
+        
         && picture{
             display: flex;
-            width: 100px;
+            justify-content: space-between;
+            width: 100%;
+            
             && img{
                 width:100%;
                 border-radius: 50%;
                 max-width: 70px;
+            }
+
+            && #btn-editProfile{
+                background: black;
+                color: white;
+                border: 1px solid white;
+                border-radius: 30px;
+                height: 30px;
+                padding: 15px 30px;
+                margin: 15px 15px 0px 0px;
+                cursor: pointer;
+                display: flex;
+                place-items: center;
             }
         }
     }    
@@ -113,7 +129,7 @@
             width: 100%;
             && picture{
                 display: flex;
-                width: 100px;
+                width: 100%;
                 && img{
                     width:100%;
                     border-radius: 50%;
