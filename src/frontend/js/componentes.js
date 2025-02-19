@@ -60,6 +60,24 @@ class HeaderInline extends HTMLElement {
   async connectedCallback() {
     const response = await fetch("../componentes/header-inline.html")
     this.innerHTML = await response.text()
+    const btnCerrarSesion = this.querySelector(".btn-cerrarSesion")
+
+    btnCerrarSesion.addEventListener("click", cerrarSesion)
+
+    async function cerrarSesion() {
+      try{
+          const response = await fetch("auth/logout", {
+              method: "POST"
+          })
+
+          if(response.ok){
+              window.location.href = "/"
+          }
+      }catch(error){
+          console.error(error)
+          alert("Error al cerrar sesión")
+      }
+    }
   }
 }
 
