@@ -12,12 +12,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const userData = await response.json()
 
         //ACTUALIZAR EL DOM
-        document.querySelector(".header-perfil h2").textContent = userData.nombre_usuario
+        document.querySelector(".header-perfil h2").textContent = userData.nombre
         document.querySelector(".article-container h3").textContent = userData.nombre
         document.querySelector(".article-container span").textContent = `@${userData.nombre_usuario.toLowerCase()}`
     } catch (error) {
         console.error(error)
-        localStorage.removeItem("token")
         window.location.href = "/auth/login.html"
     }
 })

@@ -62,21 +62,44 @@ class HeaderInline extends HTMLElement {
     this.innerHTML = await response.text()
     const btnCerrarSesion = this.querySelector(".btn-cerrarSesion")
 
-    btnCerrarSesion.addEventListener("click", cerrarSesion)
+    const usuarioAutenticado = await this.verificarSesion()
 
-    async function cerrarSesion() {
-      try{
-          const response = await fetch("auth/logout", {
-              method: "POST"
-          })
+    if(usuarioAutenticado){
+      btnCerrarSesion.style.display = "block"
+    }else{
+      btnCerrarSesion.style.display = "none"
+    }
 
-          if(response.ok){
-              window.location.href = "/"
-          }
-      }catch(error){
-          console.error(error)
-          alert("Error al cerrar sesión")
+    btnCerrarSesion.addEventListener("click", async () => {
+      await this.cerrarSesion()
+    })
+
+  }
+
+  async verificarSesion(){
+    try{
+      const response = await fetch("auth/checkSesion")
+      if(response.ok){
+        const data = await response.json()
+        return data.isAuth
       }
+
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  async cerrarSesion(){
+    try{
+      const response = await fetch("auth/logout", {
+        method: "POST"
+      })
+
+      if(response.ok){
+        window.location.href = "/"
+      }
+    }catch(error){
+      console.error(error)
     }
   }
 }

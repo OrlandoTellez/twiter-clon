@@ -79,3 +79,33 @@ export const logout = (req, res) => {
         message: "Sesion cerrada exitosamente"
     })
 }
+
+export const checkSesion = async (req, res) => {
+    try{
+        const token = req.cookies.token
+
+        if(!token){
+            return res.json({ isAuth: false })
+        }
+
+        const decoded = jwt.verify(token, JWT_SECRET)
+        const user = await User.findById(decoded.userId)
+
+        if(!user){
+            return res.json({ isAuth: false })
+        }
+
+        
+
+        res.json({
+            isAuth: true,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email
+            }
+        })
+    }catch (error) {
+        res.status(500).json({ error: error.message, isAuth: false })
+    }
+}
