@@ -8,7 +8,7 @@ export default class User {
             throw new Error("Email ya registrado")
         }
 
-        const [result] = await pool.execute("INSERT INTO usuarios (nombre_usuario, nombre, apellido, email, password) VALUES (?, ?, ?, ?, ?)", [nombre_usuario, nombre, apellido, email, password])
+        const [result] = await pool.execute("INSERT INTO usuarios (nombre_usuario, nombre, apellido, email, password) VALUES (?,?, ?, ?, ?)", [nombre_usuario, nombre, apellido, email, password])
 
         return result.insertId
     }
@@ -22,6 +22,12 @@ export default class User {
         const [rows] = await pool.execute("SELECT * FROM usuarios WHERE id = ?", [id])
 
         return rows.length > 0 ? rows[0] : null
+    }
+
+    static async createTweet({usuario_id, contenido}){
+        const [result] = await pool.execute("INSERT INTO tweets (usuario_id, contenido) VALUES (?,?)", [usuario_id, contenido])
+
+        return result.insertId
     }
 }
 

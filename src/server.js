@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import authRoutes from './routes/authRoutes.js'
+import tweetRoutes from './routes/tweetsRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.use(express.static(ROOT_DIR)) 
 
 app.use('/', authRoutes) 
+app.use('/content', tweetRoutes)
 
 app.get(['/perfil', '/notificaciones', '/explorar'], (req, res) => {
   res.sendFile(join(ROOT_DIR, 'index.html'))
@@ -31,9 +33,6 @@ app.get(['/perfil', '/notificaciones', '/explorar'], (req, res) => {
 app.use('/assets', express.static(join(ROOT_DIR, 'assets')))
 app.use('/auth', express.static(join(ROOT_DIR, 'auth')))
 app.use('/componentes', express.static(join(ROOT_DIR, 'componentes')))
-
-
-
 
 app.get('/', (req, res) => {
   res.sendFile(join(ROOT_DIR, 'index.html'))

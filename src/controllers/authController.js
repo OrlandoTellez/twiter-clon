@@ -24,7 +24,6 @@ export const register = async (req, res) => {
     }
 }
 
-
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -39,7 +38,7 @@ export const login = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "strict",
             maxAge: 600000 // 10 minutos
         })
 
