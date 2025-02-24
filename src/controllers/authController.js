@@ -9,24 +9,35 @@ dotenv.config()
 const JWT_SECRET = process.env.JWT_SECRET
 
 export const register = async (req, res) => {
-    try{
-        const user = validateUserRegister(req.body)
+    try {
+        const user = validateUserRegister(req.body);
 
-        if(!user.success){
-            return res.status(400).json({ error: "Datos invalidos", details: user.error.errors })
+        if (!user.success) {
+            return res.status(400).json({ error: "Datos inválidos", details: user.error.errors });
         }
 
-        const { nombre_usuario, nombre, apellido, email, password } = user.data
+        const { nombre_usuario, nombre, apellido, email, password } = user.data;
 
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        await User.create({ nombre_usuario, nombre, apellido, email, password: hashedPassword })
+        await User.create({ nombre_usuario, nombre, apellido, email, password: hashedPassword });
 
-        res.status(201).json({message: "usuario registrado exitosamente"})
-    }catch (error) {
+        const savedUser = await User.findByEmail(email)
+
+        const token = jwt.sign({ userId: savedUser.id }, JWT_SECRET, { expiresIn: "1h" })
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax",
+            maxAge: 3600000 // 1 hora
+        })
+
+        res.status(201).json({ message: "Usuario registrado exitosamente" })
+    } catch (error) {
         console.error("Error en registro:", error)
-        res.status(500).json({
-            error: "Error al registrar usuario",
+        res.status(500).json({ 
+            error: "Error al registrar usuario", 
             details: error.message 
         })
     }
@@ -57,13 +68,13 @@ export const login = async (req, res) => {
         res.clearCookie("token")
 
         // Generar JWT
-        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" })
 
         // Configuración de cookies
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
+            sameSite: "lax",
             maxAge: 3600000 // 1 hora
         })
 
