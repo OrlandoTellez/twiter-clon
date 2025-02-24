@@ -6,18 +6,18 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import authRoutes from './routes/authRoutes.js'
 import tweetRoutes from './routes/tweetsRoutes.js'
+import { indexRoute } from './routes/indexRoutes.js'
 
 dotenv.config()
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const ROOT_DIR = join(__dirname, 'frontend')
+const ROOT_DIR = join(__dirname, 'views')
 
 // Middlewares 
 app.use(cors({
   origin: process.env.URLFRONTEND || 'http://localhost:5000',
   credentials: true, 
-  allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.use(express.json()) 
 app.use(cookieParser())
@@ -25,18 +25,7 @@ app.use(express.static(ROOT_DIR))
 
 app.use('/', authRoutes) 
 app.use('/content', tweetRoutes)
-
-app.get(['/perfil', '/notificaciones', '/explorar'], (req, res) => {
-  res.sendFile(join(ROOT_DIR, 'index.html'))
-})
-
-app.use('/assets', express.static(join(ROOT_DIR, 'assets')))
-app.use('/auth', express.static(join(ROOT_DIR, 'auth')))
-app.use('/componentes', express.static(join(ROOT_DIR, 'componentes')))
-
-app.get('/', (req, res) => {
-  res.sendFile(join(ROOT_DIR, 'index.html'))
-})
+app.use('/', indexRoute)
 
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack)
