@@ -1,7 +1,6 @@
 const formTweet = document.querySelector('.tweet-container--input')
     const inputTweet = document.querySelector('.tweet-input')
 
-
     formTweet.addEventListener('submit', async (e) => {
         e.preventDefault()
 
@@ -29,7 +28,7 @@ const formTweet = document.querySelector('.tweet-container--input')
                 const errorData = await response.json()
                 alert(errorData.error || 'Error al crear el tweet')
             }
-
+            
         } catch (error) {
             console.error('Error:', error)
             alert('Hubo un problema al enviar el tweet');
