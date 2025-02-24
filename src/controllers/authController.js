@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../models/user.js"
 import dotenv from "dotenv"
-import { validateUser } from "../validations/userValidation.js"
+import { validateUserRegister, validateUserLogin } from "../validations/userValidation.js"
 
 dotenv.config()
 
@@ -10,7 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export const register = async (req, res) => {
     try{
-        const user = validateUser(req.body)
+        const user = validateUserRegister(req.body)
 
         if(!user.success){
             return res.status(400).json({ error: "Datos invalidos", details: user.error.errors })
@@ -34,15 +34,30 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { email, password } = req.body
-        const user = await User.findByEmail(email)
+        // Validar los datos
+        const userData = validateUserLogin(req.body)
+        if(!userData.success){
+            return res.status(400).json({ error: "Datos invalidos", details: user.error.errors })
+        }
 
-        if (!user || !(await bcrypt.compare(password, user.password))) {
+        const { email, password } = userData.data
+
+        // Buscar el usuario en la base de datos
+        const user = await User.findByEmail(email)
+        if (!user ) {
             return res.status(401).json({ error: 'Credenciales inválidas' })
         }
 
+        // Verificar la contraseña
+        const passwordMatch = await bcrypt.compare(password, user.password)
+        if(!passwordMatch){
+            return res.status(401).json({ error: 'Credenciales inválidas' })
+        }
+
+        // Generar JWT
         const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" })
 
+        // Configuración de cookies
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",

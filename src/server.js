@@ -23,7 +23,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.static(ROOT_DIR)) 
 
-app.use('/', authRoutes) 
+app.use('/auth', authRoutes) 
 app.use('/content', tweetRoutes)
 app.use('/', indexRoute)
 
