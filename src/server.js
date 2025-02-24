@@ -11,8 +11,8 @@ import { indexRoute } from './routes/indexRoutes.js'
 dotenv.config()
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
-
 const ROOT_DIR = join(__dirname, 'views')
+const PORT = process.env.PORT || 5000
 
 // Middlewares 
 app.use(cors({
@@ -32,7 +32,6 @@ app.use((err, req, res, next) => {
   res.status(500).sendFile(join(ROOT_DIR, 'error.html')) 
 })
 
-const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Servidor listo en puerto http://localhost:${PORT}`)
 })

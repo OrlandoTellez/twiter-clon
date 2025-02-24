@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../models/user.js"
 import dotenv from "dotenv"
+import { validateUser } from "../validations/userValidation.js"
 
 dotenv.config()
 
@@ -9,10 +10,17 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export const register = async (req, res) => {
     try{
-        const {nombre_usuario, nombre, apellido, email, password} = req.body
+        const user = validateUser(req.body)
+
+        if(!user.success){
+            return res.status(400).json({ error: "Datos invalidos", details: user.error.errors })
+        }
+
+        const { nombre_usuario, nombre, apellido, email, password } = user.data
+
         const hashedPassword = await bcrypt.hash(password, 10)
 
-        await User.create({nombre_usuario, nombre, apellido, email, password: hashedPassword})
+        await User.create({ nombre_usuario, nombre, apellido, email, password: hashedPassword })
 
         res.status(201).json({message: "usuario registrado exitosamente"})
     }catch (error) {
