@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,12 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <script type="module" src="js/index.js" defer></script>
-    <!-- <script src="js/components/TweetUser.js" defer></script> -->
     <script src="js/components/Tweets.js" defer></script>
     <script src="js/components/HeaderUp.js" defer></script>
     <script src="js/components/HeaderInline.js" defer></script>
+    <script type="module" src="js/utils/CrearTweet.js" defer></script>
 </head>
+
 <body>
     <div class="header-inline-container">
         <header-inline></header-inline>
@@ -23,8 +25,8 @@
         </div>
 
         <div class="container-postear">
-            <article>
-                <input type="text"  class="tweet-input" placeholder="¡¿Que esta pasando?!">
+            <form class="tweet-container--input">
+                <input type="text" class="tweet-input" placeholder="¡¿Que esta pasando?!">
                 <div class="container-postear--iconos">
                     <div class="container-iconos">
                         <a class="logo">
@@ -44,18 +46,18 @@
                         </a>
                     </div>
                     <div class="container-postear--iconos__postear">
-                        <button class="btn-postear">Postear</button>
+                        <button type="submit" class="btn-postear">Postear</button>
                     </div>
                 </div>
-            </article>
+            </form>
         </div>
 
         <div class="container-app">
             <main class="tweet-container--index">
-                
 
-                
-    
+
+
+
                 <!-- <tweet-user
                 imagenPerfil="https://unavatar.io/x/Rubiu5"
                 nombre="elrubius"
@@ -72,9 +74,9 @@
         </div>
     </div>
 
-    <div class="container-article"> 
+    <div class="container-article">
         <div class="search">
-            <input type="text" placeholder="Buscar" >
+            <input type="text" placeholder="Buscar">
         </div>
 
         <article class="tarjeta-cuenta">
@@ -85,7 +87,8 @@
 
         <article class="tarjeta-suscribirse--index">
             <h3>suscribete a premiun</h3>
-            <p>Suscríbete para desbloquear nuevas funciones y, si eres elegible, recibir un pago de cuota de ingresos</p>
+            <p>Suscríbete para desbloquear nuevas funciones y, si eres elegible, recibir un pago de cuota de ingresos
+            </p>
             <a href="/" class="suscribete">Suscribete</a>
         </article>
 
@@ -97,7 +100,7 @@
                     <p>Disney Channel</p>
                     <span>12,700 publicaciones</span>
                 </a>
-                
+
             </div>
             <div>
                 <a href="/">
@@ -105,7 +108,7 @@
                     <p>Nvidia</p>
                     <span>122 mil publicaciones</span>
                 </a>
-                
+
             </div>
             <div>
                 <a href="/assets/">
@@ -113,7 +116,7 @@
                     <p>PS5 Pro</p>
                     <span>12,4 mil publicaciones</span>
                 </a>
-                
+
             </div>
             <div>
                 <a href="/">
@@ -175,4 +178,5 @@
         </article>
     </div>
 </body>
+
 </html>

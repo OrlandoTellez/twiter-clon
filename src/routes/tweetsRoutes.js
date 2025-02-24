@@ -2,8 +2,6 @@ import { Router } from "express"
 import { authenticate } from "../middlewares/authMiddleware.js"
 import { createTweet } from "../controllers/tweetController.js"
 
-const router = Router()
+export const tweetRouter = Router()
 
-router.post("/tweets", authenticate, createTweet)
-
-export default router
+tweetRouter.post("/tweets",authenticate, createTweet)

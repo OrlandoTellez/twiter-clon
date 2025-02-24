@@ -1,18 +1,14 @@
 import {Router} from 'express'
-import { register, login, perfil, logout, checkSesion } from '../controllers/authController.js'
+import { register, login, logout, checkSesion } from '../controllers/authController.js'
 
-const router = Router()
+export const authRouter = Router()
 
 //Ruta del registro de usuario
-router.post('/registro', register)
+authRouter.post('/registro', register)
 
 //Ruta del login de usuario
-router.post('/login', login)
+authRouter.post('/login', login)
 
-//Ruta del perfil
+authRouter.post("/logout", logout)
 
-router.post("/logout", logout)
-
-router.get("/checkSesion", checkSesion)
-
-export default router
+authRouter.get("/checkSesion", checkSesion)

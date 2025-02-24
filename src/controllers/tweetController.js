@@ -1,11 +1,25 @@
 import User from "../models/user.js"
 
 export const createTweet = async (req, res) => {
-    const { contenido } = req.body
-    const usuario_id = req.userId
+    try {
+        const { contenido } = req.body;
+        const usuario_id = req.userId; 
 
-    await User.createTweet({ usuario_id, contenido })
+        if (!usuario_id) {
+            return res.status(401).json({ error: "Usuario no autenticado" });
+        }
 
-    res.status(201).json({ message: "Tweet creado exitosamente" })
-}
+        if (!contenido || typeof contenido !== "string" || contenido.trim() === "") {
+            return res.status(400).json({ error: "El contenido del tweet no puede estar vacío" });
+        }
+
+        await User.createTweet({ usuario_id, contenido });
+
+        res.status(201).json({ message: "Tweet creado exitosamente" });
+    } catch (error) {
+        console.error("Error en createTweet:", error);
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+};
+
 

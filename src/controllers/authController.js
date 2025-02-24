@@ -54,15 +54,17 @@ export const login = async (req, res) => {
             return res.status(401).json({ error: 'Credenciales inválidas' })
         }
 
+        res.clearCookie("token")
+
         // Generar JWT
-        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" })
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" });
 
         // Configuración de cookies
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "strict",
-            maxAge: 600000 // 10 minutos
+            maxAge: 3600000 // 1 hora
         })
 
         res.json({
