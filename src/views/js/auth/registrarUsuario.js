@@ -10,9 +10,7 @@ document.getElementById('registro-form').addEventListener('submit', async (e) =>
     }
 
     try {
-        const API_URL = window.location.hostname === "localhost"
-        ? "http://localhost:5000/auth/login"
-        : "https://twiter-clon-production.up.railway.app/auth/registro"
+        const API_URL = "/auth/registro"
 
       const response = await fetch(API_URL, {
         method: 'POST',
