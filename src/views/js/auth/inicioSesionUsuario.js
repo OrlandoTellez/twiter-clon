@@ -1,7 +1,5 @@
 const form = document.getElementById("login-form")
 
-alert("hola")
-
 form.addEventListener("submit", async (e) => {
   e.preventDefault()
 

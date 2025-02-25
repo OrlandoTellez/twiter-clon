@@ -29,5 +29,17 @@ export default class User {
 
         return result.insertId
     }
+
+    static async findAllTweets(){
+        const [rows] = await pool.execute("SELECT t.id, t.contenido, t.usuario_id, u.nombre_usuario, u.nombre, u.apellido FROM tweets t JOIN usuarios u ON t.usuario_id = u.id ORDER BY t.id DESC")
+
+        return rows
+    }
+
+    static async findUserTweets(id){
+        const [rows] = await pool.execute("SELECT * FROM tweets WHERE usuario_id = ? ORDER BY id DESC", [id])
+
+        return rows
+    }
 }
 

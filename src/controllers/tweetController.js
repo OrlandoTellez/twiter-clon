@@ -20,6 +20,16 @@ export const createTweet = async (req, res) => {
         console.error("Error en createTweet:", error);
         res.status(500).json({ error: "Error interno del servidor" });
     }
-};
+}
+
+export const cargarTweet = async (req, res) => {
+    try {
+        const tweets = await User.findUserTweets(req.userId)
+        res.json(tweets)
+    } catch (error) {
+        console.error("Error en cargarTweet:", error)
+        res.status(500).json({ error: "Error interno del servidor" })
+    }
+}
 
 
