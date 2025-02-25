@@ -41,5 +41,11 @@ export default class User {
 
         return rows
     }
+
+    static async updateProfileImage(id, imagenUrl) {
+        const [result] = await pool.execute("UPDATE usuarios SET imagen_perfil = ? WHERE id = ?", [imagenUrl, id])
+        
+        return result
+    }
 }
 

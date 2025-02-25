@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import { authRouter } from './routes/authRoutes.js'
 import { tweetRouter } from './routes/tweetsRoutes.js'
 import { indexRoute } from './routes/indexRoutes.js'
+import { imageRouter } from './routes/imageRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -26,6 +27,7 @@ app.use(express.static(ROOT_DIR))
 
 app.use('/auth', authRouter) 
 app.use('/content', tweetRouter)
+app.use('/image', imageRouter)
 app.use('/', indexRoute)
 
 app.use((err, req, res, next) => {
