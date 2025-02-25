@@ -1,7 +1,6 @@
-
-async function cargarTweets() {
+async function cargarTweets(API, container) {
     try{
-        const API_URL = "/content/tweets"
+        const API_URL = API
 
         const response = await fetch(API_URL, {
             method: "GET",
@@ -27,7 +26,7 @@ async function cargarTweets() {
                 .replace("{{imagenTweet}}", tweet.imagenTweet || "");
         }).join("");
 
-        const contenedor = document.querySelector(".tweet-container--perfil")
+        const contenedor = document.querySelector(container)
 
         contenedor.innerHTML = tweetsHTML
     }catch(error){
@@ -35,4 +34,4 @@ async function cargarTweets() {
     }
 }
 
-cargarTweets()
+export { cargarTweets }
