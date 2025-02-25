@@ -32,4 +32,14 @@ export const cargarTweet = async (req, res) => {
     }
 }
 
+export const cargarAllTweets = async (req, res) => {
+    try {
+        const tweets = await User.findAllTweets()
+        res.json(tweets)
+    } catch (error) {
+        console.error("Error en cargarAllTweets:", error)
+        res.status(500).json({ error: "Error interno del servidor" })
+    }
+}
+
 
