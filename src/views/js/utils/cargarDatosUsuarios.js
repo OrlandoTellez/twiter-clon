@@ -1,5 +1,6 @@
-const $ = (e) => document.querySelector(e)
+import { cargarImagenesPerfil } from "./cargarImagenesPerfil.js"
 
+const $ = (e) => document.querySelector(e)
 
 export const cargarDatosUsuario = async () => {
     try{
@@ -29,7 +30,10 @@ export const cargarDatosUsuario = async () => {
         $profileName.textContent = userData.nombre
         $profileHandle.textContent = `@${userData.nombre_usuario.toLowerCase()}`
         $createDate.textContent = date
+
+        cargarImagenesPerfil()
     }catch (error) {
         console.error(error)
     }
 }
+
