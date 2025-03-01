@@ -12,6 +12,7 @@ async function cargarTweets(API, container) {
 
         const tweetsData = await response.json()
 
+
         const responseContainer = await fetch("../../componentes/tweets.html")
         if (!responseContainer.ok) throw new Error("No se pudo cargar el archivo HTML")
 
@@ -19,7 +20,7 @@ async function cargarTweets(API, container) {
 
         const tweetsHTML = tweetsData.map(tweet => {
             return template
-                .replace("{{imagenPerfil}}", tweet.imagen || "https://unavatar.io/x/fasfasfasdfasdf")
+                .replace("{{imagenPerfil}}", tweet.imagen_perfil || "https://unavatar.io/x/fasfasfasdfasdf")
                 .replace("{{nombre}}", tweet.nombre || "Usuario")
                 .replace("{{nombreUsuario}}", `@${tweet.nombre_usuario || "anonimo"}`)
                 .replace("{{tweet}}", tweet.contenido || "Sin contenido")

@@ -26,8 +26,8 @@ const contenedorTweets = document.querySelector(".tweet-container--index")
 botonTweet.addEventListener("click", () => {
     publicarTweets(contenedorTweets, {
         imagenPerfil: "https://unavatar.io/x/1saf21asd21asdf2",
-        nombre: "IbaiLlanos",
-        nombreUsuario: "@IbaiLlanos",
+        nombre: "",
+        nombreUsuario: "@",
         tweet: inputTweet.value,
         imagenTweet: ""
     })

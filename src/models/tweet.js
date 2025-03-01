@@ -8,7 +8,17 @@ export default class Tweet {
     }
 
     static async findAllTweets(){
-        const [rows] = await pool.execute("SELECT t.id, t.contenido, t.usuario_id, u.nombre_usuario, u.nombre, u.apellido FROM tweets t JOIN usuarios u ON t.usuario_id = u.id ORDER BY t.id DESC")
+        const [rows] = await pool.execute(`
+            SELECT 
+            t.id, 
+            t.contenido, 
+            t.usuario_id, 
+            u.nombre_usuario, 
+            u.nombre, u.apellido, 
+            u.imagen_perfil 
+            FROM tweets t 
+            JOIN usuarios u 
+            ON t.usuario_id = u.id ORDER BY t.id DESC`)
 
         return rows
     }
@@ -16,16 +26,16 @@ export default class Tweet {
     static async findUserTweets(id) {
         const [rows] = await pool.execute(`
             SELECT 
-                u.id AS usuario_id,
-                u.nombre_usuario,
-                u.nombre,
-                u.apellido,
-                u.email,
-                u.imagen_perfil,
-                u.imagen_banner,
-                t.id AS tweet_id,
-                t.contenido,
-                t.fecha_creacion AS fecha_tweet
+            u.id AS usuario_id,
+            u.nombre_usuario,
+            u.nombre,
+            u.apellido,
+            u.email,
+            u.imagen_perfil,
+            u.imagen_banner,
+            t.id AS tweet_id,
+            t.contenido,
+            t.fecha_creacion AS fecha_tweet
             FROM tweets t
             JOIN usuarios u ON t.usuario_id = u.id
             WHERE u.id = ?
