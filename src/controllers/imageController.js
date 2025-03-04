@@ -1,3 +1,4 @@
+import Images from "../models/images.js";
 import User from "../models/user.js";
 
 export const uploadProfileImage = async (req, res) => {
@@ -9,7 +10,7 @@ export const uploadProfileImage = async (req, res) => {
         const imagenPerfilUrl = req.file.path
         const { nombre, bio } = req.body
 
-        await User.updateProfileImage(req.userId, imagenPerfilUrl, nombre, bio)
+        await Images.updateProfileImage(req.userId, imagenPerfilUrl, nombre, bio)
 
         res.json({ message: "Imagen de perfil actualizada", imagenPerfilUrl })
     } catch (error) {
@@ -25,7 +26,7 @@ export const uploadBannerImage = async (req, res) => {
         }
 
         const imagenFondoUrl = req.file.path 
-        await User.updateBannerImage(req.userId, imagenFondoUrl)
+        await Images.updateBannerImage(req.userId, imagenFondoUrl)
 
         res.json({ message: "Imagen de fondo actualizada", imagenFondoUrl })
     } catch (error) {
