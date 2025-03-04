@@ -62,11 +62,11 @@
         <h2>Únete a Twitter hoy mismo</h2>
 
           <form id="registro-form">
-            <input type="text" name="nombre" class="name" placeholder="Nombre">
-            <input type="text" name="apellido" class="last_name" placeholder="Apellido">
-            <input type="text" name="nombre_usuario" class="username" placeholder="Nombre de usuario">
-            <input type="email" name="email" id="email"  placeholder="Correo electrónico">
-            <input type="password" name="password" id="password"  placeholder="Contraseña">
+            <input type="text" name="nombre" class="name" placeholder="Nombre" required>
+            <input type="text" name="apellido" class="last_name" placeholder="Apellido" required>
+            <input type="text" name="nombre_usuario" class="username" placeholder="Nombre de usuario" required>
+            <input type="email" name="email" id="email"  placeholder="Correo electrónico" required>
+            <input type="password" name="password" id="password"  placeholder="Contraseña" minlength="6" required>
             <button type="submit" class="btn submit">Siguiente</button>
         </form>
         
