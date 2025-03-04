@@ -1,4 +1,4 @@
-import pool from "../config/db.js"
+import pool from "../db/db.js"
 
 export default class Tweet {
     static async createTweet({usuario_id, contenido}){
