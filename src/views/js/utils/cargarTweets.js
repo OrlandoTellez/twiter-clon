@@ -13,7 +13,7 @@ async function cargarTweets(API, container) {
         const tweetsData = await response.json()
 
 
-        const responseContainer = await fetch("../../componentes/tweets.html")
+        const responseContainer = await fetch("../../componentes/tweets.ejs")
         if (!responseContainer.ok) throw new Error("No se pudo cargar el archivo HTML")
 
         let template = await responseContainer.text()

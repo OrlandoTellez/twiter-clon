@@ -1,6 +1,6 @@
 async function publicarTweets(contenedor, atributos) {
     try {
-        const response = await fetch("../../componentes/tweets.html")
+        const response = await fetch("../../componentes/tweets.ejs")
         if (!response.ok) throw new Error("No se pudo cargar el archivo HTML")
 
         let template = await response.text()

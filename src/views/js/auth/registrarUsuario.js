@@ -20,7 +20,7 @@ document.getElementById('registro-form').addEventListener('submit', async (e) =>
       })
       
       if (response.ok) {
-        window.location.href = '/perfil.html'
+        window.location.href = '/perfil'
       } else {
         const errorData = await response.json()
         alert(errorData.error || 'Error en el registro')

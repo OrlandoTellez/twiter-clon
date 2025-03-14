@@ -1,15 +1,16 @@
 import { Router } from "express"
 import { authenticate } from '../middlewares/authMiddleware.js'
 import { perfil } from "../controllers/authController.js"
+import { getIndex, getExplore, getNotificaciones } from "../controllers/indexController.js"
 
 export const indexRoute = Router()
 
-indexRoute.get("/", (req, res) => {
-    res.sendFile(join(ROOT_DIR, 'index.html'))
-})
+
+indexRoute.get("/", getIndex)
 
 indexRoute.get("/perfil", authenticate, perfil)
 
-indexRoute.get(['/perfil', '/notificaciones', '/explorar'], (req, res) => {
-    res.sendFile(join(ROOT_DIR, 'index.html'))
-})
+indexRoute.get("/notificaciones", authenticate, getNotificaciones)
+
+indexRoute.get("/explore", getExplore)
+

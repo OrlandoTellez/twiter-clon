@@ -12,8 +12,12 @@ import { imageRouter } from './routes/imageRoutes.js'
 dotenv.config()
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const ROOT_DIR = join(__dirname, 'views')
+export const ROOT_DIR = join(__dirname, 'views')
 const PORT = process.env.PORT || 5000
+
+
+app.set('views', ROOT_DIR)
+app.set('view engine', 'ejs')
 
 // Middlewares 
 app.use(cors({
@@ -26,13 +30,14 @@ app.use(cookieParser())
 app.use(express.static(ROOT_DIR)) 
 
 app.use('/auth', authRouter) 
-app.use('/content', tweetRouter)
 app.use('/image', imageRouter)
+app.use('/content', tweetRouter)
 app.use('/', indexRoute)
+
 
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack)
-  res.status(500).sendFile(join(ROOT_DIR, 'error.html')) 
+  res.status(500).sendFile(join(ROOT_DIR, 'error.ejs')) 
 })
 
 app.listen(PORT, () => {

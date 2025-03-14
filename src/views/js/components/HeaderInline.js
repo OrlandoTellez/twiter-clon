@@ -3,7 +3,7 @@ class HeaderInline extends HTMLElement {
         super()
     }
     async connectedCallback() {
-        const response = await fetch("../componentes/header-inline.html")
+        const response = await fetch("../componentes/header-inline.ejs")
         this.innerHTML = await response.text()
         const btnCerrarSesion = this.querySelector(".btn-cerrarSesion")
 

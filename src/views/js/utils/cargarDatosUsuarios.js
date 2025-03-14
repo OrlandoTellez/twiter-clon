@@ -9,7 +9,7 @@ export const cargarDatosUsuario = async () => {
         })
     
         if (!response.ok) {
-            window.location.href = "/auth/login.html"
+            window.location.href = "/auth/login.ejs"
             throw new Error("Error al obtener el perfil del usuario")
         }
     

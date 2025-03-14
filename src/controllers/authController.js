@@ -8,6 +8,9 @@ dotenv.config()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
+export const getRegister = (req, res) => res.render("auth/registro")
+export const getLogin = (req, res) => res.render("auth/login")
+
 export const register = async (req, res) => {
     try {
         const user = validateUserRegister(req.body);
