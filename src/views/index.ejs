@@ -13,16 +13,16 @@
     <script src="js/components/HeaderUp.js" defer></script>
     <script src="js/components/HeaderInline.js" defer></script>
     <script type="module" src="./js/utils/crearTweet.js"></script>
-    <script type="module" src="./js/utils/cargarTweetsIndex.js"></script>
 </head>
 
 <body>
     <div class="header-inline-container">
-        <header-inline></header-inline>
+        <%- include("./componentes/header-inline") %>
+
     </div>
     <div class="body-container">
         <div class="header">
-            <header-up></header-up>
+            <%- include("./componentes/header-up") %>
         </div>
 
         <div class="container-postear">
@@ -55,22 +55,11 @@
 
         <div class="container-app">
             <main class="tweet-container--index">
-
-
-
-
-                <!-- <tweet-user
-                imagenPerfil="https://unavatar.io/x/Rubiu5"
-                nombre="elrubius"
-                nombreUsuario="@Rubiu5"
-                tweet="Mi skin vuelve a estar en la tienda de Fortnite! 
-
-                Ahora compatible con los kicks👟
-                
-                Codigo Rubius 🔥"
-                imagenTweet="https://pbs.twimg.com/media/Gd60KQCWgAAa__f?format=jpg&name=small"
-                ></tweet-user> -->
-
+                <div class="tweet-container--index">
+                    <% tweets.forEach(tweet => { %>
+                        <%- include("./componentes/tweets.ejs", tweet) %>
+                    <% }) %>
+                </div>
             </main>
         </div>
     </div>

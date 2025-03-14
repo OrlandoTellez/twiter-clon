@@ -5,6 +5,6 @@ import { createTweet, cargarTweet, cargarAllTweets } from "../controllers/tweetC
 export const tweetRouter = Router()
 
 tweetRouter.get("/tweets", authenticate, cargarTweet)
-tweetRouter.get("/allTweets", cargarAllTweets)
+tweetRouter.get("/", cargarAllTweets)
 
 tweetRouter.post("/tweets", authenticate, createTweet)

@@ -29,16 +29,16 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.static(ROOT_DIR)) 
 
+
 app.use('/auth', authRouter) 
 app.use('/image', imageRouter)
-app.use('/content', tweetRouter)
+app.use('/', tweetRouter)
 app.use('/', indexRoute)
 
-
-app.use((err, req, res, next) => {
-  console.error('Error:', err.stack)
-  res.status(500).sendFile(join(ROOT_DIR, 'error.ejs')) 
-})
+// app.use((err, req, res, next) => {
+//   console.error('Error:', err.stack)
+//   res.status(500).sendFile(join(ROOT_DIR, 'error.ejs')) 
+// })
 
 app.listen(PORT, () => {
   console.log(`Servidor listo en puerto http://localhost:${PORT}`)

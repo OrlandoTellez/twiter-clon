@@ -41,6 +41,50 @@
         }
         
     </style>
+
+<script type="module">
+    document.addEventListener("DOMContentLoaded", async () => {
+        const btnCerrarSesion = document.querySelector(".btn-cerrarSesion")
+
+        async function verificarSesion() {
+            try {
+                const response = await fetch("/auth/checkSesion")
+                if (response.ok) {
+                    const data = await response.json()
+                    return data.isAuth
+                }
+            } catch (error) {
+                console.error("Error al verificar sesión:", error)
+            }
+            return false
+        }
+
+        async function cerrarSesion() {
+            try {
+                const response = await fetch("/auth/logout", {
+                    method: "POST"
+                });
+
+                if (response.ok) {
+                    window.location.href = "/";
+                }
+            } catch (error) {
+                console.error("Error al cerrar sesión:", error)
+            }
+        }
+
+        const usuarioAutenticado = await verificarSesion()
+
+        if (usuarioAutenticado) {
+            btnCerrarSesion.style.display = "flex"
+            btnCerrarSesion.style.justifyContent = "center"
+        } else {
+            btnCerrarSesion.style.display = "none"
+        }
+
+        btnCerrarSesion.addEventListener("click", cerrarSesion)
+    });
+</script>
 </head>
 
 <div class="navegacion">
@@ -60,7 +104,7 @@
         <a href="../perfil" class="btn-perfil">
             <img src="../assets/iconos/perfil.svg" alt="icono-users"> 
         </a>
-        <a href="/" class="btn-cerrarSesion">
+        <a href="/" class="btn-cerrarSesion" style="display: none;">
             <img src="../assets/iconos/logout.svg" alt="icono-logout">
         </a>
     </nav>

@@ -20,7 +20,7 @@ form.addEventListener("submit", async (e) => {
     const data = await response.json()
 
     if (response.ok) {
-      window.location.href = "/perfil.ejs"
+      window.location.href = "/perfil"
     } else {
       alert(data.error || "Error en el inicio de sesión")
     }
