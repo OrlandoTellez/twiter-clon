@@ -34,8 +34,8 @@ app.use(express.static(ROOT_DIR))
 app.use('/auth', authRouter) 
 app.use('/image', imageRouter)
 app.use('/', tweetRouter)
-
 app.use('/', indexRoute)
+
 
 // app.use((err, req, res, next) => {
 //   console.error('Error:', err.stack)
