@@ -22,8 +22,8 @@ formTweet.addEventListener('submit', async (e) => {
             body: JSON.stringify(tweet)
         })
         if (response.ok) {
-            alert("tweet creado con exito")
             inputTweet.value = ""
+            window.location.reload()
         } else {
             const errorData = await response.json()
             alert(errorData.error || 'Error al crear el tweet')
