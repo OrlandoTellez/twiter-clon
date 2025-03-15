@@ -105,11 +105,19 @@ export const perfil = async (req, res) => {
         }
 
         const { password, ...safeUserData } = user
-        res.json(safeUserData)
+
+        const isAjaxRequest = req.xhr || req.headers.accept.includes("json") || req.headers["user-agent"]?.includes("Postman")
+
+        if (isAjaxRequest) {
+            return res.json(safeUserData) // 🔹 Si el cliente acepta JSON, devolvemos JSON
+        } 
+
+        return res.render("perfil", { user: safeUserData })
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
 }
+
 
 export const logout = (req, res) => {
     res.clearCookie("token")

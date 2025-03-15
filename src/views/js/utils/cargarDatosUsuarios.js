@@ -5,11 +5,14 @@ const $ = (e) => document.querySelector(e)
 export const cargarDatosUsuario = async () => {
     try{
         const response = await fetch("/perfil", {
-            credentials: "include"
+            credentials: "include",
+            headers: {
+                "Accept": "application/json" 
+            }
         })
     
         if (!response.ok) {
-            window.location.href = "/auth/login.ejs"
+            window.location.href = "/auth/login"
             throw new Error("Error al obtener el perfil del usuario")
         }
     

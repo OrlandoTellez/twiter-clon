@@ -26,7 +26,6 @@ export const cargarTweet = async (req, res) => {
     try {
         const tweets = await Tweet.findUserTweets(req.userId)
         res.render("index", { tweets })
-        // res.json(tweets)
 
     } catch (error) {
         console.error("Error en cargarTweet:", error)
@@ -37,7 +36,6 @@ export const cargarTweet = async (req, res) => {
 export const cargarAllTweets = async (req, res) => {
     try {
         const tweets = await Tweet.findAllTweets()
-        console.log("Tweets cargados:", tweets)
         res.render("index", { tweets })
     } catch (error) {
         console.error("Error en cargarAllTweets:", error)
