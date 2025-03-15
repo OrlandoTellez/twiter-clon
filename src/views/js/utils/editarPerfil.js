@@ -78,7 +78,7 @@ export const editarPerfil = () => {
                     const responseBio = await fetch("/edit/editBio", {
                         method: 'PATCH',
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ bio }),
+                        body: JSON.stringify({ descripcion: bio }),
                         credentials: 'include'
                     })
 

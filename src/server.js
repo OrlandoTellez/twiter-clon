@@ -36,7 +36,6 @@ app.use('/edit', editRouter)
 app.use('/', tweetRouter)
 app.use('/', indexRoute)  
 
-
 // app.use((err, req, res, next) => {
 //   console.error('Error:', err.stack)
 //   res.status(500).sendFile(join(ROOT_DIR, 'error.ejs')) 
