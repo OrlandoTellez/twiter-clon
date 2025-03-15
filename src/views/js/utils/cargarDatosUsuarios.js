@@ -21,6 +21,7 @@ export const cargarDatosUsuario = async () => {
         // OBTENER ELEMENTOS DEL DOM
         const $headerName = $("#profileName")
         const $profileName = $("#profileUsername")
+        const $profileBio = $("#profileBio")
         const $profileHandle = $("#profileHandle")
         const $createDate = $("#createDate")
     
@@ -31,6 +32,7 @@ export const cargarDatosUsuario = async () => {
         // ACTUALIZAR EL DOM
         $headerName.textContent = userData.nombre
         $profileName.textContent = userData.nombre
+        $profileBio.textContent = userData.descripcion
         $profileHandle.textContent = `@${userData.nombre_usuario.toLowerCase()}`
         $createDate.textContent = date
 

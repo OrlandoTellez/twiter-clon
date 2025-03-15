@@ -127,7 +127,7 @@ const formPerfil = () => {
                 <label class="form-label" for="name">Nombre</label>
                 <input id="name" type="text" class="form-input" placeholder="pasas" />
                 <label class="form-label" for="bio">Biografía</label>
-                <textarea id="bio" class="form-textarea" rows="4" placeholder="Escribe tu biografía aquí..."></textarea>
+                <textarea id="bio" class="form-textarea" rows="4" placeholder="Escribe tu biografía aquí..." maxlength="200"></textarea>
                 <button type="submit" class="submit-button">Guardar</button>
             </form>
         </div>
