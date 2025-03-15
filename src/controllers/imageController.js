@@ -8,9 +8,8 @@ export const uploadProfileImage = async (req, res) => {
         }
 
         const imagenPerfilUrl = req.file.path
-        const { nombre, bio } = req.body
 
-        await Images.updateProfileImage(req.userId, imagenPerfilUrl, nombre, bio)
+        await Images.updateProfileImage(req.userId, imagenPerfilUrl)
 
         res.json({ message: "Imagen de perfil actualizada", imagenPerfilUrl })
     } catch (error) {
