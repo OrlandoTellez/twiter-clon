@@ -74,8 +74,17 @@ export const editarPerfil = () => {
                     if (!responseName.ok) throw new Error(dataName.error)
                 }
 
-                
+                if (bio) {
+                    const responseBio = await fetch("/edit/editBio", {
+                        method: 'PATCH',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ bio }),
+                        credentials: 'include'
+                    })
 
+                    const dataBio = await responseBio.json()
+                    if (!responseBio.ok) throw new Error(dataBio.error)
+                }
             } catch (error) {
                 console.error("Error en el envío:", error)
             } finally {

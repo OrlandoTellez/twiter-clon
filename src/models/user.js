@@ -29,5 +29,11 @@ export default class User {
 
         return result
     }
+
+    static async editBioUser(id, descripcion){
+        const [result] = await pool.execute("UPDATE usuarios SET descripcion = ? WHERE id = ?", [descripcion, id])
+
+        return result
+    }
 }
 
