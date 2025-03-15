@@ -16,18 +16,26 @@ formTweet.addEventListener('submit', async (e) => {
     try {
         const API_URL = "/tweets"
 
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(tweet)
-        })
-        if (response.ok) {
-            inputTweet.value = ""
-            window.location.reload()
+        const usuarioAutenticado = await verificarSesion()
+
+        if (usuarioAutenticado) {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tweet)
+            })
+            if (response.ok) {
+                inputTweet.value = ""
+                window.location.reload()
+            } else {
+                const errorData = await response.json()
+                alert(errorData.error || 'Error al crear el tweet')
+            }
         } else {
-            const errorData = await response.json()
-            alert(errorData.error || 'Error al crear el tweet')
+            alert('Debes iniciar sesión para crear un tweet')
         }
+
+        
         
     } catch (error) {
         console.error('Error:', error)
@@ -35,3 +43,16 @@ formTweet.addEventListener('submit', async (e) => {
     }
 }
 )
+
+async function verificarSesion() {
+    try {
+        const response = await fetch("/auth/checkSesion")
+        if (response.ok) {
+            const data = await response.json()
+            return data.isAuth
+        }
+    } catch (error) {
+        console.error("Error al verificar sesión:", error)
+    }
+    return false
+}
