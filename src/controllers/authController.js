@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../models/user.js"
+import Tweet from "../models/tweet.js"
 import dotenv from "dotenv"
 import { validateUserRegister, validateUserLogin } from "../validations/userValidation.js"
 
@@ -108,11 +109,15 @@ export const perfil = async (req, res) => {
 
         const isAjaxRequest = req.xhr || req.headers.accept.includes("json") || req.headers["user-agent"]?.includes("Postman")
 
+        const tweets = await Tweet.findUserTweets(req.userId)
+
         if (isAjaxRequest) {
-            return res.json(safeUserData) // 🔹 Si el cliente acepta JSON, devolvemos JSON
+            return res.json(safeUserData) 
         } 
 
-        return res.render("perfil", { user: safeUserData })
+        
+
+        return res.render("perfil", { safeUserData, tweets })
     } catch (error) {
         res.status(500).json({ error: error.message })
     }

@@ -14,7 +14,7 @@ formTweet.addEventListener('submit', async (e) => {
     }
 
     try {
-        const API_URL = "/content/tweets"
+        const API_URL = "/tweets"
 
         const response = await fetch(API_URL, {
             method: 'POST',

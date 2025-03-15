@@ -25,7 +25,7 @@ export const createTweet = async (req, res) => {
 export const cargarTweet = async (req, res) => {
     try {
         const tweets = await Tweet.findUserTweets(req.userId)
-        res.render("index", { tweets })
+        res.render("perfil", { tweets })
 
     } catch (error) {
         console.error("Error en cargarTweet:", error)

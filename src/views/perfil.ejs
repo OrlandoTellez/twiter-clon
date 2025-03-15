@@ -63,7 +63,12 @@
 
         <div class="container-app--perfil">
             
-            <main class="tweet-container--perfil"></main>
+            <main class="tweet-container--perfil">
+                <% tweets.forEach(tweet => { %>
+                    <%- include("./componentes/tweets.ejs", tweet) %>
+                <% }) %>
+
+            </main>
         </div>
     </div>
     <div class="container-article"> 
