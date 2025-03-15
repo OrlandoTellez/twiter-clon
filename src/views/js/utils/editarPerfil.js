@@ -8,9 +8,19 @@ export const editarPerfil = () => {
         document.body.appendChild(modal)
 
         const $btnCerrar = modal.querySelector('.btn-cerrar')
+        const $uploadFondo = modal.querySelector('.upload-container-fondo')
+        const $uploadPerfil = modal.querySelector('.upload-container-fotoPerfil')
 
         $btnCerrar.addEventListener('click', () => {
             document.body.removeChild(modal)
+        })
+
+        $uploadFondo.addEventListener('click', () => {
+            modal.querySelector('#file-fondo').click()
+        })
+
+        $uploadPerfil.addEventListener('click', () => {
+            modal.querySelector('#file-perfil').click()
         })
 
         const $form = modal.querySelector('.profile-form')
@@ -38,7 +48,8 @@ export const editarPerfil = () => {
 
                     const dataPerfil = await responsePerfil.json()
                     if (!responsePerfil.ok) throw new Error(dataPerfil.error)
-                    alert("Imagen de perfil subida correctamente")
+                    
+                    
                 }
 
                 if (fileFondo) {
@@ -53,11 +64,13 @@ export const editarPerfil = () => {
 
                     const dataBanner = await responseBanner.json()
                     if (!responseBanner.ok) throw new Error(dataBanner.error)
-                    alert("Imagen de fondo subida correctamente")
+
                 }
 
             } catch (error) {
                 console.error("Error en el envío:", error)
+            } finally {
+                window.location.reload()
             }
         })
     })
@@ -77,7 +90,7 @@ const formPerfil = () => {
                 <div class="upload-container-fondo">
                     <div class="upload-area">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 9l5 -5l5 5" /><path d="M12 4l0 12" /></svg>
-                        <input type="file" name="imagenBanner" id="file-fondo" accept="image/jpeg, image/png">
+                        <input type="file" name="imagenBanner" id="file-fondo" accept="image/jpeg, image/png" hidden>
                     </div>
                     <picture>
                         <img src="" id="image-preview">
@@ -87,7 +100,7 @@ const formPerfil = () => {
                 <div class="upload-container-fotoPerfil">
                     <div class="upload-area">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 9l5 -5l5 5" /><path d="M12 4l0 12" /></svg>
-                        <input type="file" name="imagenPerfil" id="file-perfil" accept="image/jpeg, image/png">
+                        <input type="file" name="imagenPerfil" id="file-perfil" accept="image/jpeg, image/png" hidden>
                     </div>
                     <picture>
                         <img src="" id="image-preview">
