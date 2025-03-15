@@ -37,8 +37,6 @@ export const editarPerfil = () => {
                 if (filePerfil) {
                     const formDataPerfil = new FormData()
                     formDataPerfil.append("imagenPerfil", filePerfil)
-                    formDataPerfil.append("nombre", nombre)
-                    formDataPerfil.append("bio", bio)
 
                     const responsePerfil = await fetch("/image/upload-profile", {
                         method: 'PATCH',
@@ -47,9 +45,7 @@ export const editarPerfil = () => {
                     })
 
                     const dataPerfil = await responsePerfil.json()
-                    if (!responsePerfil.ok) throw new Error(dataPerfil.error)
-                    
-                    
+                    if (!responsePerfil.ok) throw new Error(dataPerfil.error)  
                 }
 
                 if (fileFondo) {
@@ -64,8 +60,21 @@ export const editarPerfil = () => {
 
                     const dataBanner = await responseBanner.json()
                     if (!responseBanner.ok) throw new Error(dataBanner.error)
-
                 }
+
+                if (nombre) {
+                    const responseName = await fetch("/edit/editName", {
+                        method: 'PATCH',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ nombre }),
+                        credentials: 'include'
+                    })
+
+                    const dataName = await responseName.json()
+                    if (!responseName.ok) throw new Error(dataName.error)
+                }
+
+                
 
             } catch (error) {
                 console.error("Error en el envío:", error)
