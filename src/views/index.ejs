@@ -8,7 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="../assets/iconos/logo-x.svg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
-    <script type="module" src="./js/utils/crearTweet.js"></script>
+    <script type="module" src="./js/index.js"></script>
 </head>
 
 <body>
@@ -65,18 +65,9 @@
             <input type="text" placeholder="Buscar">
         </div>
 
-        <article class="tarjeta-cuenta">
-            <h3>¿Eres nuevo en x?</h3>
-            <a href="/auth/registro">Registrese</a>
-            <a href="/auth/login">Iniciar Sesión</a>
-        </article>
+        <%- include("./componentes/card-auth.ejs") %>
 
-        <article class="tarjeta-suscribirse--index">
-            <h3>suscribete a premiun</h3>
-            <p>Suscríbete para desbloquear nuevas funciones y, si eres elegible, recibir un pago de cuota de ingresos
-            </p>
-            <a href="/" class="suscribete">Suscribete</a>
-        </article>
+        <%- include("./componentes/card-suscribe.ejs") %>
 
         <article class="tarjeta-tendencias">
             <h3>Qué está pasando</h3>
