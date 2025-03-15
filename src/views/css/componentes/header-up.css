@@ -1,0 +1,35 @@
+header{
+    width: 100%;
+    border-bottom: 1px solid #2f3336;
+    border-right: 1px solid #2f3336;
+    padding: 0px 0px 0px 20px;
+    background-color: black;
+}
+
+.container-imagen-logo{
+    padding: 20px 0px;
+}
+
+img{
+    width: 50px;
+    border-radius: 100%;
+}
+
+header div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-links{
+    width: 100%;
+    && a{
+        padding: 15px;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+
+    .container-imagen-logo{
+        display: none;
+    }
+}
