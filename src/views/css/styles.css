@@ -1,27 +1,5 @@
 @font-face {
     font-family: 'Twitter Chirp';
-    src: url('../assets/fuente/chirp-font-master/Chirp-Heavy.eot');
-    src: url('../assets/fuente/chirp-font-master/Chirp-Heavy.eot?#iefix') format('embedded-opentype'),
-        url('../assets/fuente/chirp-font-master/Chirp-Heavy.woff2') format('woff2'),
-        url('../assets/fuente/chirp-font-master/Chirp-Heavy.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Twitter Chirp';
-    src: url('../assets/fuente/chirp-font-master/Chirp-Bold.eot');
-    src: url('../assets/fuente/chirp-font-master/Chirp-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../assets/fuente/chirp-font-master/Chirp-Bold.woff2') format('woff2'),
-        url('../assets/fuente/chirp-font-master/Chirp-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Twitter Chirp';
     src: url('../assets/fuente/chirp-font-master/Chirp-Regular.eot');
     src: url('../assets/fuente/chirp-font-master/Chirp-Regular.eot?#iefix') format('embedded-opentype'),
         url('../assets/fuente/chirp-font-master/Chirp-Regular.woff2') format('woff2'),
@@ -31,16 +9,7 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Twitter Chirp';
-    src: url('../assets/fuente/chirp-font-master/Chirp-Medium.eot');
-    src: url('../assets/fuente/chirp-font-master/Chirp-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../assets/fuente/chirp-font-master/Chirp-Medium.woff2') format('woff2'),
-        url('../assets/fuente/chirp-font-master/Chirp-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
+
 
 :root{
     --color-principal: #000000;
