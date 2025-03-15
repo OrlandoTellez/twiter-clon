@@ -23,5 +23,11 @@ export default class User {
 
         return rows.length > 0 ? rows[0] : null
     }
+
+    static async editNameUser(id, nombre){
+        const [result] = await pool.execute("UPDATE usuarios SET nombre = ? WHERE id = ?", [nombre, id])
+
+        return result
+    }
 }
 
