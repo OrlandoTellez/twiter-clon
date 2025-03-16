@@ -12,6 +12,7 @@ export default class Tweet {
             SELECT 
             t.id, 
             t.contenido, 
+            t.imagen,
             t.usuario_id, 
             u.nombre_usuario, 
             u.nombre, u.apellido, 
