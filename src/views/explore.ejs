@@ -41,9 +41,9 @@
             </nav>
         </header>
 
-        <div class="container-app-explore">
+        <div class="container-app--explore">
             <main>
-                <article class="tarjeta-tendencias-explore">
+                <article class="tarjeta-tendencias--explore">
                     <div>
                         <a href="/">
                             <span>Tendencias</span>
@@ -111,8 +111,8 @@
         </div>
     </div>
 
-    <div class="container-article--explore">
-        <article class="container-follow--explore">
+    <div class="container-article">
+        <!-- <article class="container-follow--explore">
             <h3>A quien Seguir</h3>
             <div>
                 <div>
@@ -160,7 +160,8 @@
                     </article>
                 </div>
             </div>
-        </article>
+        </article> -->
+        <%- include("./componentes/card-follow.ejs") %>
     </div>
 </body>
 </html>

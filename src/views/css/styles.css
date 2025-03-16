@@ -42,8 +42,6 @@ body{
     max-width: 1024px;
 }
 
-
-
 input{
     background-color: black;
     border: 1px solid #2f3336;
@@ -52,7 +50,6 @@ input{
     width: 80%;
     color: white;
     outline: none;
-    
 }
 
 a{
@@ -76,7 +73,6 @@ span{
 li{
     list-style: none;
 }
-
 
 .container-app{
     padding: 140px 0px 100px 0px;
@@ -121,9 +117,6 @@ img{
     background: red;
     width: 100%;
 }
-
-
-
 
 .container-article{
     width: 100%;
@@ -178,6 +171,10 @@ img{
     && div a:hover{
         background: none;
     }
+}
+
+.body-container{
+    width: 100%;
 }
 
 .container-follow{

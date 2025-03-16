@@ -1,11 +1,11 @@
 /* PAGINA EXPLORE */
-
-.container-app-explore{
+.container-app--explore{
     width: 100%;
-}
-
-.body-container{
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
 }
 
 .container-search{
@@ -28,12 +28,12 @@
     }
 }
 
-.tarjeta-tendencias-explore{
+.tarjeta-tendencias--explore{
     width: 100%;
     display:  flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 10px;
+    padding-left: 30px;
     && div{
         width: 100%;
     }
@@ -51,9 +51,6 @@
     }
 }
 
-.container-article--explore{
-    display: none;
-}
 
 .container-header--explore{
     width: 100%;
@@ -84,48 +81,17 @@
 }
 
 @media only screen and (min-width: 1024px){
-    .container-app-explore{
-        padding: 0px 0px 100px 55px;
+    .container-app--explore{
+        padding: 0px 0px 100px 20px;
+        width: 600px;
     }
-
-    .container-article--explore{
-        display: block;
-        width: 61%;
-        padding: 20px;
-    }
-
+    
     .container-search{
         padding-left: 60px;
 
         && div form input{
             background: black;
             
-        }
-    }
-
-    .container-follow--explore{
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        border: 1px solid #2f3336;
-        border-radius: 20px;
-        width: 100%;
-        && div div article{
-            display: flex;
-            padding: 20px 0px;
-            gap: 10px;
-            && .usuario{
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                && a{
-                    background-color:rgb(255, 255, 255);
-                    color: black;
-                    border-radius: 20px;
-                    width: 30%;
-                    text-align: center;
-                }
-            }
         }
     }
 
