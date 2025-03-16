@@ -44,4 +44,10 @@ export default class Tweet {
     
         return rows
     }
+
+    static async updateTweetImage(id, imagenTweetUrl) {
+        const [result] = await pool.execute("UPDATE tweets SET imagen = ? WHERE id = ?", [imagenTweetUrl, id])
+    
+        return result
+    }
 }

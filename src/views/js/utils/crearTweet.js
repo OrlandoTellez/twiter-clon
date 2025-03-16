@@ -1,25 +1,25 @@
-import { verificarSesion } from "../functions/verificarSesion.js";
+import { verificarSesion } from "../functions/verificarSesion.js"
 
-const formTweet = document.querySelector(".tweet-container--input");
-const inputTweet = document.querySelector(".tweet-input");
+const formTweet = document.querySelector(".tweet-container--input")
+const inputTweet = document.querySelector(".tweet-input")
 
-export const crearTweet = () => {
+const crearTweet = () => {
   formTweet.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const tweet = {
       contenido: inputTweet.value.trim(),
-    };
+    }
 
     if (!tweet.contenido) {
-      alert("El tweet no puede estar vacio");
-      return;
+      alert("El tweet no puede estar vacio")
+      return
     }
 
     try {
-      const API_URL = "/tweets";
+      const API_URL = "/tweets"
 
-      const usuarioAutenticado = await verificarSesion();
+      const usuarioAutenticado = await verificarSesion()
 
       if (usuarioAutenticado) {
         const response = await fetch(API_URL, {
@@ -28,18 +28,20 @@ export const crearTweet = () => {
           body: JSON.stringify(tweet),
         });
         if (response.ok) {
-          inputTweet.value = "";
-          window.location.reload();
+          inputTweet.value = ""
+          window.location.reload()
         } else {
-          const errorData = await response.json();
-          alert(errorData.error || "Error al crear el tweet");
+          const errorData = await response.json()
+          alert(errorData.error || "Error al crear el tweet")
         }
       } else {
-        alert("Debes iniciar sesión para crear un tweet");
+        alert("Debes iniciar sesión para crear un tweet")
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("Hubo un problema al enviar el tweet");
+      console.error("Error:", error)
+      alert("Hubo un problema al enviar el tweet")
     }
-  });
-};
+  })
+}
+
+crearTweet()
