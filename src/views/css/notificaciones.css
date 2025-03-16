@@ -34,15 +34,6 @@
     }
 }
 
-.container-app-notification{
-    && .notifications{
-        padding: 20px;
-        border-top: 1px solid #2f3336;
-        border-bottom: 1px solid #2f3336;
-
-    }
-}
-
 @media only screen and (min-width: 1024px) {
 
     .header-notificaciones{

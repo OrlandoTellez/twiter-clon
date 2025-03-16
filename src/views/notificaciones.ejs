@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/notificaciones.css">
 </head>
+
 <body>
     <div class="header-inline-container">
         <%- include("./componentes/header-inline") %>
@@ -15,76 +17,37 @@
     </div>
 
     <div class="body-container">
-       <div class="header-notificaciones">
-        <figure>
-            <img src="https://unavatar.io/x/TheGrefg" alt="imagen-usuario">
-            <h2>Notificaciones</h2>
-        </figure>
-        <nav>
-            <ul>
-                <li><a href="#">Todas</a></li>
-                <li><a href="#">Verificado</a></li>
-                <li><a href="#">Menciones</a></li>
-            </ul>
-        </nav>        
-       </div>
+        <div class="header-notificaciones">
+            <figure>
+                <img src="https://unavatar.io/x/TheGrefg" alt="imagen-usuario">
+                <h2>Notificaciones</h2>
+            </figure>
+            <nav>
+                <ul>
+                    <li><a href="#">Todas</a></li>
+                    <li><a href="#">Verificado</a></li>
+                    <li><a href="#">Menciones</a></li>
+                </ul>
+            </nav>
+        </div>
 
         <div class="container-app-notification">
             <main>
-                <section class="notifications">
-                    <figure>
-                        <img src="https://unavatar.io/x/platzi" alt="imagen-perfil" class="perfil-imagen">
-                    </figure>
-                    <article>
-                        <div>
-                            <p >Platzi está EN DIRECTO: "Platzi Barcamp es el concurso donde Platzi te premia por enseñar"</p>
-                        </div>
-                    </article>
-                </section>
-                
-                <section class="notifications">
-                    <figure>
-                        <img src="https://unavatar.io/x/Rubiu5" alt="imagen-perfil" class="perfil-imagen">
-                    </figure>
-                    <article>
-                        <div>
-                            <p >Rubiu5 está EN DIRECTO: "La leyenda del gaming, ¿La leyenda de la variedad?"</p>
-                        </div>
-                    </article>
-                </section>
-                <section class="notifications">
-                    <figure>
-                        <img src="https://unavatar.io/x/IbaiLlanos" alt="imagen-perfil" class="perfil-imagen">
-                    </figure>
-                    <article>
-                        <div>
-                            <p>Ibai llanos está EN DIRECTO: "Presentación de la Velada del año XXXXXXXXX"</p>
-                        </div>
-                    </article>
-                </section>
-                <section class="notifications">
-                    <figure>
-                        <img src="https://unavatar.io/x/MishoAmoli" alt="imagen-perfil" class="perfil-imagen">
-                    </figure>
-                    <article>
-                        <div>
-                            <p >MishoAmoli está EN DIRECTO: "Calificando Perfumes de Zara, probando ropa y golpeando monitores"</p>
-                        </div>
-                    </article>
-                </section>
+                <%- include("./componentes/card-notifications.ejs") %>
 
             </main>
         </div>
     </div>
 
-    <div class="container-article"> 
+    <div class="container-article">
         <div class="search">
-            <input type="text" placeholder="Buscar" >
+            <input type="text" placeholder="Buscar">
         </div>
 
         <article class="tarjeta-suscribirse">
             <h3>suscribete a premiun</h3>
-            <p>Suscríbete para desbloquear nuevas funciones y, si eres elegible, recibir un pago de cuota de ingresos</p>
+            <p>Suscríbete para desbloquear nuevas funciones y, si eres elegible, recibir un pago de cuota de ingresos
+            </p>
             <a href="/" class="suscribete">Suscribete</a>
         </article>
 
@@ -96,7 +59,7 @@
                     <p>Disney Channel</p>
                     <span>12,700 publicaciones</span>
                 </a>
-                
+
             </div>
             <div>
                 <a href="/">
@@ -104,7 +67,7 @@
                     <p>Nvidia</p>
                     <span>122 mil publicaciones</span>
                 </a>
-                
+
             </div>
             <div>
                 <a href="/assets/">
@@ -112,7 +75,7 @@
                     <p>PS5 Pro</p>
                     <span>12,4 mil publicaciones</span>
                 </a>
-                
+
             </div>
             <div>
                 <a href="/">
@@ -174,4 +137,5 @@
         </article>
     </div>
 </body>
+
 </html>
