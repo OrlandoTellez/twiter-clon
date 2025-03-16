@@ -36,6 +36,7 @@ export default class Tweet {
             u.imagen_banner,
             t.id AS tweet_id,
             t.contenido,
+            t.imagen,
             t.fecha_creacion AS fecha_tweet
             FROM tweets t
             JOIN usuarios u ON t.usuario_id = u.id
