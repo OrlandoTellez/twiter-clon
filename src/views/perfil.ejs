@@ -7,12 +7,11 @@
     <link rel="icon" type="image/svg+xml" href="../assets/iconos/logo-x.svg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/perfil.css">
-    <script type="module" src="js/profile.js" defer></script>
+    <script type="module" src="js/profile.js"></script>
 </head>
 <body>
     <div class="header-inline-container">
         <%- include("./componentes/header-inline") %>
-
     </div>
     <div class="body-container-perfil">
         <div class="header-perfil">
@@ -62,12 +61,10 @@
         </section>
 
         <div class="container-app--perfil">
-            
             <main class="tweet-container--perfil">
                 <% tweets.forEach(tweet => { %>
                     <%- include("./componentes/tweets.ejs", tweet) %>
                 <% }) %>
-
             </main>
         </div>
     </div>
@@ -76,96 +73,10 @@
             <input type="text" placeholder="Buscar" >
         </div>
 
-        <article class="tarjeta-suscribirse">
-            <h3>suscribete a premiun</h3>
-            <p>Suscríbete para desbloquear nuevas funciones y, si eres elegible, recibir un pago de cuota de ingresos</p>
-            <a href="/" class="suscribete">Suscribete</a>
-        </article>
-
-        <article class="tarjeta-tendencias">
-            <h3>Qué está pasando</h3>
-            <div>
-                <a href="/">
-                    <span>Tendencias</span>
-                    <p>Disney Channel</p>
-                    <span>12,700 publicaciones</span>
-                </a>
-                
-            </div>
-            <div>
-                <a href="/">
-                    <span>Tendencias</span>
-                    <p>Nvidia</p>
-                    <span>122 mil publicaciones</span>
-                </a>
-                
-            </div>
-            <div>
-                <a href="/assets/">
-                    <span>Gaming · Tendencia</span>
-                    <p>PS5 Pro</p>
-                    <span>12,4 mil publicaciones</span>
-                </a>
-                
-            </div>
-            <div>
-                <a href="/">
-                    <span>Tendencias</span>
-                    <p>Marvel Rivals</p>
-                    <span>20,800 publicaciones</span>
-                </a>
-            </div>
-        </article>
-
-        <article class="container-follow">
-            <h3>A quien Seguir</h3>
-            <div>
-                <div>
-                    <article>
-                        <figure>
-                            <img src="https://unavatar.io/x/EufoniaStudio" alt="imagen-usuario">
-                        </figure>
-                        <div class="usuario">
-                            <div>
-                                <h4>Eufonia Estudio</h4>
-                                <p>@EufonioEstudio</p>
-                            </div>
-                            <a href="/">Seguir</a>
-                        </div>
-                    </article>
-                </div>
-
-                <div>
-                    <article>
-                        <figure>
-                            <img src="https://unavatar.io/x/SergioRamos" alt="imagen-usuario">
-                        </figure>
-                        <div class="usuario">
-                            <div>
-                                <h4>Sergio Ramos</h4>
-                                <p>@SergioRamos</p>
-                            </div>
-                            <a href="/">Seguir</a>
-                        </div>
-                    </article>
-                </div>
-
-                <div>
-                    <article>
-                        <figure>
-                            <img src="https://unavatar.io/x/ElAlexQuackity" alt="imagen-usuario">
-                        </figure>
-                        <div class="usuario">
-                            <div>
-                                <h4>Quackity</h4>
-                                <p>@ElAlexQuackity</p>
-                            </div>
-                            <a href="/">Seguir</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </article>
+        <%- include("./componentes/card-suscribe.ejs") %>
+        <%- include("./componentes/card-tendences.ejs") %>
+        <%- include("./componentes/card-follow.ejs") %>
+        
     </div>
 </body>
 </html>
