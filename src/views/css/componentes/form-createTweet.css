@@ -31,11 +31,17 @@
 
         && .container-iconos{
             display: flex;
-            && a:hover{
+
+            && figure{
+                padding: 8px;
+                cursor: pointer;
+            }
+
+            && figure:hover{
                 background: none;
             }
 
-            && a img{
+            && figure img{
                 width: 20px;
             }
         }
