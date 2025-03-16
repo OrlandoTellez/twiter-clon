@@ -14,39 +14,15 @@
 <body>
     <div class="header-inline-container">
         <%- include("./componentes/header-inline") %>
-
     </div>
+    
     <div class="body-container">
         <div class="header">
             <%- include("./componentes/header-up") %>
         </div>
 
         <div class="container-postear">
-            <form class="tweet-container--input">
-                <input type="text" class="tweet-input" placeholder="¡¿Que esta pasando?!">
-                <div class="container-postear--iconos">
-                    <div class="container-iconos">
-                        <a class="logo">
-                            <img src="assets/iconos/foto.svg" alt="lgo">
-                        </a>
-                        <a href="#">
-                            <img src="../assets/iconos/gif.svg" alt="icono-home">
-                        </a>
-                        <a href="#">
-                            <img src="../assets/iconos/emoji.svg" alt="icono-search">
-                        </a>
-                        <a href="#">
-                            <img src="../assets/iconos/calendar.svg" alt="icono-noti">
-                        </a>
-                        <a href="#">
-                            <img src="../assets/iconos/maps.svg" alt="icono-users">
-                        </a>
-                    </div>
-                    <div class="container-postear--iconos__postear">
-                        <button type="submit" class="btn-postear">Postear</button>
-                    </div>
-                </div>
-            </form>
+            <%- include("./componentes/form-createTweet.ejs") %>
         </div>
 
         <div class="container-app">

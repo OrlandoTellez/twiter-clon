@@ -57,50 +57,7 @@ img{
         display: flex;
         padding-left: 25px;
         width: 600px;
-        && form{
-            width: 100%;
-            padding-bottom: 20px;
-            border-right: 1px solid  #2f3336;
-            border-bottom: 1px solid  #2f3336;
-            
-            && input{
-                width: 100%;
-                background: black;
-                padding: 30px 50px;
-                font-size: 20px;
-                border-radius: 0px;
-                border: none;
-            }
-
-            && .container-postear--iconos{
-                padding: 0px 50px;
-                display: flex;
-                justify-content: space-between;
-
-                && .container-iconos{
-                    display: flex;
-                    && a:hover{
-                        background: none;
-                    }
-
-                    && a img{
-                        width: 20px;
-                    }
-                }
-            }
-
-            && .container-postear--iconos{
-                display: flex;
-
-                && .container-postear--iconos__postear a{
-                    background: white;
-                    color: black;
-                    border-radius: 20px;
-                    padding: 5px 30px;
-                    font-size: 16px;
-                }
-            }
-        }
+        
     }
 
 }
