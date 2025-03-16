@@ -13,6 +13,16 @@
         border: none;
     }
 
+    && .preview-image{
+        padding: 0px 50px;
+        display: flex;
+
+        && img{
+            border-radius: 0;
+            max-width: 100%;
+        }
+    }
+
     && .container-postear--iconos{
         padding: 0px 50px;
         display: flex;
