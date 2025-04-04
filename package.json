@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "engines": {
-    "node": ">=18.x"
-  },
   "scripts": {
-    "dev": "node --no-warnings --watch src/server.js",
+    "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "build": "echo 'Build completo'"
   },
