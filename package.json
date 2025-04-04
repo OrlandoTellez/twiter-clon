@@ -1,11 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-<<<<<<< HEAD
   "main": "src/server.js",
-=======
-  "main": "server.js",
->>>>>>> b4a9a01e68a8b6a7691c49a2ce717a405b1b780e
   "type": "module",
   "scripts": {
     "dev": "node --watch src/server.js",
