@@ -50,6 +50,31 @@
             font-size: 0.8rem;
             color: gray;
             margin-top: 10px;
+
+            && a:hover{
+                text-decoration: underline;
+                background-color: black;
+                color: white;
+            }
+        }
+
+        .btn-page--container {
+            padding: 40px 0px;
+        }
+        
+
+        .btn-page--registro {
+            color: #1d9bf0;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 14px;
+
+        }
+
+        .btn-page--registro:hover {
+            text-decoration: underline;
+            background-color: #1d9bf0;
+            color: white;
         }
     </style>
     <script type="module" src="../js/auth/inicioSesionUsuario.js"></script>
@@ -66,6 +91,13 @@
             <input type="password" name="password" id="password"  placeholder="Contraseña" required>
             <button type="submit" class="btn submit">Siguiente</button>
         </form>
+
+        <div class="btn-page--container">
+            <p>
+                ¿No tienes una cuenta? 
+                <a href="/auth/registro" class="btn-page--registro">Regístrate</a>
+            </p>
+        </div>
         
         <p class="terms">Al registrarte, aceptas los <a href="#">Términos de servicio</a> y la <a href="#">Política de privacidad</a>, incluida la política de <a href="#">Uso de Cookies</a>.</p>
     </div>

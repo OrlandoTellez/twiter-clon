@@ -50,6 +50,30 @@
             font-size: 0.8rem;
             color: gray;
             margin-top: 10px;
+            
+            && a:hover{
+                text-decoration: underline;
+                background-color: black;
+                color: white;
+            }
+        }
+
+        .btn-page--container {
+            padding: 40px 0px;
+        }
+        
+
+        .btn-page--login {
+            color: #1d9bf0;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .btn-page--login:hover {
+            text-decoration: underline;
+            background-color: #1d9bf0;
+            color: white;
         }
     </style>
     <script type="module" src="../js/auth/registrarUsuario.js"></script>
@@ -69,6 +93,13 @@
             <input type="password" name="password" id="password"  placeholder="Contraseña" minlength="6" required>
             <button type="submit" class="btn submit">Siguiente</button>
         </form>
+
+        <div class="btn-page--container">
+            <p>
+                ¿Ya tienes una cuenta? 
+                <a href="/auth/login" class="btn-page--login">Iniciar Sesión</a>
+            </p>
+        </div>
         
         <p class="terms">Al registrarte, aceptas los <a href="#">Términos de servicio</a> y la <a href="#">Política de privacidad</a>, incluida la política de <a href="#">Uso de Cookies</a>.</p>
     </div>
