@@ -2,6 +2,12 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    && figure{
+        display: flex;
+        align-items: center;
+    }
+
     && img{
         cursor: pointer;
     }
@@ -40,6 +46,10 @@
         border-radius: 0px;
 
     }
+}
+
+.liked{
+    background: red;
 }
 
 @media only screen and (min-width: 1024px){

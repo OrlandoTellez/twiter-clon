@@ -1,53 +1,100 @@
 import Tweet from "../models/tweet.js"
+import db from "../db/db.js"
 
 export const createTweet = async (req, res) => {
     try {
-        const { contenido } = req.body;
-        const usuario_id = req.userId;
-        const imagenTweetUrl = req.file ? req.file.path : null; // Obtener la imagen si se subió
+        const { contenido } = req.body
+        const usuario_id = req.userId
+        const imagenTweetUrl = req.file ? req.file.path : null
 
         if (!usuario_id) {
-            return res.status(401).json({ error: "Usuario no autenticado" });
+            return res.status(401).json({ error: "Usuario no autenticado" })
         }
 
         if (!contenido || typeof contenido !== "string" || contenido.trim() === "") {
-            return res.status(400).json({ error: "El contenido del tweet no puede estar vacío" });
+            return res.status(400).json({ error: "El contenido del tweet no puede estar vacío" })
         }
 
-        // Insertar el tweet y obtener su ID
+
         const tweetId = await Tweet.createTweet({ usuario_id, contenido });
 
-        // Si hay una imagen, actualizar el tweet con la URL de la imagen
         if (imagenTweetUrl) {
-            await Tweet.updateTweetImage(tweetId, imagenTweetUrl);
+            await Tweet.updateTweetImage(tweetId, imagenTweetUrl)
         }
 
-        res.status(201).json({ message: "Tweet creado exitosamente", tweetId, imagenTweetUrl });
+        res.status(201).json({ message: "Tweet creado exitosamente", tweetId, imagenTweetUrl })
     } catch (error) {
         console.error("Error en createTweet:", error);
-        res.status(500).json({ error: "Error interno del servidor" });
+        res.status(500).json({ error: "Error interno del servidor" })
     }
-};
+}
 
 export const cargarTweet = async (req, res) => {
     try {
-        const tweets = await Tweet.findUserTweets(req.userId)
-        res.render("perfil", { tweets })
+    const usuario_id = req.userId || null;
+
+    const tweets = await Tweet.findUserTweets(usuario_id)
+
+    res.render("perfil", { tweets, authenticated: !!req.userId })
 
     } catch (error) {
-        console.error("Error en cargarTweet:", error)
-        res.status(500).json({ error: "Error interno del servidor" })
+      console.error("Error en cargarTweet:", error)
+      res.status(500).json({ error: "Error interno del servidor" })
     }
-}
+  }
 
-export const cargarAllTweets = async (req, res) => {
+
+  export const cargarAllTweets = async (req, res) => {
     try {
-        const tweets = await Tweet.findAllTweets()
-        res.render("index", { tweets })
+        const usuario_id = req.userId || null
+
+        const tweets = await Tweet.findAllTweets(usuario_id)
+
+        res.render("index", { tweets, authenticated: !!usuario_id })
+
     } catch (error) {
-        console.error("Error en cargarAllTweets:", error)
-        res.status(500).json({ error: "Error interno del servidor" })
+        console.error("Error en cargarAllTweets:", error);
+        res.status(500).json({ error: "Error interno del servidor" });
     }
+};
+export const toggleLike = async (req, res) => {
+  try {
+      const usuario_id = req.userId
+      const { tweet_id } = req.params
+      const parsedTweetId = parseInt(tweet_id, 10)
+
+      if (!usuario_id) {
+          return res.status(401).json({ message: "Usuario no autenticado" })
+      }
+
+      if (isNaN(parsedTweetId)) {
+          return res.status(400).json({ message: "ID de tweet inválido" })
+      }
+
+      const { liked } = await Tweet.toggleLike(usuario_id, parsedTweetId)
+      const totalLikes = await Tweet.contarLikes(parsedTweetId)
+
+      return res.status(200).json({ liked, totalLikes })
+  } catch (error) {
+      console.error("Error al dar like:", error)
+      return res.status(500).json({ message: "Error interno del servidor" })
+  }
 }
 
+export const contarLikes = async (req, res) => {
+  try {
+      const { tweet_id } = req.params
+      const parsedTweetId = parseInt(tweet_id, 10)
+
+      if (isNaN(parsedTweetId)) {
+          return res.status(400).json({ message: "ID de tweet inválido" })
+      }
+
+      const totalLikes = await Tweet.contarLikes(parsedTweetId)
+      res.json({ totalLikes })
+  } catch (error) {
+      console.error("Error en contarLikes:", error)
+      res.status(500).json({ error: "Error interno del servidor" })
+  }
+}
 

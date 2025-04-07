@@ -5,9 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twiter clon</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/iconos/logo-x.svg" />
+    <link rel="icon" type="image/svg+xml" href="./assets/iconos/logo-x.svg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <script type="module">
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.addEventListener("click", async (event) => {
+            const botonLike = event.target.closest(".btn-like");
+            if (!botonLike) return;
+    
+            const tweetId = parseInt(botonLike.dataset.tweetId, 10);
+            const iconoLike = botonLike.querySelector("img.like-icon");
+            const contadorLike = botonLike.querySelector(".like-count");
+    
+            try {
+              const response = await fetch(`/likes/${tweetId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+              });
+    
+              if (!response.ok) {
+                throw new Error("Error al procesar la petición");
+              }
+    
+              const { liked, totalLikes } = await response.json();
+    
+              // Actualizar UI
+              iconoLike.src = liked
+                ? "/assets/iconos/hearth-filled.svg"
+                : "/assets/iconos/hearth.svg";
+    
+              contadorLike.textContent = totalLikes;
+            } catch (error) {
+              console.error("Error al dar like:", error);
+            }
+          });
+        });
+      </script>
 </head>
 
 <body>
@@ -27,9 +63,13 @@
         <div class="container-app">
             <main class="tweet-container--index">
                 <div class="tweet-container--index">
-                    <% tweets.forEach(tweet => { %>
-                        <%- include("./componentes/tweets.ejs", tweet) %>
-                    <% }) %>
+                    <% if (tweets && tweets.length > 0) { %>
+                        <% tweets.forEach(tweet => { %>
+                          <%- include("componentes/tweets", { tweet: tweet }) %>
+                        <% }) %>
+                      <% } else { %>
+                        <p style="text-align: center;">No hay tweets todavía 🐦</p>
+                      <% } %>
                 </div>
             </main>
         </div>

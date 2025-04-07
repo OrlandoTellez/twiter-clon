@@ -4,12 +4,13 @@ const $ = (e) => document.querySelector(e)
 
 export const cargarDatosUsuario = async () => {
     try{
-        const response = await fetch("/perfil", {
+        const response = await fetch("/api/perfil", {
             credentials: "include",
             headers: {
-                "Accept": "application/json" 
+                "Accept": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
             }
-        })
+        });
     
         if (!response.ok) {
             window.location.href = "/auth/login"
@@ -17,7 +18,7 @@ export const cargarDatosUsuario = async () => {
         }
     
         const userData = await response.json()
-    
+        console.log(userData)
         // OBTENER ELEMENTOS DEL DOM
         const $headerName = $("#profileName")
         const $profileName = $("#profileUsername")
@@ -26,14 +27,20 @@ export const cargarDatosUsuario = async () => {
         const $createDate = $("#createDate")
     
         // FORMATEAR FECHA EN FORMATO 00-00-0000
-        const createDate = userData.fecha_creacion
-        const date = createDate.split("T")[0]
+        const createDate = userData.user.fecha_creacion
     
+        if (!createDate) {
+            console.error("Error: fecha_creacion es undefined", userData);
+            return;
+        }
+
+        const date = createDate.split("T")[0];
+
         // ACTUALIZAR EL DOM
-        $headerName.textContent = userData.nombre
-        $profileName.textContent = userData.nombre
-        $profileBio.textContent = userData.descripcion
-        $profileHandle.textContent = `@${userData.nombre_usuario.toLowerCase()}`
+        $headerName.textContent = userData.user.nombre
+        $profileName.textContent = userData.user.nombre
+        $profileBio.textContent = userData.user.descripcion
+        $profileHandle.textContent = `@${userData.user.nombre_usuario.toLowerCase()}`
         $createDate.textContent = date
 
         cargarImagenesPerfil()

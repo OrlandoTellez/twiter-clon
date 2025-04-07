@@ -1,41 +1,58 @@
 <head>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/componentes/tweets.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/componentes/tweets.css">
+  
 </head>
-
 <section class="tweets-container">
-    <figure class="perfil-figure">
-        <img src="<%= imagen_perfil || 'https://unavatar.io/x/noHayNadaPorAqui' %>" alt="imagen-perfil" class="perfil-imagen">
-    </figure>
-    <article class="tweet-article">
-        <div>
-            <h3><%= nombre %></h3>
-            <p><%= nombre_usuario %></p>
-        </div>
-        <div>
-            <p class="tweet"><%= contenido %></p>
-            <% if (imagen) { %>
-                <picture class="picture-imagen--tweet">
-                    <img src="<%= imagen %>" alt="">
-                </picture>
-            <% } %>
-        </div>
-        <div class="iconos">
-            <figure>
-                <img src="../assets/iconos/message.svg" alt="">
-            </figure>
-            <figure>
-                <img src="../assets/iconos/retweet.svg" alt="">
-            </figure>
-            <figure>
-                <img src="../assets/iconos/hearth.svg" alt="">
-            </figure>
-            <figure>
-                <img src="../assets/iconos/infografia.svg" alt="">
-            </figure>
-            <figure>
-                <img src="../assets/iconos/bookmark.svg" alt="">
-            </figure>
-        </div>
-    </article>
+  <figure class="perfil-figure">
+    <img 
+      src="<%= tweet.imagen_perfil || 'https://unavatar.io/x/noHayNadaPorAqui' %>" 
+      alt="imagen-perfil" 
+      class="perfil-imagen"
+    >
+  </figure>
+
+  <article class="tweet-article">
+    <div>
+      <h3><%= tweet.nombre %></h3>
+      <p>@<%= tweet.nombre_usuario %></p>
+    </div>
+
+    <div>
+      <p class="tweet"><%= tweet.contenido %></p>
+
+      <% if (tweet.imagen) { %>
+        <picture class="picture-imagen--tweet">
+          <img src="<%= tweet.imagen %>" alt="Imagen del tweet">
+        </picture>
+      <% } %>
+    </div>
+
+    <div class="iconos">
+      <figure>
+        <img src="/assets/iconos/message.svg" alt="Comentar">
+      </figure>
+
+      <figure>
+        <img src="/assets/iconos/retweet.svg" alt="Retweet">
+      </figure>
+
+      <figure class="btn-like" data-tweet-id="<%= tweet.id %>">
+        <img 
+          src="<%= tweet.usuario_dio_like ? '/assets/iconos/hearth-filled.svg' : '/assets/iconos/hearth.svg' %>" 
+          alt="like" 
+          class="like-icon"
+        >
+        <span class="like-count"><%= tweet.totalLikes %></span>
+      </figure>
+
+      <figure>
+        <img src="/assets/iconos/infografia.svg" alt="Estadísticas">
+      </figure>
+
+      <figure>
+        <img src="/assets/iconos/bookmark.svg" alt="Guardar">
+      </figure>
+    </div>
+  </article>
 </section>

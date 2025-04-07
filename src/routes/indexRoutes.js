@@ -5,10 +5,9 @@ import { getIndex, getExplore, getNotificaciones } from "../controllers/indexCon
 
 export const indexRoute = Router()
 
-
 indexRoute.get("/", getIndex)
 
-indexRoute.get("/perfil", authenticate, perfil)
+indexRoute.get("/api/perfil", authenticate, perfil)
 
 indexRoute.get("/notificaciones", authenticate, getNotificaciones)
 

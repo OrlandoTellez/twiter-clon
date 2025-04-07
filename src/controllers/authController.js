@@ -49,7 +49,6 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        // Validar los datos
         const userData = validateUserLogin(req.body)
         if(!userData.success){
             return res.status(400).json({ error: "Datos invalidos", details: user.error.errors })
@@ -57,13 +56,11 @@ export const login = async (req, res) => {
 
         const { email, password } = userData.data
 
-        // Buscar el usuario en la base de datos
         const user = await User.findByEmail(email)
         if (!user ) {
             return res.status(401).json({ error: 'Credenciales inválidas' })
         }
 
-        // Verificar la contraseña
         const passwordMatch = await bcrypt.compare(password, user.password)
         if(!passwordMatch){
             return res.status(401).json({ error: 'Credenciales inválidas' })
@@ -71,10 +68,8 @@ export const login = async (req, res) => {
 
         res.clearCookie("token")
 
-        // Generar JWT
         const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" })
 
-        // Configuración de cookies
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
@@ -98,31 +93,30 @@ export const login = async (req, res) => {
 
 export const perfil = async (req, res) => {
     try {
-        const user = await User.findById(req.userId)
+        const user = await User.findById(req.userId);
         if (!user) {
-            return res.status(404).json({
-                error: "Usuario no encontrado"
-            })
+            return res.status(404).json({ error: "Usuario no encontrado" })
         }
 
-        const { password, ...safeUserData } = user
-
-        const isAjaxRequest = req.xhr || req.headers.accept.includes("json") || req.headers["user-agent"]?.includes("Postman")
-
         const tweets = await Tweet.findUserTweets(req.userId)
+        const { password, ...safeUserData } = user;
 
-        if (isAjaxRequest) {
-            return res.json(safeUserData) 
-        } 
+        if (
+            req.headers["x-requested-with"] &&
+            req.headers["x-requested-with"].toLowerCase() === "xmlhttprequest"
+        ) {
+            return res.json({ user: safeUserData, tweets })
+        }
 
-        
-
-        return res.render("perfil", { safeUserData, tweets })
+        return res.render("perfil", { 
+            safeUserData, 
+            tweets, 
+            authenticated: req.isAuthenticated ? req.isAuthenticated() : false
+        })
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
 }
-
 
 export const logout = (req, res) => {
     res.clearCookie("token")

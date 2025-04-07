@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/iconos/logo-x.svg" />
+    <link rel="icon" type="image/svg+xml" href="./assets/iconos/logo-x.svg" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/perfil.css">
     <script type="module" src="js/profile.js"></script>
@@ -62,9 +62,13 @@
 
         <div class="container-app--perfil">
             <main class="tweet-container--perfil">
-                <% tweets.forEach(tweet => { %>
-                    <%- include("./componentes/tweets.ejs", tweet) %>
-                <% }) %>
+                <% if (tweets.length > 0) { %>
+                    <% tweets.forEach(tweet => { %>
+                        <%- include("./componentes/tweets.ejs", { tweet, authenticated }) %>
+                    <% }) %>
+                <% } else { %>
+                    <p>No hay tweets aún.</p>
+                <% } %>
             </main>
         </div>
     </div>
