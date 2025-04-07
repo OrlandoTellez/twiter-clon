@@ -38,7 +38,10 @@ img{
 }
 
 .container-postear{
-    display: none;
+    padding: 130px 0px 0px 0px;
+    width: 100%;
+    display: flex;
+    max-width: 600px;
 }
 
 .container-postear--iconos__postear button{
@@ -54,7 +57,6 @@ img{
     .container-postear{
         padding: 50px 0px 0px 0px;
         width: 100%;
-        display: flex;
         padding-left: 25px;
         width: 600px;
         
