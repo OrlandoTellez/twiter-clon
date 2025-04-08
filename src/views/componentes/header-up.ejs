@@ -1,14 +1,34 @@
 <head>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/componentes/header-up.css">
+
+    <script type="module">
+        const $ = (e) => document.querySelector(e)
+
+        try{
+            const [imageProfile] = await Promise.all([
+                fetch("/image/upload-profile", { credentials: "include" }),
+            ])
+    
+            if (!imageProfile.ok) throw new Error("Error al cargar las imágenes")
+    
+            const imageJsonProfile = await imageProfile.json()
+    
+            const $imagenPerfil = $("#imagenPerfil")
+    
+            $imagenPerfil.src = imageJsonProfile.imagenPerfilUrl || "https://unavatar.io/x/1sdfaf23asd"
+        }catch (error) {
+            console.error(error)
+        }
+       
+
+    </script>
 </head>
-
-
 
 <header>
     <div class="container-imagen-logo">
         <figure>
-            <img src="https://unavatar.io/x/TheGrefg" alt="imagen-usuario">
+            <img src="https://unavatar.io/x/tasflasjfasjkflasjñlfk" alt="imagen-usuario" id="imagenPerfil">
         </figure>
         <figure>
             <img src="assets/iconos/logo-x.svg" alt="lgo">
