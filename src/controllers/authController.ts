@@ -1,18 +1,19 @@
-import bcrypt from "bcryptjs"
+import * as bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
-import User from "../models/user.js"
-import Tweet from "../models/tweet.js"
+import { Request, Response } from "express"
+import User from "../models/user"
+import Tweet from "../models/tweet"
 import dotenv from "dotenv"
-import { validateUserRegister, validateUserLogin } from "../validations/userValidation.js"
+import { validateUserRegister, validateUserLogin } from "../validations/userValidation"
 
 dotenv.config()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
-export const getRegister = (req, res) => res.render("auth/registro")
-export const getLogin = (req, res) => res.render("auth/login")
+export const getRegister = (req: Request, res: Response) => res.render("auth/registro")
+export const getLogin = (req: Request, res: Response) => res.render("auth/login")
 
-export const register = async (req, res) => {
+export const register = async (req: Request, res: Response) => {
     try {
         const user = validateUserRegister(req.body);
 
@@ -28,6 +29,10 @@ export const register = async (req, res) => {
 
         const savedUser = await User.findByEmail(email)
 
+        if (!savedUser || !JWT_SECRET) {
+            return res.status(500).json({ error: "Error interno del servidor" })
+        }
+
         const token = jwt.sign({ userId: savedUser.id }, JWT_SECRET, { expiresIn: "1h" })
 
         res.cookie("token", token, {
@@ -40,18 +45,18 @@ export const register = async (req, res) => {
         res.status(201).json({ message: "Usuario registrado exitosamente" })
     } catch (error) {
         console.error("Error en registro:", error)
-        res.status(500).json({ 
-            error: "Error al registrar usuario", 
-            details: error.message 
+        res.status(500).json({
+            error: "Error al registrar usuario",
+            details: error instanceof Error ? error.message : "Error desconocido"
         })
     }
 }
 
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
     try {
         const userData = validateUserLogin(req.body)
         if(!userData.success){
-            return res.status(400).json({ error: "Datos invalidos", details: user.error.errors })
+            return res.status(400).json({ error: "Datos invalidos", details: userData.error.errors })
         }
 
         const { email, password } = userData.data
@@ -68,6 +73,10 @@ export const login = async (req, res) => {
 
         res.clearCookie("token")
 
+        if (!JWT_SECRET) {
+            return res.status(500).json({ error: "Error interno del servidor" })
+        }
+
         const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" })
 
         res.cookie("token", token, {
@@ -82,17 +91,20 @@ export const login = async (req, res) => {
             token,
             user: {
                 id: user.id,
-                username: user.username,
+                username: user.nombre_usuario,
                 email: user.email
             }
         })
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ error: error instanceof Error ? error.message : "Error desconocido" })
     }
 }
 
-export const perfil = async (req, res) => {
+export const perfil = async (req: Request, res: Response) => {
     try {
+        if (!req.userId) {
+            return res.status(401).json({ error: "No autorizado" })
+        }
         const user = await User.findById(req.userId);
         if (!user) {
             return res.status(404).json({ error: "Usuario no encontrado" })
@@ -101,54 +113,56 @@ export const perfil = async (req, res) => {
         const tweets = await Tweet.findUserTweets(req.userId)
         const { password, ...safeUserData } = user;
 
+        const xRequestedWith = req.headers["x-requested-with"];
         if (
-            req.headers["x-requested-with"] &&
-            req.headers["x-requested-with"].toLowerCase() === "xmlhttprequest"
+            xRequestedWith &&
+            typeof xRequestedWith === "string" &&
+            xRequestedWith.toLowerCase() === "xmlhttprequest"
         ) {
             return res.json({ user: safeUserData, tweets })
         }
 
-        return res.render("perfil", { 
-            safeUserData, 
-            tweets, 
-            authenticated: req.isAuthenticated ? req.isAuthenticated() : false
+        return res.render("perfil", {
+            safeUserData,
+            tweets,
+            authenticated: true
         })
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ error: error instanceof Error ? error.message : "Error desconocido" })
     }
 }
 
-export const logout = (req, res) => {
+export const logout = (req: Request, res: Response) => {
     res.clearCookie("token")
     res.json({
         message: "Sesion cerrada exitosamente"
     })
 }
 
-export const checkSesion = async (req, res) => {
+export const checkSesion = async (req: Request, res: Response) => {
     try{
         const token = req.cookies.token
 
-        if(!token){
+        if(!token || !JWT_SECRET){
             return res.json({ isAuth: false })
         }
 
-        const decoded = jwt.verify(token, JWT_SECRET)
+        const decoded = jwt.verify(token, JWT_SECRET) as { userId: number }
         const user = await User.findById(decoded.userId)
 
         if(!user){
             return res.json({ isAuth: false })
         }
-        
+
         res.json({
             isAuth: true,
             user: {
                 id: user.id,
-                username: user.username,
+                username: user.nombre_usuario,
                 email: user.email
             }
         })
     }catch (error) {
-        res.status(500).json({ error: error.message, isAuth: false })
+        res.status(500).json({ error: error instanceof Error ? error.message : "Error desconocido", isAuth: false })
     }
 }

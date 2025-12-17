@@ -1,7 +1,7 @@
 import { Router } from "express"
-import { authenticate } from "../middlewares/authMiddleware.js"
-import { uploadProfileImage, uploadBannerImage, getProfileImage, getBannerImage } from "../controllers/imageController.js"
-import { upload } from "../config/multer.js"
+import { authenticate } from "../middlewares/authMiddleware"
+import { uploadProfileImage, uploadBannerImage, getProfileImage, getBannerImage } from "../controllers/imageController"
+import { upload } from "../config/multer"
 
 export const imageRouter = Router()
 

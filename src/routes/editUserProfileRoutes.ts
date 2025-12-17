@@ -1,5 +1,5 @@
-import { editNameUser, editBioUser } from "../controllers/userEditController.js"
-import { authenticate } from "../middlewares/authMiddleware.js"
+import { editNameUser, editBioUser } from "../controllers/userEditController"
+import { authenticate } from "../middlewares/authMiddleware"
 import { Router } from "express"
 
 export const editRouter = Router()

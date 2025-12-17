@@ -1,7 +1,16 @@
-import Tweet from "../models/tweet.js"
-import db from "../db/db.js"
+import Tweet from "../models/tweet"
+import db from "../db/db"
+import { Request, Response } from "express"
 
-export const createTweet = async (req, res) => {
+declare global {
+  namespace Express {
+    interface Request {
+      userId?: number;
+    }
+  }
+}
+
+export const createTweet = async (req: Request, res: Response) => {
     try {
         const { contenido } = req.body
         const usuario_id = req.userId
@@ -29,7 +38,7 @@ export const createTweet = async (req, res) => {
     }
 }
 
-export const cargarTweet = async (req, res) => {
+export const cargarTweet = async (req: Request, res: Response) => {
     try {
     const usuario_id = req.userId || null;
 
@@ -44,7 +53,7 @@ export const cargarTweet = async (req, res) => {
   }
 
 
-  export const cargarAllTweets = async (req, res) => {
+  export const cargarAllTweets = async (req: Request, res: Response) => {
     try {
         const usuario_id = req.userId || null
 
@@ -57,7 +66,7 @@ export const cargarTweet = async (req, res) => {
         res.status(500).json({ error: "Error interno del servidor" });
     }
 };
-export const toggleLike = async (req, res) => {
+export const toggleLike = async (req: Request, res: Response) => {
   try {
       const usuario_id = req.userId
       const { tweet_id } = req.params
@@ -81,7 +90,7 @@ export const toggleLike = async (req, res) => {
   }
 }
 
-export const contarLikes = async (req, res) => {
+export const contarLikes = async (req: Request, res: Response) => {
   try {
       const { tweet_id } = req.params
       const parsedTweetId = parseInt(tweet_id, 10)

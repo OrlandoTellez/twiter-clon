@@ -1,7 +1,7 @@
 import { Router } from "express"
-import { authenticate } from '../middlewares/authMiddleware.js'
-import { perfil } from "../controllers/authController.js"
-import { getIndex, getExplore, getNotificaciones } from "../controllers/indexController.js"
+import { authenticate } from '../middlewares/authMiddleware'
+import { perfil } from "../controllers/authController"
+import { getIndex, getExplore, getNotificaciones } from "../controllers/indexController"
 
 export const indexRoute = Router()
 

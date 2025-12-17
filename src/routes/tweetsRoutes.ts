@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { authenticate } from "../middlewares/authMiddleware.js"
-import { checkAuth } from "../middlewares/checkAuth.js"
-import { createTweet, toggleLike, contarLikes, cargarTweet, cargarAllTweets } from "../controllers/tweetController.js"
-import { upload } from "../config/multer.js"
+import { authenticate } from "../middlewares/authMiddleware"
+import { checkAuth } from "../middlewares/checkAuth"
+import { createTweet, toggleLike, contarLikes, cargarTweet, cargarAllTweets } from "../controllers/tweetController"
+import { upload } from "../config/multer"
 
 export const tweetRouter = Router()
 

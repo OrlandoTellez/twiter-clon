@@ -13,10 +13,10 @@ const userLoginValidation = z.object({
     password: z.string().min(6).max(20)
 })
 
-export function validateUserRegister(user){
+export function validateUserRegister(user: any){
     return userRegisterValidation.safeParse(user)
 }
 
-export function validateUserLogin(user){
+export function validateUserLogin(user: any){
     return userLoginValidation.safeParse(user)
 }

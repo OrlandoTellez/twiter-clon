@@ -1,15 +1,36 @@
-import pool from "../db/db.js"
+import pool from "../db/db"
+
+export interface TweetData {
+  id: number;
+  contenido: string;
+  imagen?: string;
+  usuario_id: number;
+  fecha_creacion?: Date;
+}
+
+export interface TweetWithUser {
+  id: number;
+  contenido: string;
+  imagen?: string;
+  usuario_id: number;
+  nombre_usuario: string;
+  nombre: string;
+  apellido: string;
+  imagen_perfil?: string;
+  totalLikes: number;
+  usuario_dio_like: boolean;
+}
 
 export default class Tweet {
-  static async createTweet({ usuario_id, contenido }) {
+  static async createTweet({ usuario_id, contenido }: { usuario_id: number; contenido: string }): Promise<number> {
     const result = await pool.query("INSERT INTO tweets (usuario_id, contenido) VALUES ($1, $2) RETURNING id", [usuario_id, contenido])
 
     return result.rows[0].id
   }
 
-  static async findAllTweets(usuario_id) {
-    let query;
-    let params;
+  static async findAllTweets(usuario_id: number | null): Promise<TweetWithUser[]> {
+    let query: string;
+    let params: number[];
     if (usuario_id === null) {
       query = `
         SELECT
@@ -51,7 +72,7 @@ export default class Tweet {
     return result.rows;
   }
 
-  static async findUserTweets(id) {
+  static async findUserTweets(id: number | null): Promise<any[]> {
     const query = `
             SELECT
                 u.id AS usuario_id,
@@ -74,13 +95,13 @@ export default class Tweet {
     return result.rows
   }
 
-  static async updateTweetImage(id, imagenTweetUrl) {
+  static async updateTweetImage(id: number, imagenTweetUrl: string): Promise<any> {
     const result = await pool.query("UPDATE tweets SET imagen = $1 WHERE id = $2", [imagenTweetUrl, id])
 
     return result
   }
 
-  static async contarLikes(tweet_id) {
+  static async contarLikes(tweet_id: number): Promise<number> {
     const result = await pool.query(
       "SELECT COUNT(*) AS totalLikes FROM likes WHERE tweet_id = $1",
       [tweet_id]
@@ -88,7 +109,7 @@ export default class Tweet {
     return result.rows[0].totallikes
   }
 
-  static async existeLike(usuario_id, tweet_id) {
+  static async existeLike(usuario_id: number, tweet_id: number): Promise<boolean> {
     if (!usuario_id || !tweet_id) {
       throw new Error("Error: usuario_id o tweet_id son undefined")
     }
@@ -100,7 +121,7 @@ export default class Tweet {
     return result.rows.length > 0
   }
 
-  static async toggleLike(usuario_id, tweet_id) {
+  static async toggleLike(usuario_id: number, tweet_id: number): Promise<{ liked: boolean }> {
     const client = await pool.connect()
     try {
       await client.query('BEGIN')
