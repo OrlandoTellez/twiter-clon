@@ -1,4 +1,4 @@
-import { WhatIsHappening } from "../components/index/WhatIsHappening";
+import { WhatIsHappening } from "../components/ui/index/WhatIsHappening";
 
 const Index = () => {
   return (

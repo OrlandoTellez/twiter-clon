@@ -1,4 +1,4 @@
-import { Tendencies } from "../AppSideBarRight/Tendencies";
+import { Tendencies } from "../ui/AppSideBarRight/Tendencies";
 import { InputSearch } from "../common/InputSearch";
 import styles from "./AppSideBarRight.module.css";
 

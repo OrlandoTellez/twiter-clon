@@ -1,4 +1,4 @@
-import { InputSearch } from "../common/InputSearch";
+import { InputSearch } from "../../common/InputSearch";
 import styles from "./InputExploreSearch.module.css";
 
 export const InputExploreSearch = () => {

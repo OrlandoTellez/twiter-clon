@@ -1,4 +1,4 @@
-import { InputExploreSearch } from "../components/explore/InputExploreSearch";
+import { InputExploreSearch } from "../components/ui/explore/InputExploreSearch";
 
 const Explore = () => {
   return (
