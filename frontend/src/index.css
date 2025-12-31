@@ -3,6 +3,7 @@
   --secondary-color: #1d9bf0;
   --white: white;
   --border-color: #1d1f21;
+  --color-opacity: #cbcbcb;
 }
 
 * {
@@ -24,4 +25,8 @@ a {
 
 li {
   list-style: none;
+}
+
+button {
+  cursor: pointer;
 }

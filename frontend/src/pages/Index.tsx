@@ -1,8 +1,12 @@
+import { WhatIsHappening } from "../components/index/WhatIsHappening";
+
 const Index = () => {
   return (
-    <div>
-      <h1>Pagina de inicio</h1>
-    </div>
+    <>
+      <div>
+        <WhatIsHappening />
+      </div>
+    </>
   );
 };
 
