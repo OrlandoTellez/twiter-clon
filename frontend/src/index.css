@@ -30,3 +30,7 @@ li {
 button {
   cursor: pointer;
 }
+
+h6 {
+  font-size: 1.2rem;
+}
