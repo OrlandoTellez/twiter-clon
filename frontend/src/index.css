@@ -1,0 +1,27 @@
+:root {
+  --primary-color: black;
+  --secondary-color: #1d9bf0;
+  --white: white;
+  --border-color: #1d1f21;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-family: "Fira Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+li {
+  list-style: none;
+}

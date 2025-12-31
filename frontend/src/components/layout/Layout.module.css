@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content {
+  padding: 20px;
+  width: 50vw;
+}

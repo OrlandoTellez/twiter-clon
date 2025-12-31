@@ -1,0 +1,6 @@
+.container {
+  width: 30vw;
+  padding: 20px;
+  border-left: 1px solid var(--border-color);
+  height: 100vh;
+}
