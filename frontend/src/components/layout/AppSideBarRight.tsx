@@ -1,5 +1,5 @@
-import { InputSearch } from "../AppSideBarRight/InputSearch";
 import { Tendencies } from "../AppSideBarRight/Tendencies";
+import { InputSearch } from "../common/InputSearch";
 import styles from "./AppSideBarRight.module.css";
 
 export const AppSideBarRight = () => {

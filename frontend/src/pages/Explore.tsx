@@ -1,7 +1,9 @@
+import { InputExploreSearch } from "../components/explore/InputExploreSearch";
+
 const Explore = () => {
   return (
     <div>
-      <h1>Pagina para explorar</h1>
+      <InputExploreSearch />
     </div>
   );
 };
