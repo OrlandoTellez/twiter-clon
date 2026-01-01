@@ -1,6 +1,9 @@
-pub mod index;
+pub mod v1;
+
 use axum::Router;
 
+use v1::v1_routes;
+
 pub fn create_routes() -> Router {
-    Router::new().merge(index::routes())
+    Router::new().nest("/api/v1", v1_routes())
 }
