@@ -20,6 +20,12 @@ pub struct RegisterPayload {
     pub image_banner: Option<String>,
 }
 
+#[derive(Deserialize, Clone)]
+pub struct LoginPayload {
+    pub username: String,
+    pub password: String,
+}
+
 #[derive(Serialize)]
 pub struct AuthResponse {
     pub access_token: String,

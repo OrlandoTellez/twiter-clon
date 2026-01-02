@@ -3,7 +3,7 @@ use jsonwebtoken::{EncodingKey, Header, encode};
 
 use crate::{config::constants::JWT_SECRET, helpers::errors::AppError, models::auth_model::Claim};
 
-pub fn enconde(username: String) -> Result<String, AppError> {
+pub fn enconde_jwt(username: String) -> Result<String, AppError> {
     let expiration = Utc::now()
         .checked_add_signed(Duration::hours(24))
         .expect("Valid timestamp")

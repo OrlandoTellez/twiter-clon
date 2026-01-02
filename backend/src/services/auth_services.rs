@@ -1,6 +1,11 @@
+use bcrypt::{DEFAULT_COST, bcrypt, hash, verify};
+
 use crate::{
-    helpers::errors::AppError,
-    models::{auth_model::RegisterPayload, user_model::User},
+    helpers::{errors::AppError, jwt::enconde_jwt},
+    models::{
+        auth_model::{AuthResponse, LoginPayload, RegisterPayload},
+        user_model::User,
+    },
     states::DbState,
 };
 
@@ -8,6 +13,8 @@ pub struct AuthService;
 
 impl AuthService {
     pub async fn register_user(db: &DbState, payload: RegisterPayload) -> Result<User, AppError> {
+        let hashed_password = hash(payload.password, DEFAULT_COST).unwrap();
+
         let user: User = sqlx::query_as!(
             User,
             r#"
@@ -41,7 +48,7 @@ impl AuthService {
             payload.age,
             payload.email,
             payload.username,
-            payload.password,
+            hashed_password,
             payload.bio,
             payload.image_profile,
             payload.image_banner
@@ -50,5 +57,37 @@ impl AuthService {
         .await?;
 
         Ok(user)
+    }
+
+    pub async fn login_user(db: &DbState, payload: LoginPayload) -> Result<AuthResponse, AppError> {
+        let user = sqlx::query!(
+            r#"
+            SELECT id, username, password
+            FROM users
+            WHERE username = $1
+            "#,
+            payload.username
+        )
+        .fetch_optional(db)
+        .await?;
+
+        let user = match user {
+            Some(u) => u,
+            None => return Err(AppError::NotFound("Invalid credentials".to_string())),
+        };
+
+        let valid_password = verify(&payload.password, &user.password)
+            .map_err(|_| AppError::InternalServerError("Password verification failed".into()))?;
+
+        if !valid_password {
+            return Err(AppError::NotFound("Invalid credentials".into()));
+        }
+
+        let token: String = enconde_jwt(user.username)?;
+
+        Ok(AuthResponse {
+            access_token: token,
+            token_type: "Bearer".into(),
+        })
     }
 }
