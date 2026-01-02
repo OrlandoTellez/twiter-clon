@@ -1,11 +1,18 @@
+mod config;
 mod handlers;
+mod helpers;
+mod models;
 mod routes;
+mod services;
 mod states;
 
 use dotenvy::dotenv;
 
 use axum::Router;
+use sqlx::postgres::PgPoolOptions;
 use tokio::net::TcpListener;
+
+use crate::config::constants::DATABASE_URL;
 
 const PORT: &str = "3000";
 const HOST: &str = "0.0.0.0";
@@ -14,7 +21,13 @@ const HOST: &str = "0.0.0.0";
 async fn main() {
     dotenv().ok();
 
-    let app: Router = routes::create_routes();
+    let db = PgPoolOptions::new()
+        .max_connections(5)
+        .connect(&DATABASE_URL)
+        .await
+        .expect("Failed to connect to database");
+
+    let app: Router = routes::create_routes().with_state(db);
 
     let addr: String = format!("{}:{}", &HOST, &PORT);
 
