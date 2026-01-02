@@ -4,6 +4,8 @@ use axum::Router;
 
 use v1::v1_routes;
 
-pub fn create_routes() -> Router {
+use crate::states::DbState;
+
+pub fn create_routes() -> Router<DbState> {
     Router::new().nest("/api/v1", v1_routes())
 }
