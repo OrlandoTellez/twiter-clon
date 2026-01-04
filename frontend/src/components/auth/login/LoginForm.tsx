@@ -6,6 +6,8 @@ import {
   loginSchema,
   type LoginData,
 } from "../../../validations/loginValidations.ts";
+import { login } from "../../../api/login.ts";
+import type { LoginMethod } from "../../../types/auth";
 
 export const LoginForm = () => {
   const {
@@ -16,8 +18,15 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
     mode: "onBlur",
   });
-  const onSubmit = (data: object) => console.log(data);
-  console.log("error: ", errors);
+
+  const onSubmit = async (data: LoginMethod) => {
+    const loginUser = await login({
+      username: data.username,
+      password: data.password,
+    });
+
+    console.log(loginUser);
+  };
 
   return (
     <>
