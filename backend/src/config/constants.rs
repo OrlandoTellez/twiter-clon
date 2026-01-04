@@ -7,3 +7,6 @@ pub static DATABASE_URL: Lazy<String> =
 
 pub static JWT_SECRET: Lazy<String> =
     Lazy::new(|| env::var("JWT_SECRET").expect("Se necesita la variable de entorno"));
+
+pub static FRONTEND_URL: Lazy<String> =
+    Lazy::new(|| env::var("FRONTEND_URL").expect("Se necesita la variable de entoron"));
