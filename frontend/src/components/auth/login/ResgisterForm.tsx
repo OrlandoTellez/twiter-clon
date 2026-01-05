@@ -3,20 +3,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../../common/Input.tsx";
 import {
-  loginSchema,
-  type LoginData,
+  registerSchema,
+  type RegisterData,
 } from "../../../validations/loginValidations.ts";
 import { login } from "../../../api/login.ts";
 import type { LoginMethod } from "../../../types/auth";
 import { Link } from "react-router-dom";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginData>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterData>({
+    resolver: zodResolver(registerSchema),
     mode: "onBlur",
   });
 
@@ -33,8 +33,44 @@ export const LoginForm = () => {
     <>
       <article className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <h4>Login Form</h4>
+          <h4>Register Form</h4>
           <div className={styles.inputs}>
+            <Input
+              label=""
+              name="name"
+              type="text"
+              placeholder="Name"
+              register={register}
+              error={errors.username?.message}
+            />
+
+            <Input
+              label=""
+              name="last_name"
+              type="text"
+              placeholder="Last name"
+              register={register}
+              error={errors.username?.message}
+            />
+
+            <Input
+              label=""
+              name="age"
+              type="number"
+              placeholder="Age"
+              register={register}
+              error={errors.username?.message}
+            />
+
+            <Input
+              label=""
+              name="email"
+              type="text"
+              placeholder="Email"
+              register={register}
+              error={errors.username?.message}
+            />
+
             <Input
               label=""
               name="username"
@@ -56,7 +92,7 @@ export const LoginForm = () => {
           </div>
         </form>
         <div>
-          <Link to={"/auth/register"}>Register Form</Link>
+          <Link to={"/auth/login"}>Login Form</Link>
         </div>
       </article>
     </>
