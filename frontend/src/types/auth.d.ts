@@ -3,7 +3,7 @@ export interface LoginMethod {
   password: string;
 }
 
-export interface RegisgerMethod {
+export interface RegisterMethod {
   name: string;
   last_name: string;
   age: number;

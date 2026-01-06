@@ -1,5 +1,10 @@
 import styles from "./Input.module.css";
-import type { UseFormRegister, FieldValues, Path } from "react-hook-form";
+import type {
+  UseFormRegister,
+  FieldValues,
+  Path,
+  RegisterOptions,
+} from "react-hook-form";
 
 interface InputProps<T extends FieldValues> {
   label: string;
@@ -7,6 +12,7 @@ interface InputProps<T extends FieldValues> {
   type?: string;
   placeholder?: string;
   register: UseFormRegister<T>;
+  options?: RegisterOptions<T>;
   error?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -17,6 +23,7 @@ export const Input = <T extends FieldValues>({
   type,
   placeholder,
   register,
+  options,
   error,
   onChange,
 }: InputProps<T>) => {
@@ -27,7 +34,7 @@ export const Input = <T extends FieldValues>({
         type={type}
         id={name}
         placeholder={placeholder}
-        {...register(name)}
+        {...register(name, options)}
         onChange={onChange}
       />
       {error && <p style={{ color: "red" }}>{error}</p>}

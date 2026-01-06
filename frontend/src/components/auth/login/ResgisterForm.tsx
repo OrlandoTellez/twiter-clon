@@ -6,8 +6,8 @@ import {
   registerSchema,
   type RegisterData,
 } from "../../../validations/loginValidations.ts";
-import { login } from "../../../api/login.ts";
-import type { LoginMethod } from "../../../types/auth";
+import type { RegisterMethod } from "../../../types/auth";
+import { registerUser } from "../../../api/auth.ts";
 import { Link } from "react-router-dom";
 
 export const RegisterForm = () => {
@@ -20,13 +20,17 @@ export const RegisterForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = async (data: LoginMethod) => {
-    const loginUser = await login({
+  const onSubmit = async (data: RegisterMethod) => {
+    const register = await registerUser({
+      name: data.name,
+      last_name: data.last_name,
+      age: data.age,
+      email: data.email,
       username: data.username,
       password: data.password,
     });
 
-    console.log(loginUser);
+    console.log(register);
   };
 
   return (
@@ -41,7 +45,7 @@ export const RegisterForm = () => {
               type="text"
               placeholder="Name"
               register={register}
-              error={errors.username?.message}
+              error={errors.name?.message}
             />
 
             <Input
@@ -50,7 +54,7 @@ export const RegisterForm = () => {
               type="text"
               placeholder="Last name"
               register={register}
-              error={errors.username?.message}
+              error={errors.last_name?.message}
             />
 
             <Input
@@ -58,8 +62,9 @@ export const RegisterForm = () => {
               name="age"
               type="number"
               placeholder="Age"
-              register={register}
-              error={errors.username?.message}
+              //@ts-expect-error("ignorar este errorsito xd")
+              register={(name) => register(name, { valueAsNumber: true })}
+              error={errors.age?.message}
             />
 
             <Input
@@ -68,7 +73,7 @@ export const RegisterForm = () => {
               type="text"
               placeholder="Email"
               register={register}
-              error={errors.username?.message}
+              error={errors.email?.message}
             />
 
             <Input

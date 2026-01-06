@@ -6,7 +6,7 @@ import {
   loginSchema,
   type LoginData,
 } from "../../../validations/loginValidations.ts";
-import { login } from "../../../api/login.ts";
+import { login } from "../../../api/auth.ts";
 import type { LoginMethod } from "../../../types/auth";
 import { Link } from "react-router-dom";
 
