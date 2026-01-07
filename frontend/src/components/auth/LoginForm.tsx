@@ -1,16 +1,19 @@
 import styles from "./LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../../common/Input.tsx";
+import { Input } from "../common/Input.tsx";
 import {
   loginSchema,
   type LoginData,
-} from "../../../validations/loginValidations.ts";
-import { login } from "../../../api/auth.ts";
-import type { LoginMethod } from "../../../types/auth";
+} from "../../validations/loginValidations.ts";
+import { login } from "../../api/auth.ts";
+import type { LoginMethod } from "../../types/auth";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -21,12 +24,18 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginMethod) => {
-    const loginUser = await login({
-      username: data.username,
-      password: data.password,
-    });
+    try {
+      const loginUser = await login({
+        username: data.username,
+        password: data.password,
+      });
 
-    console.log(loginUser);
+      console.log(loginUser);
+
+      navigate("/");
+    } catch (error) {
+      console.log("Login error: ", error);
+    }
   };
 
   return (

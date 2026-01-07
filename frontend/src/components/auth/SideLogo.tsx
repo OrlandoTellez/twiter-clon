@@ -1,5 +1,5 @@
 import styles from "./SideLogo.module.css";
-import logo from "../../../assets/twiterLogo.svg";
+import logo from "../../assets/twiterLogo.svg";
 
 export const SideLogo = () => {
   return (

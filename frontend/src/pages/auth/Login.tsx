@@ -1,5 +1,5 @@
-import { LoginForm } from "../../components/auth/login/LoginForm";
-import { SideLogo } from "../../components/auth/login/SideLogo";
+import { LoginForm } from "../../components/auth/LoginForm";
+import { SideLogo } from "../../components/auth/SideLogo";
 import styles from "./Login.module.css";
 
 const Login = () => {

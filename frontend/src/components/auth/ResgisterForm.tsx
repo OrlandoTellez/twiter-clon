@@ -1,13 +1,13 @@
 import styles from "./LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../../common/Input.tsx";
+import { Input } from "../common/Input.tsx";
 import {
   registerSchema,
   type RegisterData,
-} from "../../../validations/loginValidations.ts";
-import type { RegisterMethod } from "../../../types/auth";
-import { registerUser } from "../../../api/auth.ts";
+} from "../../validations/loginValidations.ts";
+import type { RegisterMethod } from "../../types/auth";
+import { registerUser } from "../../api/auth.ts";
 import { Link } from "react-router-dom";
 
 export const RegisterForm = () => {
