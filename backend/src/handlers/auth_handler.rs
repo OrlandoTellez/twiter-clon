@@ -1,7 +1,10 @@
 use axum::{Json, extract::State};
+use axum_extra::extract::cookie::CookieJar;
 
 use crate::{
-    helpers::{errors::AppError, success_response::success_response},
+    helpers::{
+        cookies::build_session_cookie, errors::AppError, success_response::success_response,
+    },
     models::{
         api_model::ApiResponse,
         auth_model::{AuthResponse, LoginPayload, RegisterPayload},
@@ -25,12 +28,13 @@ pub async fn resgister_user(
 }
 
 pub async fn login_user(
+    jar: CookieJar,
     State(db): State<DbState>,
     Json(payload): Json<LoginPayload>,
-) -> Result<Json<ApiResponse<AuthResponse>>, AppError> {
-    let login_user: AuthResponse = AuthService::login_user(&db, payload).await?;
+) -> Result<(CookieJar, Json<&'static str>), AppError> {
+    let token: String = AuthService::login_user(&db, payload).await?;
 
-    let response: ApiResponse<AuthResponse> = success_response(login_user, "Login succesfully");
+    let cookie = build_session_cookie(token);
 
-    Ok(Json(response))
+    Ok((jar.add(cookie), Json("Login successfully")))
 }

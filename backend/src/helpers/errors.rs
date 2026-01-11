@@ -10,6 +10,7 @@ use validator::ValidationErrors;
 pub enum AppError {
     NotFound(String),
     InternalServerError(String),
+    Unauthorized(String),
     ValidationError(ValidationErrors),
 }
 
@@ -28,6 +29,14 @@ impl IntoResponse for AppError {
                 json!({
                     "success": false,
                     "message": message
+                }),
+            ),
+            AppError::Unauthorized(message) => (
+                StatusCode::UNAUTHORIZED,
+                json!({
+                    "success": false,
+                    "message": message
+
                 }),
             ),
             AppError::ValidationError(err) => {

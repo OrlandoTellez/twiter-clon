@@ -1,4 +1,4 @@
-use bcrypt::{DEFAULT_COST, bcrypt, hash, verify};
+use bcrypt::{DEFAULT_COST, hash, verify};
 
 use crate::{
     helpers::{errors::AppError, jwt::enconde_jwt},
@@ -59,7 +59,7 @@ impl AuthService {
         Ok(user)
     }
 
-    pub async fn login_user(db: &DbState, payload: LoginPayload) -> Result<AuthResponse, AppError> {
+    pub async fn login_user(db: &DbState, payload: LoginPayload) -> Result<String, AppError> {
         let user = sqlx::query!(
             r#"
             SELECT id, username, password
@@ -85,9 +85,6 @@ impl AuthService {
 
         let token: String = enconde_jwt(user.username)?;
 
-        Ok(AuthResponse {
-            access_token: token,
-            token_type: "Bearer".into(),
-        })
+        Ok(token)
     }
 }
