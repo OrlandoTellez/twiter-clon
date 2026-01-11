@@ -1,7 +1,9 @@
+import { UserDetail } from "../components/ui/profile/UserDetail";
+
 const Profile = () => {
   return (
     <div>
-      <h1>Pagina de perfil</h1>
+      <UserDetail />
     </div>
   );
 };
