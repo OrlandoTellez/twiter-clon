@@ -7,6 +7,6 @@ use crate::{
 
 pub fn routes() -> Router<DbState> {
     Router::new()
-        .route("/perfil", get(profile_handler))
+        .route("/profile", get(profile_handler))
         .layer(middleware::from_fn(auth_middleware))
 }

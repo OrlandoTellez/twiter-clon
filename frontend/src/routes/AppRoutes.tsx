@@ -6,6 +6,7 @@ import Notification from "../pages/Notification";
 import Profile from "../pages/Profile";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRoutes = () => {
   return (
@@ -17,7 +18,14 @@ export const AppRoutes = () => {
           <Route path="/" element={<Index />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/notifications" element={<Notification />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
