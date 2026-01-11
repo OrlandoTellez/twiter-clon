@@ -3,7 +3,7 @@ use bcrypt::{DEFAULT_COST, hash, verify};
 use crate::{
     helpers::{errors::AppError, jwt::enconde_jwt},
     models::{
-        auth_model::{AuthResponse, LoginPayload, RegisterPayload},
+        auth_model::{LoginPayload, RegisterPayload},
         user_model::User,
     },
     states::DbState,
@@ -37,7 +37,6 @@ impl AuthService {
                 age, 
                 email, 
                 username, 
-                password, 
                 bio, 
                 image_profile, 
                 image_banner, 

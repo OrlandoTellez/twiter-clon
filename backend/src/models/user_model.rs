@@ -9,7 +9,6 @@ pub struct User {
     pub age: i32,
     pub email: String,
     pub username: String,
-    pub password: String,
     pub bio: Option<String>,
     pub image_profile: Option<String>,
     pub image_banner: Option<String>,
