@@ -1,3 +1,25 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.headerText {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.headerText h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.headerText span {
+  color: var(--color-opacity);
+}
+
 .container {
   width: 100%;
   background-color: #333639;
