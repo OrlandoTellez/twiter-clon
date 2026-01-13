@@ -51,50 +51,10 @@
   align-items: center;
 }
 
-.modalContent {
+.modali {
   background-color: var(--primary-color);
   padding: 20px;
   border-radius: 8px;
   width: 400px;
   max-width: 90%;
-}
-
-.modalContent h3 {
-  font-size: 1.25rem;
-  margin-top: 0;
-}
-
-.modalContent form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.modalContent label {
-  display: flex;
-  flex-direction: column;
-}
-
-.modalContent input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.modalContent button {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.modalContent button[type="submit"] {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.modalContent button[type="button"] {
-  background-color: #ccc;
 }
