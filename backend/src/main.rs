@@ -29,6 +29,7 @@ async fn main() {
             http::Method::GET,
             http::Method::POST,
             http::Method::PUT,
+            http::Method::PATCH,
             http::Method::DELETE,
         ])
         .allow_headers([http::header::CONTENT_TYPE, http::header::AUTHORIZATION])
