@@ -20,20 +20,6 @@
   color: var(--color-opacity);
 }
 
-.container {
-  width: 100%;
-  background-color: #333639;
-  padding: 100px 0px;
-}
-
-.container img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--primary-color);
-}
-
 .profile {
   width: 50%;
   position: absolute;

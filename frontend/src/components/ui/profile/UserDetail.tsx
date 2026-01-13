@@ -12,6 +12,7 @@ import {
   updateUserSchema,
   type UptadteUserData,
 } from "../../../validations/userValidation.ts";
+import styled from "styled-components";
 
 export const UserDetail = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -26,6 +27,23 @@ export const UserDetail = () => {
     resolver: zodResolver(updateUserSchema),
     mode: "onBlur",
   });
+
+  const Container = styled.div`
+    width: 100%;
+    background-image: url(${user?.image_banner});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px 0px;
+
+    && img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary-color);
+    }
+  `;
 
   useEffect(() => {
     getMyProfile()
@@ -77,7 +95,7 @@ export const UserDetail = () => {
 
         <img src={search} alt="icono search" />
       </div>
-      <div className={styles.container}>
+      <Container>
         <div className={styles.profile}>
           <img src={user?.image_profile} alt="user image" />
           <button
@@ -90,7 +108,7 @@ export const UserDetail = () => {
             Editar perfil
           </button>
         </div>
-      </div>
+      </Container>
 
       {isModalOpen && (
         <div className={styles.modal}>
