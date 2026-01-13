@@ -28,4 +28,20 @@ impl UserService {
 
         Ok(user)
     }
+
+    pub async fn update_profile_image(
+        db: &DbState,
+        username: &str,
+        image_url: &str,
+    ) -> Result<(), AppError> {
+        sqlx::query!(
+            "UPDATE users SET image_profile = $1 WHERE username = $2",
+            image_url,
+            username
+        )
+        .execute(db)
+        .await?;
+
+        Ok(())
+    }
 }
