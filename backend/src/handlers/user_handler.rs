@@ -1,6 +1,7 @@
 use axum::{
     Json,
     extract::{Multipart, State},
+    http::StatusCode,
 };
 use axum_extra::extract::cookie::CookieJar;
 
@@ -67,4 +68,58 @@ pub async fn upload_profile_image(
         "message": "Imagen de perfil actualizada",
         "image_url": image_url
     })))
+}
+
+pub async fn update_profile(
+    jar: CookieJar,
+    State(db): State<DbState>,
+    mut multipart: Multipart,
+) -> Result<Json<User>, AppError> {
+    let claims: Claim = check_session(&jar)?;
+
+    let mut name: Option<String> = None;
+    let mut image_bytes: Option<Vec<u8>> = None;
+
+    while let Some(field) = multipart
+        .next_field()
+        .await
+        .map_err(|_| AppError::BadRequest("Error leyendo multipart".into()))?
+    {
+        match field.name() {
+            Some("name") => {
+                name = Some(
+                    field
+                        .text()
+                        .await
+                        .map_err(|_| AppError::BadRequest("Error leyendo nombre".into()))?,
+                );
+            }
+            Some("image") => {
+                image_bytes = Some(
+                    field
+                        .bytes()
+                        .await
+                        .map_err(|_| AppError::BadRequest("Error leyendo archivo".into()))?
+                        .to_vec(),
+                );
+            }
+            _ => {}
+        }
+    }
+
+    let name: String = name.ok_or(AppError::BadRequest("Nombre requerido".into()))?;
+
+    let mut image_url: Option<String> = None;
+    if let Some(bytes) = image_bytes {
+        image_url = Some(
+            cloudinary_services::upload_image(bytes, "twitter-clone")
+                .await
+                .map_err(|_| AppError::InternalServerError("Error subiendo imagen".into()))?,
+        );
+    }
+
+    let user: User =
+        UserService::update_profile(&db, &claims.sub, &name, image_url.as_deref()).await?;
+
+    Ok(Json(user))
 }
