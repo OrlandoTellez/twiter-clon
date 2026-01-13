@@ -2,20 +2,59 @@ import styles from "./UserDetail.module.css";
 import search from "../../../assets/navigation/search.svg";
 import arrowLeft from "../../../assets/left-arrow.svg";
 import { useEffect, useState } from "react";
-import type { User } from "../../../types/user";
+import type { UpdateUser, User } from "../../../types/user";
 import { getMyProfile, updateProfile } from "../../../api/user";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "../../common/Input.tsx";
+import {
+  updateUserSchema,
+  type UptadteUserData,
+} from "../../../validations/userValidation.ts";
 
 export const UserDetail = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formName, setFormName] = useState("");
-  const [formImage, setFormImage] = useState<File | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(updateUserSchema),
+    mode: "onBlur",
+  });
 
   useEffect(() => {
     getMyProfile()
       .then(setUser)
       .catch(() => {});
   }, []);
+
+  const onSubmit = async (data: UptadteUserData) => {
+    try {
+      const updateData: Partial<UpdateUser> = {};
+
+      if (data.name !== undefined && data.name.trim() !== "") {
+        updateData.name = data.name;
+      }
+
+      if (data.image_profile !== undefined) {
+        updateData.image_profile = data.image_profile;
+      }
+
+      const updateUser = await updateProfile(updateData);
+
+      setUser(updateUser);
+      setIsModalOpen(false);
+
+      console.log(updateUser);
+    } catch (error) {
+      console.log("Login error: ", error);
+    }
+  };
 
   return (
     <>
@@ -32,8 +71,16 @@ export const UserDetail = () => {
       </div>
       <div className={styles.container}>
         <div className={styles.profile}>
-          <img src="husky.png" alt="user image" />
-           <button className={styles.button} onClick={() => setIsModalOpen(true)}>Editar perfil</button>
+          <img src={user?.image_profile} alt="user image" />
+          <button
+            className={styles.button}
+            onClick={() => {
+              setIsModalOpen(true);
+              reset({ name: user?.name });
+            }}
+          >
+            Editar perfil
+          </button>
         </div>
       </div>
 
@@ -41,35 +88,33 @@ export const UserDetail = () => {
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <h3>Editar Perfil</h3>
-            <form onSubmit={async (e) => {
-              e.preventDefault();
-              try {
-                const updatedUser = await updateProfile(formName, formImage || undefined);
-                setUser(updatedUser);
-                setIsModalOpen(false);
-              } catch (error) {
-                console.error("Error updating profile:", error);
-              }
-            }}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <label>
                 Nombre:
-                <input
+                <Input
+                  label=""
+                  name="name"
                   type="text"
-                  value={formName}
-                  onChange={(e) => setFormName(e.target.value)}
-                  required
+                  placeholder="Name"
+                  register={register}
+                  error={errors.name?.message}
                 />
               </label>
               <label>
                 Imagen de perfil:
-                <input
+                <Input
+                  label=""
+                  name="image_profile"
                   type="file"
-                  accept="image/*"
-                  onChange={(e) => setFormImage(e.target.files?.[0] || null)}
+                  placeholder="Image profile"
+                  register={register}
+                  error={errors.image_profile?.message}
                 />
               </label>
               <button type="submit">Guardar</button>
-              <button type="button" onClick={() => setIsModalOpen(false)}>Cancelar</button>
+              <button type="button" onClick={() => setIsModalOpen(false)}>
+                Cancelar
+              </button>
             </form>
           </div>
         </div>

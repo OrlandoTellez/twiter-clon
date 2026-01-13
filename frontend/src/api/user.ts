@@ -1,4 +1,5 @@
 import { API } from "../constants/api";
+import type { UpdateUser } from "../types/user";
 
 export const getMyProfile = async () => {
   const response = await API.get("/users/me");
@@ -6,11 +7,14 @@ export const getMyProfile = async () => {
   return response.data;
 };
 
-export const updateProfile = async (name: string, image?: File) => {
+export const updateProfile = async ({ name, image_profile }: UpdateUser) => {
   const formData = new FormData();
-  formData.append("name", name);
-  if (image) {
-    formData.append("image", image);
+
+  if (name) {
+    formData.append("name", name);
+  }
+  if (image_profile) {
+    formData.append("image", image_profile);
   }
 
   const response = await API.patch("/users/me", formData, {

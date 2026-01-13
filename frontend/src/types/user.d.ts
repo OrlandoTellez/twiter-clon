@@ -9,3 +9,8 @@ export interface User {
   image_banner?: string;
   created_at?: string;
 }
+
+export interface UpdateUser {
+  name?: string;
+  image_profile?: File;
+}
