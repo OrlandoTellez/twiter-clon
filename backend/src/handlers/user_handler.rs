@@ -1,7 +1,6 @@
 use axum::{
     Json,
     extract::{Multipart, State},
-    http::StatusCode,
 };
 use axum_extra::extract::cookie::CookieJar;
 
@@ -107,8 +106,6 @@ pub async fn update_profile(
         }
     }
 
-    let name: String = name.ok_or(AppError::BadRequest("Nombre requerido".into()))?;
-
     let mut image_url: Option<String> = None;
     if let Some(bytes) = image_bytes {
         image_url = Some(
@@ -119,7 +116,8 @@ pub async fn update_profile(
     }
 
     let user: User =
-        UserService::update_profile(&db, &claims.sub, &name, image_url.as_deref()).await?;
+        UserService::update_profile(&db, &claims.sub, name.as_deref(), image_url.as_deref())
+            .await?;
 
     Ok(Json(user))
 }
