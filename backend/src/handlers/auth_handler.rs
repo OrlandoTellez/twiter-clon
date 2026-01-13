@@ -7,7 +7,7 @@ use crate::{
     },
     models::{
         api_model::ApiResponse,
-        auth_model::{AuthResponse, LoginPayload, RegisterPayload},
+        auth_model::{LoginPayload, RegisterPayload},
         user_model::User,
     },
     services::auth_services::AuthService,

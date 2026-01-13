@@ -27,6 +27,7 @@ pub struct LoginPayload {
 }
 
 #[derive(Serialize)]
+#[allow(dead_code)]
 pub struct AuthResponse {
     pub access_token: String,
     pub token_type: String,

@@ -1,9 +1,12 @@
 use axum::Router;
 use axum::middleware;
-use axum::routing::{get, patch};
+use axum::routing::get;
 
 use crate::states::DbState;
-use crate::{handlers::user_handler::{get_my_profile, update_profile}, middleware::auth_middleware::auth_middleware};
+use crate::{
+    handlers::user_handler::{get_my_profile, update_profile},
+    middleware::auth_middleware::auth_middleware,
+};
 
 pub fn routes() -> Router<DbState> {
     Router::new()

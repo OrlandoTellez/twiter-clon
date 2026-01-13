@@ -7,6 +7,7 @@ use serde_json::json;
 use validator::ValidationErrors;
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub enum AppError {
     NotFound(String),
     BadRequest(String),
