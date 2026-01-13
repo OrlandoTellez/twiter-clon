@@ -45,6 +45,14 @@ export const UserDetail = () => {
         updateData.image_profile = data.image_profile;
       }
 
+      if (data.image_banner !== undefined) {
+        updateData.image_banner = data.image_banner;
+      }
+
+      if (data.bio !== undefined && data.bio.trim() !== "") {
+        updateData.bio = data.bio;
+      }
+
       const updateUser = await updateProfile(updateData);
 
       setUser(updateUser);
@@ -90,7 +98,7 @@ export const UserDetail = () => {
             <h3>Editar Perfil</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
               <label>
-                Nombre:
+                Name:
                 <Input
                   label=""
                   name="name"
@@ -101,7 +109,7 @@ export const UserDetail = () => {
                 />
               </label>
               <label>
-                Imagen de perfil:
+                Profile image:
                 <Input
                   label=""
                   name="image_profile"
@@ -111,6 +119,29 @@ export const UserDetail = () => {
                   error={errors.image_profile?.message}
                 />
               </label>
+              <label>
+                Banner image:
+                <Input
+                  label=""
+                  name="image_banner"
+                  type="file"
+                  placeholder="Image banner"
+                  register={register}
+                  error={errors.image_banner?.message}
+                />
+              </label>
+              <label>
+                Edit bio:
+                <Input
+                  label=""
+                  name="bio"
+                  type="text"
+                  placeholder="Bio"
+                  register={register}
+                  error={errors.bio?.message}
+                />
+              </label>
+
               <button type="submit">Guardar</button>
               <button type="button" onClick={() => setIsModalOpen(false)}>
                 Cancelar
