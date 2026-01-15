@@ -15,10 +15,10 @@ CREATE TABLE users (
 -- Crear tabla tweets
 CREATE TABLE tweets (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
-    contenido TEXT NOT NULL,
-    imagen TEXT,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    content TEXT NOT NULL,
+    image TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- Crear tabla likes
 CREATE TABLE likes (
