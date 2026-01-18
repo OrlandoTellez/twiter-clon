@@ -20,11 +20,12 @@ CREATE TABLE tweets (
     image TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 -- Crear tabla likes
 CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     tweet_id INTEGER NOT NULL REFERENCES tweets(id) ON DELETE CASCADE,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (usuario_id, tweet_id)  -- Evita likes duplicados
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (user_id, tweet_id)  -- Evita likes duplicados
 );
