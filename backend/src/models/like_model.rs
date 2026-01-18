@@ -9,3 +9,9 @@ pub struct Like {
     pub tweet_id: i32,
     pub created_at: Option<NaiveDateTime>,
 }
+
+#[derive(Deserialize)]
+pub struct LikePayload {
+    pub user_id: i32,
+    pub tweet_id: i32,
+}

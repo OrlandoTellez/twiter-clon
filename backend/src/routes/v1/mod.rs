@@ -4,6 +4,7 @@ use crate::states::DbState;
 
 pub mod auth_routes;
 pub mod index;
+pub mod like_routes;
 pub mod media_routes;
 pub mod profile_routes;
 pub mod tweet_routes;
@@ -17,4 +18,5 @@ pub fn v1_routes() -> Router<DbState> {
         .merge(user_routes::routes())
         .merge(media_routes::routes())
         .merge(tweet_routes::routes())
+        .merge(like_routes::routes())
 }
