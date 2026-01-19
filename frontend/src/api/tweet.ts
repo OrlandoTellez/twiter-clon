@@ -18,3 +18,9 @@ export const getTweets = async (): Promise<Tweet[]> => {
 
   return response.data;
 };
+
+export const getMyTweets = async (): Promise<Tweet[]> => {
+  const response = await API.get("/tweets/me");
+
+  return response.data;
+};

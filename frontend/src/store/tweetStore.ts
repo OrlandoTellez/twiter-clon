@@ -1,19 +1,22 @@
 import { create } from "zustand";
 import type { CreateTweetPayload, LikePayload, Tweet } from "../types/tweet";
-import { createTweet, getTweets } from "../api/tweet";
+import { createTweet, getTweets, getMyTweets } from "../api/tweet";
 import { toggleLike } from "../api/like";
 
 interface TweetStore {
   tweets: Tweet[];
+  myTweets: Tweet[];
   loading: boolean;
   error: string | null;
   fetchTweets: () => Promise<void>;
+  fetchMyTweets: () => Promise<void>;
   createTweet: (payload: CreateTweetPayload) => Promise<void>;
   toggleLike: (payload: LikePayload) => Promise<void>;
 }
 
 export const useTweetStore = create<TweetStore>((set, get) => ({
   tweets: [],
+  myTweets: [],
   loading: false,
   error: null,
   fetchTweets: async () => {
@@ -21,6 +24,15 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
     try {
       const tweets = await getTweets();
       set({ tweets, loading: false });
+    } catch (error) {
+      set({ error: (error as Error).message, loading: false });
+    }
+  },
+  fetchMyTweets: async () => {
+    set({ loading: true, error: null });
+    try {
+      const myTweets = await getMyTweets();
+      set({ myTweets, loading: false });
     } catch (error) {
       set({ error: (error as Error).message, loading: false });
     }

@@ -4,6 +4,7 @@ import arrowLeft from "../../../assets/left-arrow.svg";
 import { useEffect, useState } from "react";
 import { getMyProfile } from "../../../api/user";
 import { FormUpdateUser } from "./FormUpdateUser";
+import { MyTweetsSection } from "./MyTweetsSection";
 import styled from "styled-components";
 import { useUserStore } from "../../../store/userStore";
 
@@ -72,14 +73,16 @@ export const UserDetail = () => {
         </div>
       )}
 
-      <section className={styles.infoSection}>
-        <article>
-          <div>
-            <h3>{name}</h3>
-            <span className={styles.username}>{username}</span>
-          </div>
-        </article>
-      </section>
+       <section className={styles.infoSection}>
+         <article>
+           <div>
+             <h3>{name}</h3>
+             <span className={styles.username}>{username}</span>
+           </div>
+         </article>
+       </section>
+
+       <MyTweetsSection />
     </>
   );
 };
