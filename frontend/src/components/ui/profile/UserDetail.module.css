@@ -69,3 +69,9 @@
 .username {
   color: rgb(113, 118, 123);
 }
+
+@media only screen and (max-width: 1200px) {
+  .profile {
+    gap: 100px;
+  }
+}

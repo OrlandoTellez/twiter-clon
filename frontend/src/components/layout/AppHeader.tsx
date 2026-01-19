@@ -10,7 +10,7 @@ export const AppHeader = () => {
   return (
     <>
       <div className={styles.header}>
-        <Link to={"/"} className={styles.link}>
+        <Link to={"/"} className={`${styles.link} ${styles.logo}`}>
           <img src={twiterLogo} alt="twitter logo" /> <span>Clone</span>
         </Link>
         <Link to={"/"} className={styles.link}>
