@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::prelude::FromRow;
 
 #[derive(Serialize, Deserialize, Clone, Debug, FromRow)]
+#[allow(dead_code)]
 pub struct Like {
     pub id: i32,
     pub user_id: i32,

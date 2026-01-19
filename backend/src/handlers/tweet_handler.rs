@@ -35,3 +35,13 @@ pub async fn create_tweet(
 
     Ok(Json(tweet))
 }
+
+pub async fn get_my_tweets(
+    jar: CookieJar,
+    State(db): State<DbState>,
+) -> Result<Json<Vec<Tweet>>, AppError> {
+    let claims: Claim = check_session(&jar)?;
+    let user: User = UserService::get_user_by_username(&db, &claims.sub).await?;
+    let tweets: Vec<Tweet> = TweetService::get_tweets_by_user(&db, user.id).await?;
+    Ok(Json(tweets))
+}
