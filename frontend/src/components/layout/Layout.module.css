@@ -1,9 +1,12 @@
 .container {
   display: flex;
   justify-content: flex-end;
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
 }
 
 .content {
-  width: 50vw;
   border-right: 1px solid var(--border-color);
+  width: 100%;
 }
