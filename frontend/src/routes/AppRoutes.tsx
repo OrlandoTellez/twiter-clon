@@ -14,10 +14,32 @@ export const AppRoutes = () => {
       <Routes>
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
+
         <Route element={<App />}>
-          <Route path="/" element={<Index />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/notifications" element={<Notification />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Index />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/explore"
+            element={
+              <ProtectedRoute>
+                <Explore />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <ProtectedRoute>
+                <Notification />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/profile"
             element={
