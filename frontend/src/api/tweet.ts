@@ -24,3 +24,9 @@ export const getMyTweets = async (): Promise<Tweet[]> => {
 
   return response.data;
 };
+
+export const getMyLikedTweets = async (): Promise<Tweet[]> => {
+  const response = await API.get("/tweets/liked");
+
+  return response.data;
+};

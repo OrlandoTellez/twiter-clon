@@ -11,14 +11,21 @@
   width: 100%;
 }
 
-.navigation ul li a {
+.navigation ul li button {
   width: 100%;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  color: white;
+  background-color: transparent;
 }
 
-.navigation ul li a:hover {
+.navigation ul li button:hover {
   background-color: rgb(62, 65, 68);
+}
+
+.active {
+  border-bottom: 2px solid #1d9bf0 !important;
 }
