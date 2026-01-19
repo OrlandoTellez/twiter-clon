@@ -27,9 +27,6 @@ export const CardTweet = ({
   is_liked_by_user,
 }: CardTweetProps) => {
   const { toggleLike } = useTweetStore();
-  const { user_id } = useUserStore();
-
-  console.log({ user_id, id });
 
   return (
     <>
@@ -51,7 +48,7 @@ export const CardTweet = ({
               <img src={messageCircle} alt="message circle icon" />
             </button>
             <button
-              onClick={() => toggleLike({ user_id: user_id, tweet_id: id })}
+              onClick={() => toggleLike({ tweet_id: id })}
               className={styles.hearthIcon}
             >
               {is_liked_by_user ? (

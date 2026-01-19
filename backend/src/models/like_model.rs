@@ -12,6 +12,5 @@ pub struct Like {
 
 #[derive(Deserialize)]
 pub struct LikePayload {
-    pub user_id: i32,
     pub tweet_id: i32,
 }

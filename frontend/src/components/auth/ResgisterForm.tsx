@@ -9,8 +9,13 @@ import {
 import type { RegisterMethod } from "../../types/auth";
 import { registerUser } from "../../api/auth.ts";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getMyProfile } from "../../api/user";
+import { useUserStore } from "../../store/userStore";
 
 export const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -21,16 +26,23 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = async (data: RegisterMethod) => {
-    const register = await registerUser({
-      name: data.name,
-      last_name: data.last_name,
-      age: data.age,
-      email: data.email,
-      username: data.username,
-      password: data.password,
-    });
+    try {
+      await registerUser({
+        name: data.name,
+        last_name: data.last_name,
+        age: data.age,
+        email: data.email,
+        username: data.username,
+        password: data.password,
+      });
 
-    console.log(register);
+      const profile = await getMyProfile();
+      useUserStore.getState().setUser(profile);
+
+      navigate("/");
+    } catch (error) {
+      console.log("Register error: ", error);
+    }
   };
 
   return (

@@ -101,7 +101,7 @@ impl TweetService {
             FROM tweets t 
             LEFT JOIN users u ON t.user_id = u.id 
             LEFT JOIN likes l ON t.id = l.tweet_id 
-            LEFT JOIN Likes l2 ON t.id = l2.tweet_id AND L2.user_id = $1
+             LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
             WHERE t.id = $2 
             GROUP BY 
                 t.id,

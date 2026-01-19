@@ -10,6 +10,8 @@ import { login } from "../../api/auth.ts";
 import type { LoginMethod } from "../../types/auth";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { getMyProfile } from "../../api/user";
+import { useUserStore } from "../../store/userStore";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -25,12 +27,13 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: LoginMethod) => {
     try {
-      const loginUser = await login({
+      await login({
         username: data.username,
         password: data.password,
       });
 
-      console.log(loginUser);
+      const profile = await getMyProfile();
+      useUserStore.getState().setUser(profile);
 
       navigate("/");
     } catch (error) {

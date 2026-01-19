@@ -18,6 +18,5 @@ export interface CreateTweetPayload {
 }
 
 export interface LikePayload {
-  user_id: number;
   tweet_id: number;
 }
