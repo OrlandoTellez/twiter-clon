@@ -1,5 +1,4 @@
 import { useTweetStore } from "../../store/tweetStore";
-import { useUserStore } from "../../store/userStore";
 import hearth from "../../assets/global/hearth.svg";
 import hearthFilled from "../../assets/global/hearth-fill.svg";
 import messageCircle from "../../assets/global/message-circle.svg";
@@ -52,11 +51,16 @@ export const CardTweet = ({
               className={styles.hearthIcon}
             >
               {is_liked_by_user ? (
-                <img src={hearthFilled} alt="hearth icon" />
+                <>
+                  <img src={hearthFilled} alt="hearth icon" />
+                  <span id={styles.filled}>{likes_count}</span>
+                </>
               ) : (
-                <img src={hearth} alt="hearth icon" />
+                <>
+                  <img src={hearth} alt="hearth icon" />
+                  <span id={styles.notFilled}>{likes_count}</span>
+                </>
               )}
-              {likes_count}
             </button>
           </div>
         </div>

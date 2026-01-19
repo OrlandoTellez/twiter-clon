@@ -5,4 +5,5 @@
 
 .content {
   width: 50vw;
+  border-right: 1px solid var(--border-color);
 }

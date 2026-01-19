@@ -38,4 +38,16 @@
   background-color: transparent;
   border: none;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#filled {
+  color: #c01c28;
+}
+
+#notFilled {
+  color: white;
 }
