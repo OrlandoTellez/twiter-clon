@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import { getMyProfile } from "../../../api/user";
 import { FormUpdateUser } from "./FormUpdateUser";
 import styled from "styled-components";
-import { userStore } from "../../../store/userStore";
+import { useUserStore } from "../../../store/userStore";
 
 export const UserDetail = () => {
-  const { name, image_banner, image_profile, setUser } = userStore();
+  const { user_id, name, username, image_banner, image_profile, setUser } =
+    useUserStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const Container = styled.div`
@@ -33,6 +34,8 @@ export const UserDetail = () => {
       .then(setUser)
       .catch(() => {});
   }, [setUser]);
+
+  console.log(getMyProfile(), user_id);
 
   return (
     <>
@@ -68,6 +71,15 @@ export const UserDetail = () => {
           </div>
         </div>
       )}
+
+      <section className={styles.infoSection}>
+        <article>
+          <div>
+            <h3>{name}</h3>
+            <span className={styles.username}>{username}</span>
+          </div>
+        </article>
+      </section>
     </>
   );
 };

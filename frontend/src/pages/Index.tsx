@@ -1,3 +1,4 @@
+import { TweetsSection } from "../components/ui/index/TweetsSection";
 import { WhatIsHappening } from "../components/ui/index/WhatIsHappening";
 
 const Index = () => {
@@ -5,6 +6,7 @@ const Index = () => {
     <>
       <div>
         <WhatIsHappening />
+        <TweetsSection />
       </div>
     </>
   );

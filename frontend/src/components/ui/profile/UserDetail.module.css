@@ -58,3 +58,12 @@
   width: 400px;
   max-width: 90%;
 }
+
+.infoSection {
+  width: 100%;
+  padding: 80px 20px;
+}
+
+.username {
+  color: rgb(113, 118, 123);
+}

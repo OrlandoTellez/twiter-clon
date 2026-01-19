@@ -1,6 +1,6 @@
 import type { UpdateUser } from "../../../types/user";
 import { updateProfile } from "../../../api/user";
-import { userStore } from "../../../store/userStore";
+import { useUserStore } from "../../../store/userStore";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../../common/Input.tsx";
@@ -15,7 +15,7 @@ export const FormUpdateUser = ({
 }: {
   setIsModalOpen: (open: boolean) => void;
 }) => {
-  const { setUser } = userStore();
+  const { setUser } = useUserStore();
 
   const {
     register,
