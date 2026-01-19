@@ -5,10 +5,19 @@ use sqlx::prelude::FromRow;
 #[derive(Serialize, Deserialize, Clone, Debug, FromRow)]
 pub struct Tweet {
     pub id: i32,
-    pub user_id: i32,
     pub content: String,
-    pub image: Option<String>,
+    pub user: TweetUser,
+    pub likes_count: i32,
+    pub is_liked_by_user: bool,
     pub created_at: Option<NaiveDateTime>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct TweetUser {
+    pub id: i32,
+    pub name: String,
+    pub username: String,
+    pub profile_image: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
