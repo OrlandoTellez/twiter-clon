@@ -186,4 +186,62 @@ impl TweetService {
 
         Ok(tweets)
     }
+
+    pub async fn get_liked_tweets_by_user(
+        db: &DbState,
+        user_id: i32,
+    ) -> Result<Vec<Tweet>, AppError> {
+        let rows = sqlx::query!(
+            r#"
+            SELECT 
+                t.id,
+                t.content,
+                t.created_at,
+                u.id as user_id,
+                u.name,
+                u.username,
+                u.image_profile,
+                COUNT(l.id) as likes_count,
+                CASE WHEN l2.id IS NOT NULL THEN true ELSE false END as is_liked_by_user
+            FROM likes lk 
+            LEFT JOIN tweets t ON lk.tweet_id = t.id
+            LEFT JOIN users u ON t.user_id = u.id 
+            LEFT JOIN likes l ON t.id = l.tweet_id 
+            LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1 
+            WHERE lk.user_id = $2 
+            GROUP BY 
+                t.id, 
+                u.id, 
+                u.name, 
+                u.username, 
+                u.image_profile, 
+                l2.id,
+                lk.created_at
+            ORDER BY lk.created_at DESC 
+            "#,
+            user_id,
+            user_id
+        )
+        .fetch_all(db)
+        .await?;
+
+        let tweets: Vec<Tweet> = rows
+            .into_iter()
+            .map(|row| Tweet {
+                id: row.id,
+                content: row.content,
+                created_at: row.created_at,
+                user: TweetUser {
+                    id: row.user_id,
+                    name: row.name,
+                    username: row.username,
+                    profile_image: row.image_profile,
+                },
+                likes_count: row.likes_count.unwrap_or(0) as i32,
+                is_liked_by_user: row.is_liked_by_user.unwrap_or(false),
+            })
+            .collect();
+
+        Ok(tweets)
+    }
 }

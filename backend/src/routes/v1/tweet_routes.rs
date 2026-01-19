@@ -9,4 +9,8 @@ pub fn routes() -> Router<DbState> {
             get(tweet_handler::get_tweets).post(tweet_handler::create_tweet),
         )
         .route("/tweets/me", get(tweet_handler::get_my_tweets))
+        .route(
+            "/tweets/liked",
+            get(tweet_handler::get_liked_tweets_by_user),
+        )
 }
