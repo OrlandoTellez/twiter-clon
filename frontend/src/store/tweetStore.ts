@@ -68,8 +68,8 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
     try {
       const isLiked = await toggleLike(payload);
       console.log(isLiked);
-      const { tweets } = get();
-      const updatedTweets = tweets.map((tweet) => {
+      const { tweets, myTweets, likedTweets } = get();
+      const updatedTweetsArray = (tweetsArray: Tweet[]) => tweetsArray.map((tweet) => {
         if (tweet.id == payload.tweet_id) {
           return {
             ...tweet,
@@ -82,7 +82,11 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
         return tweet;
       });
 
-      set({ tweets: updatedTweets });
+      set({
+        tweets: updatedTweetsArray(tweets),
+        myTweets: updatedTweetsArray(myTweets),
+        likedTweets: updatedTweetsArray(likedTweets)
+      });
     } catch (error) {
       set({ error: (error as Error).message });
     }
