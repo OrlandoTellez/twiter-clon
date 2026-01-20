@@ -5,6 +5,7 @@ import {
   getTweets,
   getMyTweets,
   getMyLikedTweets,
+  deleteTweet as deleteTweetApi,
 } from "../api/tweet";
 import { toggleLike } from "../api/like";
 
@@ -19,6 +20,7 @@ interface TweetStore {
   fetchLikedTweets: () => Promise<void>;
   createTweet: (payload: CreateTweetPayload) => Promise<void>;
   toggleLike: (payload: LikePayload) => Promise<void>;
+  deleteTweet: (tweetId: number) => Promise<void>;
 }
 
 export const useTweetStore = create<TweetStore>((set, get) => ({
@@ -91,4 +93,34 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
       set({ error: (error as Error).message });
     }
   },
-}));
+
+  deleteTweet: async (tweetId: number) => {
+    console.log('🗑️ eliminando tweet:', tweetId);
+    set({ loading: true, error: null });
+    try {
+      console.log('⏳ llamando a la API...');
+      await deleteTweetApi(tweetId);
+      console.log('✅ API respondió correctamente');
+
+      const { tweets, myTweets, likedTweets } = get();
+      console.log("📊 tweets antes:", tweets.length);
+
+      const updatedTweetsArray = (tweetsArray: Tweet[]) =>
+        tweetsArray.filter((tweet) => tweet.id !== tweetId);
+
+      const newTweets = updatedTweetsArray(tweets);
+      console.log("📊 nuevos tweets:", newTweets.length);
+
+      set({
+        tweets: newTweets,
+        myTweets: updatedTweetsArray(myTweets),
+        likedTweets: updatedTweetsArray(likedTweets),
+        loading: false
+      });
+      console.log("🔄 Estado actualizado");
+    } catch (error) {
+      console.error("❌ Error en deleteTweet:", error);
+      set({ error: (error as Error).message, loading: false });
+    }
+  }
+ }));

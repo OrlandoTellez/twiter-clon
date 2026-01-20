@@ -2,6 +2,7 @@ import { useTweetStore } from "../../store/tweetStore";
 import hearth from "../../assets/global/hearth.svg";
 import hearthFilled from "../../assets/global/hearth-fill.svg";
 import messageCircle from "../../assets/global/message-circle.svg";
+import trash from "../../assets/global/trash.svg";
 import styles from "./CardTweet.module.css";
 
 interface CardTweetProps {
@@ -13,6 +14,8 @@ interface CardTweetProps {
   creation_date: string;
   likes_count: number;
   is_liked_by_user: boolean;
+  currentUserId?: number;
+  tweetUserId?: number;
 }
 
 export const CardTweet = ({
@@ -24,8 +27,18 @@ export const CardTweet = ({
   creation_date,
   likes_count,
   is_liked_by_user,
+  currentUserId,
+  tweetUserId
 }: CardTweetProps) => {
-  const { toggleLike } = useTweetStore();
+  const { toggleLike, deleteTweet } = useTweetStore();
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete the tweet?")) {
+      await deleteTweet(id);
+    }
+  }
+
+  const isMyTweet = currentUserId === tweetUserId;
 
   return (
     <>
@@ -38,6 +51,11 @@ export const CardTweet = ({
             <p>{name}</p>
             <span>{username}</span>
             <span>{creation_date}</span>
+            {isMyTweet && (
+              <button onClick={handleDelete}>
+                <img src={trash} alt="trash icon" />
+              </button>
+            )}
           </div>
           <div>
             <p>{content}</p>

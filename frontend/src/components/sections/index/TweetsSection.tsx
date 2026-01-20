@@ -1,9 +1,11 @@
 import { CardTweet } from "../../global/CardTweet";
 import { useTweetStore } from "../../../store/tweetStore";
 import { useEffect } from "react";
+import { useUserStore } from "../../../store/userStore";
 
 export const TweetsSection = () => {
   const { tweets, fetchTweets } = useTweetStore();
+  const {user_id} = useUserStore();
 
   useEffect(() => {
       fetchTweets();  // Cargar los tweets iniciales
@@ -22,6 +24,8 @@ export const TweetsSection = () => {
             creation_date={tweet.created_at}
             likes_count={tweet.likes_count}
             is_liked_by_user={tweet.is_liked_by_user}
+            currentUserId={user_id}
+            tweetUserId={tweet.user.id}
           />
         ))}
       </section>

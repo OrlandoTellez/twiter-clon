@@ -30,3 +30,11 @@ export const getMyLikedTweets = async (): Promise<Tweet[]> => {
 
   return response.data;
 };
+
+export const deleteTweet = async (tweetId: number): Promise<void> => {
+  const response = await API.delete(`/tweets/${tweetId}`);
+
+  if (response.status !== 200) {
+    throw new Error("Error deleting tweet");
+  }
+}
