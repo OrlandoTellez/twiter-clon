@@ -10,27 +10,27 @@ impl TweetService {
     pub async fn get_tweets(db: &DbState, user_id: i32) -> Result<Vec<Tweet>, AppError> {
         let rows = sqlx::query!(
             r#"
-            SELECT 
-                t.id, 
-                t.content, 
-                t.created_at, 
-                u.id as user_id, 
+            SELECT
+                t.id,
+                t.content,
+                t.created_at,
+                u.id as user_id,
                 u.name,
                 u.username,
                 u.image_profile,
                 COUNT(l.id) as likes_count,
                 CASE WHEN l2.id is NOT NULL THEN true ELSE false END as is_liked_by_user
-            FROM tweets t 
+            FROM tweets t
             LEFT JOIN users u ON t.user_id = u.id
-            LEFT JOIN likes l ON t.id = l.tweet_id 
-            LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1 
-            GROUP BY 
+            LEFT JOIN likes l ON t.id = l.tweet_id
+            LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
+            GROUP BY
                 t.id,
-                u.id, 
-                u.name, 
-                u.username, 
-                u.image_profile, 
-                l2.id 
+                u.id,
+                u.name,
+                u.username,
+                u.image_profile,
+                l2.id
             ORDER BY t.created_at DESC
             "#,
             user_id
@@ -88,28 +88,28 @@ impl TweetService {
     ) -> Result<Tweet, AppError> {
         let row = sqlx::query!(
             r#"
-            SELECT 
+            SELECT
                 t.id,
-                t.content, 
+                t.content,
                 t.created_at,
-                u.id as user_id, 
-                u.name, 
+                u.id as user_id,
+                u.name,
                 u.username,
                 u.image_profile,
-                COUNT(l.id) as likes_count, 
+                COUNT(l.id) as likes_count,
                 CASE WHEN l2.id IS NOT NULL THEN true ELSE false END as is_liked_by_user
-            FROM tweets t 
-            LEFT JOIN users u ON t.user_id = u.id 
-            LEFT JOIN likes l ON t.id = l.tweet_id 
+            FROM tweets t
+            LEFT JOIN users u ON t.user_id = u.id
+            LEFT JOIN likes l ON t.id = l.tweet_id
              LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
-            WHERE t.id = $2 
-            GROUP BY 
+            WHERE t.id = $2
+            GROUP BY
                 t.id,
-                u.id, 
-                u.name, 
-                u.username, 
+                u.id,
+                u.name,
+                u.username,
                 u.image_profile,
-                l2.id 
+                l2.id
             "#,
             user_id,
             tweet_id
@@ -193,7 +193,7 @@ impl TweetService {
     ) -> Result<Vec<Tweet>, AppError> {
         let rows = sqlx::query!(
             r#"
-            SELECT 
+            SELECT
                 t.id,
                 t.content,
                 t.created_at,
@@ -203,21 +203,21 @@ impl TweetService {
                 u.image_profile,
                 COUNT(l.id) as likes_count,
                 CASE WHEN l2.id IS NOT NULL THEN true ELSE false END as is_liked_by_user
-            FROM likes lk 
+            FROM likes lk
             LEFT JOIN tweets t ON lk.tweet_id = t.id
-            LEFT JOIN users u ON t.user_id = u.id 
-            LEFT JOIN likes l ON t.id = l.tweet_id 
-            LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1 
-            WHERE lk.user_id = $2 
-            GROUP BY 
-                t.id, 
-                u.id, 
-                u.name, 
-                u.username, 
-                u.image_profile, 
+            LEFT JOIN users u ON t.user_id = u.id
+            LEFT JOIN likes l ON t.id = l.tweet_id
+            LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
+            WHERE lk.user_id = $2
+            GROUP BY
+                t.id,
+                u.id,
+                u.name,
+                u.username,
+                u.image_profile,
                 l2.id,
                 lk.created_at
-            ORDER BY lk.created_at DESC 
+            ORDER BY lk.created_at DESC
             "#,
             user_id,
             user_id
@@ -243,5 +243,25 @@ impl TweetService {
             .collect();
 
         Ok(tweets)
+    }
+
+    pub async fn delete_tweet(db: &DbState, tweet_id: i32, user_id: i32) -> Result<(), AppError> {
+        let tweet_owner = sqlx::query_scalar!("SELECT user_id FROM tweets WHERE id = $1", tweet_id)
+            .fetch_optional(db)
+            .await?;
+
+        match tweet_owner {
+            Some(owner_id) if owner_id == user_id => {
+                sqlx::query!("DELETE FROM tweets WHERE id = $1", tweet_id)
+                    .execute(db)
+                    .await?;
+
+                Ok(())
+            }
+            Some(_) => Err(AppError::Unauthorized(
+                "You cannot delete this tweet".to_string(),
+            )),
+            None => Err(AppError::NotFound("Tweet not found".to_string())),
+        }
     }
 }

@@ -1,5 +1,10 @@
-use axum::{Json, extract::State};
+use axum::{
+    Json,
+    extract::{Path, State},
+    response::IntoResponse,
+};
 use axum_extra::extract::CookieJar;
+use serde_json::json;
 
 use crate::{
     helpers::{check_session::check_session, errors::AppError},
@@ -60,4 +65,22 @@ pub async fn get_liked_tweets_by_user(
     let tweets: Vec<Tweet> = TweetService::get_liked_tweets_by_user(&db, user.id).await?;
 
     Ok(Json(tweets))
+}
+
+pub async fn delete_tweet(
+    jar: CookieJar,
+    State(db): State<DbState>,
+    Path(tweet_id): Path<i32>,
+) -> Result<impl IntoResponse, AppError> {
+    let claims: Claim = check_session(&jar)?;
+
+    let user: User = UserService::get_user_by_username(&db, &claims.sub).await?;
+
+    TweetService::delete_tweet(&db, tweet_id, user.id).await?;
+
+    let response = json!({
+        "message": "successfully deleted tweet"
+    });
+
+    Ok(Json(response))
 }
