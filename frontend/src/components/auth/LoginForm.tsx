@@ -67,8 +67,11 @@ export const LoginForm = () => {
             <button>Submit</button>
           </div>
         </form>
-        <div>
-          <Link to={"/auth/register"}>Register Form</Link>
+        <div className={styles.notAccount}>
+          <span>
+            Don't have an account?
+            <Link to={"/auth/register"}>Register here</Link>
+          </span>
         </div>
       </article>
     </>

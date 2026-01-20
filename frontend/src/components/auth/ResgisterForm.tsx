@@ -108,8 +108,11 @@ export const RegisterForm = () => {
             <button>Submit</button>
           </div>
         </form>
-        <div>
-          <Link to={"/auth/login"}>Login Form</Link>
+        <div className={styles.notAccount}>
+          <span>
+            Do you already have an account?
+            <Link to={"/auth/login"}>Login in</Link>
+          </span>
         </div>
       </article>
     </>
