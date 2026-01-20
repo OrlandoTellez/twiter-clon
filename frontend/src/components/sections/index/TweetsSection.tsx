@@ -1,14 +1,13 @@
 import { CardTweet } from "../../global/CardTweet";
-import { useEffect } from "react";
 import { useTweetStore } from "../../../store/tweetStore";
+import { useEffect } from "react";
 
 export const TweetsSection = () => {
   const { tweets, fetchTweets } = useTweetStore();
 
   useEffect(() => {
-    fetchTweets();
-  }, [fetchTweets]);
-
+      fetchTweets();  // Cargar los tweets iniciales
+    }, [fetchTweets]);  //
   return (
     <>
       <section>

@@ -1,13 +1,13 @@
 .container {
-  width: 100%;
+    width: 100%;
 }
 
 .container input {
-  width: 100%;
-  background-color: var(--primary-color);
-  font-size: 1.2rem;
-  border-radius: 5px;
-  border: 1px solid var(--border-color);
-  color: var(--color-opacity);
-  padding: 5px 10px;
+    width: 100%;
+    background-color: var(--primary-color);
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    color: white;
+    padding: 5px 10px;
 }

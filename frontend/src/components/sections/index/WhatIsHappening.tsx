@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const WhatIsHappening = () => {
   const [content, setContent] = useState("");
-  const { createTweet, loading } = useTweetStore();
+  const { createTweet, loading, fetchTweets } = useTweetStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,6 +12,7 @@ export const WhatIsHappening = () => {
 
     await createTweet({ content });
     setContent("");
+    await fetchTweets();
   };
 
   return (

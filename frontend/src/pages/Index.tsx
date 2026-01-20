@@ -1,5 +1,5 @@
-import { TweetsSection } from "../components/ui/index/TweetsSection";
-import { WhatIsHappening } from "../components/ui/index/WhatIsHappening";
+import { TweetsSection } from "../components/sections/index/TweetsSection";
+import { WhatIsHappening } from "../components/sections/index/WhatIsHappening";
 
 const Index = () => {
   return (

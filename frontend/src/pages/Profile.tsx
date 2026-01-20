@@ -1,4 +1,4 @@
-import { UserDetail } from "../components/ui/profile/UserDetail";
+import { UserDetail } from "../components/sections/profile/UserDetail";
 
 const Profile = () => {
   return (
