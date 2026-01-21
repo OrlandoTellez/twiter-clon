@@ -77,7 +77,7 @@ export const UserDetail = () => {
          <article>
            <div>
              <h3>{name}</h3>
-             <span className={styles.username}>{username}</span>
+             <span className={styles.username}>@{username}</span>
            </div>
          </article>
        </section>

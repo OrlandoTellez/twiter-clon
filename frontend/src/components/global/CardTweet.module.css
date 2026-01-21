@@ -1,53 +1,91 @@
 .container {
-  width: 100%;
-  display: flex;
-  padding: 20px;
-  gap: 20px;
+    width: 100%;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
 }
 
 .userImage img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .infoContent {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .infoContent .info {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
 }
 
 .infoContent span {
-  color: #5c5c5c;
+    color: #5c5c5c;
 }
 
 .buttons {
-  width: 100%;
-  display: flex;
+    width: 100%;
+    display: flex;
 }
 
 .buttons button {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 #filled {
-  color: #c01c28;
+    color: #c01c28;
 }
 
 #notFilled {
-  color: white;
+    color: white;
+}
+
+.dotsActive {
+    background-color: black;
+    border: none;
+    display: flex;
+    padding: 5px;
+}
+
+.dotsNotActive {
+    background-color: var(--color-opacity);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    padding: 5px;
+}
+
+.options {
+    position: absolute;
+    right: 0;
+    margin-top: 35px;
+    margin-right: 20px;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.options button {
+    background-color: black;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }

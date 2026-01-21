@@ -3,7 +3,9 @@ import hearth from "../../assets/global/hearth.svg";
 import hearthFilled from "../../assets/global/hearth-fill.svg";
 import messageCircle from "../../assets/global/message-circle.svg";
 import trash from "../../assets/global/trash.svg";
+import dots from "../../assets/global/dots.svg";
 import styles from "./CardTweet.module.css";
+import { useState } from "react";
 
 interface CardTweetProps {
   id: number;
@@ -32,6 +34,8 @@ export const CardTweet = ({
 }: CardTweetProps) => {
   const { toggleLike, deleteTweet } = useTweetStore();
 
+  const [activeTab, setActiveTab] = useState(true)
+
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete the tweet?")) {
       await deleteTweet(id);
@@ -49,13 +53,24 @@ export const CardTweet = ({
         <div className={styles.infoContent}>
           <div className={styles.info}>
             <p>{name}</p>
-            <span>{username}</span>
+            <span>@{username}</span>
             <span>{creation_date}</span>
-            {isMyTweet && (
-              <button onClick={handleDelete}>
-                <img src={trash} alt="trash icon" />
-              </button>
-            )}
+            <button onClick={() => setActiveTab(!activeTab)} className={`${activeTab ? styles.dotsActive : styles.dotsNotActive}`}>
+              <img src={dots} alt="dots icon" />
+            </button>
+
+            {activeTab ? null :
+              <>
+                <div className={styles.options}>
+                  {isMyTweet && (
+                    <button onClick={handleDelete}>
+                      <img src={trash} alt="trash icon" />
+                      Eliminar tweet
+                    </button>
+                  )}
+                </div>
+              </>
+            }
           </div>
           <div>
             <p>{content}</p>
@@ -64,6 +79,7 @@ export const CardTweet = ({
             <button>
               <img src={messageCircle} alt="message circle icon" />
             </button>
+
             <button
               onClick={() => toggleLike({ tweet_id: id })}
               className={styles.hearthIcon}
