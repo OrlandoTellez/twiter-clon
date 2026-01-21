@@ -13,6 +13,7 @@ impl TweetService {
             SELECT
                 t.id,
                 t.content,
+                t.image,
                 t.created_at,
                 u.id as user_id,
                 u.name,
@@ -43,6 +44,7 @@ impl TweetService {
             .map(|row| Tweet {
                 id: row.id,
                 content: row.content,
+                image: row.image,
                 created_at: row.created_at,
                 user: TweetUser {
                     id: row.user_id,
@@ -76,6 +78,8 @@ impl TweetService {
         .fetch_one(db)
         .await?;
 
+        println!("{:?}", data);
+
         let tweet = Self::get_tweet_by_id(db, tweet_id, user_id).await?;
 
         Ok(tweet)
@@ -91,6 +95,7 @@ impl TweetService {
             SELECT
                 t.id,
                 t.content,
+                t.image,
                 t.created_at,
                 u.id as user_id,
                 u.name,
@@ -120,6 +125,7 @@ impl TweetService {
         let tweet = Tweet {
             id: row.id,
             content: row.content,
+            image: row.image,
             created_at: row.created_at,
             user: TweetUser {
                 id: row.user_id,
@@ -140,6 +146,7 @@ impl TweetService {
             SELECT
                 t.id,
                 t.content,
+                t.image,
                 t.created_at,
                 u.id as user_id,
                 u.name,
@@ -172,6 +179,7 @@ impl TweetService {
             .map(|row| Tweet {
                 id: row.id,
                 content: row.content,
+                image: row.image,
                 created_at: row.created_at,
                 user: TweetUser {
                     id: row.user_id,
@@ -196,6 +204,7 @@ impl TweetService {
             SELECT
                 t.id,
                 t.content,
+                t.image,
                 t.created_at,
                 u.id as user_id,
                 u.name,
@@ -230,6 +239,7 @@ impl TweetService {
             .map(|row| Tweet {
                 id: row.id,
                 content: row.content,
+                image: row.image,
                 created_at: row.created_at,
                 user: TweetUser {
                     id: row.user_id,
