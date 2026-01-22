@@ -1,77 +1,83 @@
 .header {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 10px 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 20px;
 }
 
 .headerText {
-  display: flex;
-  width: 100%;
-  gap: 10px;
+    display: flex;
+    width: 100%;
+    gap: 10px;
 }
 
 .headerText h5 {
-  font-size: 1.25rem;
-  font-weight: bold;
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .headerText span {
-  color: var(--color-opacity);
+    color: var(--color-opacity);
 }
 
 .profile {
-  position: absolute;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 20px;
-  gap: 300px;
-  width: 100%;
-  max-width: 620px;
+    position: absolute;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    gap: 300px;
+    width: 100%;
+    max-width: 620px;
 }
 
 .button {
-  background-color: var(--primary-color);
-  color: var(--white);
-  border: 1px solid white;
-  padding: 10px 20px;
-  border-radius: 50px;
-  width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    width: 100%;
 }
 
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(36, 45, 52, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(36, 45, 52, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .modali {
-  background-color: var(--primary-color);
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
 }
 
 .infoSection {
-  width: 100%;
-  padding: 80px 20px;
+    width: 100%;
+    padding: 50px 20px;
+    margin-top: 30px;
 }
 
 .username {
-  color: rgb(113, 118, 123);
+    color: rgb(113, 118, 123);
+}
+
+.bio {
+    margin-top: 20px;
 }
 
 @media only screen and (max-width: 1200px) {
-  .profile {
-    gap: 100px;
-  }
+    .profile {
+        gap: 100px;
+    }
 }

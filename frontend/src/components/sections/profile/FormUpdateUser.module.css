@@ -1,45 +1,47 @@
 .formContent {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .formContent h3 {
-  font-size: 1.25rem;
-  margin-top: 0;
+    font-size: 1.25rem;
+    margin-top: 0;
 }
 
 .formContent label {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .formContent input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    margin-top: 10px;
 }
 
 .buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
 }
 
 .formContent button {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.formContent button[type="submit"] {
-  background-color: var(--primary-color);
-  color: white;
-  border: 1px solid var(--white);
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .formContent button[type="button"] {
-  background-color: #ccc;
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--white);
+}
+
+.formContent button[type="submit"] {
+    background-color: #ccc;
 }

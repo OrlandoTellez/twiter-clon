@@ -1,42 +1,60 @@
 .container {
-  background-color: var(--primary-color);
-  border-bottom: 1px solid var(--border-color);
-  padding: 20px;
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px;
+}
+
+.formInput {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .input {
-  background-color: var(--primary-color);
-  width: 100%;
-  padding: 10px 20px;
-  border: none;
-  color: #cbcbcb;
-  font-size: 1.5rem;
+    background-color: var(--primary-color);
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+    color: #cbcbcb;
+    font-size: 1.5rem;
 }
 
 .buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0px;
-  margin: 10px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    margin: 10px 0px;
 }
 
 .options {
-  background-color: black;
-  cursor: pointer;
+    background-color: black;
+    cursor: pointer;
 }
 
 .options button {
-  background-color: black;
-  border: none;
+    background-color: black;
+    border: none;
 }
 
 .postButton {
-  background-color: white;
-  border-radius: 10px;
-  padding: 5px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
 }

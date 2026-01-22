@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { useUserStore } from "../../../store/userStore";
 
 export const UserDetail = () => {
-  const { user_id, name, username, image_banner, image_profile, setUser } =
+  const { user_id, name, username, bio, image_banner, image_profile, setUser } =
     useUserStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -78,7 +78,10 @@ export const UserDetail = () => {
            <div>
              <h3>{name}</h3>
              <span className={styles.username}>@{username}</span>
-           </div>
+          </div>
+          <div className={styles.bio}>
+            <p>{bio}</p>
+          </div>
          </article>
        </section>
 

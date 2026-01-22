@@ -111,8 +111,8 @@ export const FormUpdateUser = ({
         </label>
 
         <div className={styles.buttons}>
-          <button type="submit">Guardar</button>
-          <button type="button" onClick={() => setIsModalOpen(false)}>
+          <button type="submit" className={styles.saveButton}>Guardar</button>
+          <button type="button" onClick={() => setIsModalOpen(false)} className={styles.cancel}>
             Cancelar
           </button>
         </div>

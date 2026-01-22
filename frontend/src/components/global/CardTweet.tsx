@@ -5,6 +5,7 @@ import messageCircle from "../../assets/global/message-circle.svg";
 import trash from "../../assets/global/trash.svg";
 import dots from "../../assets/global/dots.svg";
 import styles from "./CardTweet.module.css";
+import { formatRelativeTime } from "../../utils/formatRelativeTime";
 import { useState } from "react";
 
 interface CardTweetProps {
@@ -54,12 +55,16 @@ export const CardTweet = ({
         </div>
         <div className={styles.infoContent}>
           <div className={styles.info}>
-            <p>{name}</p>
-            <span>@{username}</span>
-            <span>{creation_date}</span>
+            <div className={styles.text}>
+              <div className={styles.textUser}>
+                <p>{name}</p>
+               <span>@{username}</span>
+              </div>
+              <span>{formatRelativeTime(creation_date)}</span>
+            </div>
             <button
               onClick={() => setActiveTab(!activeTab)}
-              className={`${activeTab ? styles.dotsActive : styles.dotsNotActive}`}
+              className={`${styles.buttonDots} ${activeTab ? styles.dotsActive : styles.dotsNotActive}`}
             >
               <img src={dots} alt="dots icon" />
             </button>
@@ -78,16 +83,18 @@ export const CardTweet = ({
           </div>
           <div>
             <p>{content}</p>
-            {image && (
-              <>
-                <img
-                  src={image}
-                  alt="tweet image"
-                  className={styles.image}
-                />
-              </>
-            )}
-          </div>
+            <div className={styles.imageContainer}>
+              {image && (
+                <>
+                  <img
+                    src={image}
+                    alt="tweet image"
+                    className={styles.image}
+                  />
+                </>
+              )}
+            </div>
+           </div>
           <div className={styles.buttons}>
             <button>
               <img src={messageCircle} alt="message circle icon" />

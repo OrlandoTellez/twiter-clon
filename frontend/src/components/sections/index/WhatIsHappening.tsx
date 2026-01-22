@@ -2,6 +2,7 @@ import styles from "./WhatIsHappening.module.css";
 import photo from "../../../assets/global/photo.svg";
 import { useTweetStore } from "../../../store/tweetStore";
 import React, { useState, useRef } from "react";
+import { useUserStore } from "../../../store/userStore";
 
 export const WhatIsHappening = () => {
   const [content, setContent] = useState("");
@@ -9,6 +10,7 @@ export const WhatIsHappening = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const { createTweetWithImage, loading, fetchTweets } = useTweetStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const {image_profile} = useUserStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,14 +37,19 @@ export const WhatIsHappening = () => {
     <>
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
-          <input
-            className={styles.input}
-            type="text"
-            placeholder="¿What is happening?"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          {imagePreview && (
+          <div className={styles.formInput}>
+            <div className={styles.avatar}>
+              <img src={image_profile} alt="user avatar" />
+            </div>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="¿What is happening?"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+                    {imagePreview && (
             <>
               <img
                 src={imagePreview}
