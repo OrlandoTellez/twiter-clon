@@ -1,12 +1,14 @@
 import { CardTweet } from "../../global/CardTweet";
 import { useEffect, useState } from "react";
 import { useTweetStore } from "../../../store/tweetStore";
+import { useUserStore } from "../../../store/userStore";
 import styles from "./MyTweetsSection.module.css";
 
 export const MyTweetsSection = () => {
   const [activeTab, setActiveTab] = useState<"posts" | "likes">("posts");
   const { myTweets, likedTweets, fetchMyTweets, fetchLikedTweets } =
     useTweetStore();
+  const {user_id} = useUserStore();
 
   useEffect(() => {
     if (activeTab === "posts") {
@@ -47,10 +49,13 @@ export const MyTweetsSection = () => {
                 img={tweet.user.profile_image || "https://unavatar.io/x/Rubiu5"}
                 name={tweet.user.name}
                 username={tweet.user.username}
-                content={tweet.content}
+              content={tweet.content}
+              image={tweet.image}
                 creation_date={tweet.created_at}
                 likes_count={tweet.likes_count}
                 is_liked_by_user={tweet.is_liked_by_user}
+                currentUserId={user_id}
+                tweetUserId={tweet.user.id}
               />
             ))
           : likedTweets.map((tweet) => (
@@ -60,10 +65,15 @@ export const MyTweetsSection = () => {
                 img={tweet.user.profile_image || "https://unavatar.io/x/Rubiu5"}
                 name={tweet.user.name}
                 username={tweet.user.username}
-                content={tweet.content}
+              content={tweet.content}
+
+              image={tweet.image}
                 creation_date={tweet.created_at}
                 likes_count={tweet.likes_count}
-                is_liked_by_user={tweet.is_liked_by_user}
+              is_liked_by_user={tweet.is_liked_by_user}
+
+              currentUserId={user_id}
+              tweetUserId={tweet.user.id}
               />
             ))}
       </section>

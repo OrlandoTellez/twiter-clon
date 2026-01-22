@@ -56,7 +56,7 @@ export const CardTweet = ({
           <div className={styles.info}>
             <p>{name}</p>
             <span>@{username}</span>
-            <span>{creation_date}</span>""
+            <span>{creation_date}</span>
             <button
               onClick={() => setActiveTab(!activeTab)}
               className={`${activeTab ? styles.dotsActive : styles.dotsNotActive}`}
@@ -83,7 +83,7 @@ export const CardTweet = ({
                 <img
                   src={image}
                   alt="tweet image"
-                  style={{ maxWidth: "100px" }}
+                  className={styles.image}
                 />
               </>
             )}

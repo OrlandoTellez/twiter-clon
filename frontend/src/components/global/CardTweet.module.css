@@ -4,6 +4,7 @@
     padding: 20px;
     gap: 20px;
     position: relative;
+    border: 1px solid var(--border-color);
 }
 
 .userImage img {
@@ -11,6 +12,13 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.image {
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    margin: 20px 0px;
 }
 
 .infoContent {
