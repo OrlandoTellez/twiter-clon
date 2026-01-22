@@ -13,6 +13,7 @@ interface CardTweetProps {
   name: string;
   username: string;
   content: string;
+  image?: string;
   creation_date: string;
   likes_count: number;
   is_liked_by_user: boolean;
@@ -26,21 +27,22 @@ export const CardTweet = ({
   name,
   username,
   content,
+  image,
   creation_date,
   likes_count,
   is_liked_by_user,
   currentUserId,
-  tweetUserId
+  tweetUserId,
 }: CardTweetProps) => {
   const { toggleLike, deleteTweet } = useTweetStore();
 
-  const [activeTab, setActiveTab] = useState(true)
+  const [activeTab, setActiveTab] = useState(true);
 
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete the tweet?")) {
       await deleteTweet(id);
     }
-  }
+  };
 
   const isMyTweet = currentUserId === tweetUserId;
 
@@ -54,12 +56,14 @@ export const CardTweet = ({
           <div className={styles.info}>
             <p>{name}</p>
             <span>@{username}</span>
-            <span>{creation_date}</span>
-            <button onClick={() => setActiveTab(!activeTab)} className={`${activeTab ? styles.dotsActive : styles.dotsNotActive}`}>
+            <span>{creation_date}</span>""
+            <button
+              onClick={() => setActiveTab(!activeTab)}
+              className={`${activeTab ? styles.dotsActive : styles.dotsNotActive}`}
+            >
               <img src={dots} alt="dots icon" />
             </button>
-
-            {activeTab ? null :
+            {activeTab ? null : (
               <>
                 <div className={styles.options}>
                   {isMyTweet && (
@@ -70,10 +74,19 @@ export const CardTweet = ({
                   )}
                 </div>
               </>
-            }
+            )}
           </div>
           <div>
             <p>{content}</p>
+            {image && (
+              <>
+                <img
+                  src={image}
+                  alt="tweet image"
+                  style={{ maxWidth: "100px" }}
+                />
+              </>
+            )}
           </div>
           <div className={styles.buttons}>
             <button>

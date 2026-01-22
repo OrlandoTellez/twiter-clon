@@ -1,6 +1,7 @@
 export interface Tweet {
   id: number;
   content: string;
+  image?: string;
   user_id: number;
   created_at: string;
   user: {
@@ -15,6 +16,7 @@ export interface Tweet {
 
 export interface CreateTweetPayload {
   content: string;
+  image?: string;
 }
 
 export interface LikePayload {

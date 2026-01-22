@@ -5,11 +5,11 @@ import { useUserStore } from "../../../store/userStore";
 
 export const TweetsSection = () => {
   const { tweets, fetchTweets } = useTweetStore();
-  const {user_id} = useUserStore();
+  const { user_id } = useUserStore();
 
   useEffect(() => {
-      fetchTweets();  // Cargar los tweets iniciales
-    }, [fetchTweets]);  //
+    fetchTweets(); // Cargar los tweets iniciales
+  }, [fetchTweets]); //
   return (
     <>
       <section>
@@ -21,6 +21,7 @@ export const TweetsSection = () => {
             name={tweet.user.name}
             username={tweet.user.username}
             content={tweet.content}
+            image={tweet.image}
             creation_date={tweet.created_at}
             likes_count={tweet.likes_count}
             is_liked_by_user={tweet.is_liked_by_user}

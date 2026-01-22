@@ -6,6 +6,7 @@ import {
   getMyTweets,
   getMyLikedTweets,
   deleteTweet as deleteTweetApi,
+  uploadTweetWithImage,
 } from "../api/tweet";
 import { toggleLike } from "../api/like";
 
@@ -19,6 +20,7 @@ interface TweetStore {
   fetchMyTweets: () => Promise<void>;
   fetchLikedTweets: () => Promise<void>;
   createTweet: (payload: CreateTweetPayload) => Promise<void>;
+  createTweetWithImage: (content: string, file?: File) => Promise<void>;
   toggleLike: (payload: LikePayload) => Promise<void>;
   deleteTweet: (tweetId: number) => Promise<void>;
 }
@@ -60,6 +62,16 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
     set({ loading: true, error: null });
     try {
       const newTweet = await createTweet(payload);
+      const { tweets } = get();
+      set({ tweets: [newTweet, ...tweets], loading: false });
+    } catch (error) {
+      set({ error: (error as Error).message, loading: false });
+    }
+  },
+  createTweetWithImage: async (content: string, file?: File) => {
+    set({ loading: true, error: null });
+    try {
+      const newTweet = await uploadTweetWithImage(content, file);
       const { tweets } = get();
       set({ tweets: [newTweet, ...tweets], loading: false });
     } catch (error) {

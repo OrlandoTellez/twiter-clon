@@ -37,4 +37,24 @@ export const deleteTweet = async (tweetId: number): Promise<void> => {
   if (response.status !== 200) {
     throw new Error("Error deleting tweet");
   }
-}
+};
+
+export const uploadTweetWithImage = async (
+  content: string,
+  file?: File,
+): Promise<Tweet> => {
+  const formData = new FormData();
+
+  formData.append("content", content);
+
+  if (file) {
+    formData.append("image", file);
+    console.log(formData);
+  }
+
+  const response = await API.post("/tweets/with-image", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  return response.data;
+};
