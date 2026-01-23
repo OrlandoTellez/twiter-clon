@@ -5,6 +5,12 @@
     gap: 20px;
     position: relative;
     border: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.container:hover {
+    background-color: #212121;
 }
 
 .userImage img {
@@ -44,6 +50,13 @@
     color: #5c5c5c;
 }
 
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 .buttons {
     width: 100%;
     display: flex;
@@ -69,7 +82,7 @@
 }
 
 .dotsActive {
-    background-color: black;
+    background-color: transparent;
     border: none;
     display: flex;
     padding: 5px;

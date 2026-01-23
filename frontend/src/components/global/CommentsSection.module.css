@@ -1,0 +1,130 @@
+.commentsSection {
+    margin-top: 8px;
+
+    background-color: transparent;
+}
+
+.commentsButton {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.commentsButton:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+}
+
+.commentsButton img {
+    width: 20px;
+    height: 20px;
+}
+
+.commentsContainer {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid #e1e8ed;
+    border-radius: 12px;
+}
+
+.commentForm {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.commentInput {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e1e8ed;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+}
+
+.commentInput:focus {
+    border-color: #1da1f2;
+}
+
+.submitButton {
+    padding: 8px 16px;
+    background-color: #1da1f2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.submitButton:hover {
+    background-color: #1a91da;
+}
+
+.commentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.commentItem {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e1e8ed;
+}
+
+.commentHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.commentAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.commentInfo {
+    flex: 1;
+}
+
+.commentName {
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.commentUsername {
+    color: #657786;
+    font-size: 14px;
+}
+
+.deleteButton {
+    padding: 4px 8px;
+    background-color: #e0245e;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.deleteButton:hover {
+    background-color: #c01e2e;
+}
+
+.commentContent {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.commentTime {
+    font-size: 12px;
+    color: #657786;
+}

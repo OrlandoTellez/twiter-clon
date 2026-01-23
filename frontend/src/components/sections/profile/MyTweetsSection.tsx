@@ -55,7 +55,8 @@ export const MyTweetsSection = () => {
                 likes_count={tweet.likes_count}
                 is_liked_by_user={tweet.is_liked_by_user}
                 currentUserId={user_id}
-                tweetUserId={tweet.user.id}
+              tweetUserId={tweet.user.id}
+              comments_count={tweet.comments_count}
               />
             ))
           : likedTweets.map((tweet) => (
@@ -74,6 +75,7 @@ export const MyTweetsSection = () => {
 
               currentUserId={user_id}
               tweetUserId={tweet.user.id}
+              comments_count={tweet.comments_count}
               />
             ))}
       </section>

@@ -11,6 +11,7 @@ export interface Tweet {
     profile_image?: string;
   };
   likes_count: number;
+  comments_count: number;
   is_liked_by_user: boolean;
 }
 

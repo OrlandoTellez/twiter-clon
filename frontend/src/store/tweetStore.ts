@@ -9,6 +9,8 @@ import {
   uploadTweetWithImage,
 } from "../api/tweet";
 import { toggleLike } from "../api/like";
+import type { Comment,CreateCommentPayload } from "../types/comment";
+import { createComment, deleteComment, getCommentsByTweet } from "../api/comment";
 
 interface TweetStore {
   tweets: Tweet[];
@@ -23,12 +25,17 @@ interface TweetStore {
   createTweetWithImage: (content: string, file?: File) => Promise<void>;
   toggleLike: (payload: LikePayload) => Promise<void>;
   deleteTweet: (tweetId: number) => Promise<void>;
+  comments: Comment[];
+  fetchCommentsByTweet: (tweetId: number) => Promise<void>;
+  createComment: (payload: CreateCommentPayload) => Promise<void>;
+  deleteComment: (commentId: number) => Promise<void>;
 }
 
 export const useTweetStore = create<TweetStore>((set, get) => ({
   tweets: [],
   myTweets: [],
   likedTweets: [],
+  comments: [],
   loading: false,
   error: null,
   fetchTweets: async () => {
@@ -105,7 +112,6 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
       set({ error: (error as Error).message });
     }
   },
-
   deleteTweet: async (tweetId: number) => {
     console.log('🗑️ eliminando tweet:', tweetId);
     set({ loading: true, error: null });
@@ -134,5 +140,67 @@ export const useTweetStore = create<TweetStore>((set, get) => ({
       console.error("❌ Error en deleteTweet:", error);
       set({ error: (error as Error).message, loading: false });
     }
+  },
+  fetchCommentsByTweet: async (tweetId: number) => {
+    set({ loading: true, error: null });
+    try {
+      const comments = await getCommentsByTweet(tweetId);
+
+      set({
+        comments,
+        loading: false
+      });
+    } catch (error) {
+      console.error("❌ Error en fetchCommentsByTweet:", error);
+      set({ error: (error as Error).message, loading: false });
+    }
+  },
+  createComment: async (payload: CreateCommentPayload) => {
+    set({ loading: true, error: null })
+
+    try {
+      const newComment = await createComment(payload);
+      const { comments } = get();
+
+      set({
+        comments: [...comments, newComment],
+        loading: false
+      });
+
+      const { tweets, myTweets, likedTweets } = get();
+      const updateCommentsCount = (tweetsArray: Tweet[]) => {
+        return tweetsArray.map((tweet) => tweet.id === payload.tweet_id ? { ...tweet, comments_count: tweet.comments_count + 1 } : tweet);
+      }
+
+      set({
+        tweets: updateCommentsCount(tweets),
+        myTweets: updateCommentsCount(myTweets),
+        likedTweets: updateCommentsCount(likedTweets)
+      })
+    } catch (error) {
+      set({ error: (error as Error).message, loading: false });
+    }
   }
- }));
+  ,
+  deleteComment: async (commentId: number) => {
+    set({ loading: true, error: null });
+    try {
+      await deleteComment(commentId);
+
+      const { comments } = get();
+
+      const updatedCommentsArray = (commentsArray: Comment[]) =>
+        commentsArray.filter((comment) => comment.id !== commentId);
+
+      const newComments = updatedCommentsArray(comments);
+
+      set({
+        comments: newComments,
+        loading: false
+      });
+    } catch (error) {
+      console.error("❌ Error en deleteComment:", error);
+      set({ error: (error as Error).message, loading: false });
+    }
+  }
+}));

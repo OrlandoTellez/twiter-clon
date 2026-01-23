@@ -27,6 +27,7 @@ export const TweetsSection = () => {
             is_liked_by_user={tweet.is_liked_by_user}
             currentUserId={user_id}
             tweetUserId={tweet.user.id}
+            comments_count={tweet.comments_count}
           />
         ))}
       </section>

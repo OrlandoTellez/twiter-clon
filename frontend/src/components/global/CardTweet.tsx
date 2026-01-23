@@ -1,10 +1,10 @@
 import { useTweetStore } from "../../store/tweetStore";
 import hearth from "../../assets/global/hearth.svg";
 import hearthFilled from "../../assets/global/hearth-fill.svg";
-import messageCircle from "../../assets/global/message-circle.svg";
 import trash from "../../assets/global/trash.svg";
 import dots from "../../assets/global/dots.svg";
 import styles from "./CardTweet.module.css";
+import { CommentsSection } from "./CommentsSection";
 import { formatRelativeTime } from "../../utils/formatRelativeTime";
 import { useState } from "react";
 
@@ -20,6 +20,7 @@ interface CardTweetProps {
   is_liked_by_user: boolean;
   currentUserId?: number;
   tweetUserId?: number;
+  comments_count: number;
 }
 
 export const CardTweet = ({
@@ -34,6 +35,7 @@ export const CardTweet = ({
   is_liked_by_user,
   currentUserId,
   tweetUserId,
+  comments_count
 }: CardTweetProps) => {
   const { toggleLike, deleteTweet } = useTweetStore();
 
@@ -49,7 +51,7 @@ export const CardTweet = ({
 
   return (
     <>
-      <article className={styles.container}>
+      <button className={styles.container}>
         <div className={styles.userImage}>
           <img src={img} alt="user profile image" />
         </div>
@@ -81,7 +83,7 @@ export const CardTweet = ({
               </>
             )}
           </div>
-          <div>
+          <div className={styles.content}>
             <p>{content}</p>
             <div className={styles.imageContainer}>
               {image && (
@@ -96,9 +98,10 @@ export const CardTweet = ({
             </div>
            </div>
           <div className={styles.buttons}>
-            <button>
-              <img src={messageCircle} alt="message circle icon" />
-            </button>
+           <CommentsSection
+              tweetId={id}
+              commentsCount={comments_count}
+            />
 
             <button
               onClick={() => toggleLike({ tweet_id: id })}
@@ -118,7 +121,7 @@ export const CardTweet = ({
             </button>
           </div>
         </div>
-      </article>
+      </button>
     </>
   );
 };
