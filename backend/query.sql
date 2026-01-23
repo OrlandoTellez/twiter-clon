@@ -29,3 +29,12 @@ CREATE TABLE likes (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (user_id, tweet_id)  -- Evita likes duplicados
 );
+
+-- Crear tabla comentarios
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    tweet_id INTEGER NOT NULL REFERENCES tweets(id) ON DELETE CASCADE,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -3,6 +3,7 @@ use axum::Router;
 use crate::states::DbState;
 
 pub mod auth_routes;
+pub mod comment_routes;
 pub mod index;
 pub mod like_routes;
 pub mod media_routes;
@@ -19,4 +20,5 @@ pub fn v1_routes() -> Router<DbState> {
         .merge(media_routes::routes())
         .merge(tweet_routes::routes())
         .merge(like_routes::routes())
+        .merge(comment_routes::routes())
 }

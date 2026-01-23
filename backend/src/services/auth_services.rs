@@ -19,9 +19,9 @@ impl AuthService {
             User,
             r#"
                 INSERT INTO users (
-                name, 
-                last_name, 
-                age, 
+                name,
+                last_name,
+                age,
                 email,
                 username,
                 password,
@@ -30,16 +30,16 @@ impl AuthService {
                 image_banner
                 )
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-                RETURNING 
-                id, 
-                name, 
-                last_name, 
-                age, 
-                email, 
-                username, 
-                bio, 
-                image_profile, 
-                image_banner, 
+                RETURNING
+                id,
+                name,
+                last_name,
+                age,
+                email,
+                username,
+                bio,
+                image_profile,
+                image_banner,
                 created_at
             "#,
             payload.name,

@@ -20,10 +20,12 @@ impl TweetService {
                 u.username,
                 u.image_profile,
                 COUNT(l.id) as likes_count,
+                COUNT(c.id) as comments_count,
                 CASE WHEN l2.id is NOT NULL THEN true ELSE false END as is_liked_by_user
             FROM tweets t
             LEFT JOIN users u ON t.user_id = u.id
             LEFT JOIN likes l ON t.id = l.tweet_id
+            LEFT JOIN comments c ON t.id = c.tweet_id
             LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
             GROUP BY
                 t.id,
@@ -53,6 +55,7 @@ impl TweetService {
                     profile_image: row.image_profile,
                 },
                 likes_count: row.likes_count.unwrap_or(0) as i32,
+                comments_count: row.comments_count.unwrap_or(0) as i32,
                 is_liked_by_user: row.is_liked_by_user.unwrap_or(false),
             })
             .collect();
@@ -102,10 +105,12 @@ impl TweetService {
                 u.username,
                 u.image_profile,
                 COUNT(l.id) as likes_count,
+                COUNT(c.id) as comments_count,
                 CASE WHEN l2.id IS NOT NULL THEN true ELSE false END as is_liked_by_user
             FROM tweets t
             LEFT JOIN users u ON t.user_id = u.id
             LEFT JOIN likes l ON t.id = l.tweet_id
+            LEFT JOIN comments c ON t.id = c.tweet_id
              LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
             WHERE t.id = $2
             GROUP BY
@@ -133,8 +138,9 @@ impl TweetService {
                 username: row.username,
                 profile_image: row.image_profile,
             },
-            likes_count: row.likes_count.unwrap_or(0) as i32,
-            is_liked_by_user: row.is_liked_by_user.unwrap_or(false),
+likes_count: row.likes_count.unwrap_or(0) as i32,
+                comments_count: row.comments_count.unwrap_or(0) as i32,
+                is_liked_by_user: row.is_liked_by_user.unwrap_or(false),
         };
 
         Ok(tweet)
@@ -153,10 +159,12 @@ impl TweetService {
                 u.username,
                 u.image_profile,
                 COUNT(l.id) as likes_count,
+                COUNT(c.id) as comments_count,
                 CASE WHEN l2.id is NOT NULL THEN true ELSE false END as is_liked_by_user
             FROM tweets t
             LEFT JOIN users u ON t.user_id = u.id
             LEFT JOIN likes l ON t.id = l.tweet_id
+            LEFT JOIN comments c ON t.id = c.tweet_id
             LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
             WHERE t.user_id = $2
             GROUP BY
@@ -188,6 +196,7 @@ impl TweetService {
                     profile_image: row.image_profile,
                 },
                 likes_count: row.likes_count.unwrap_or(0) as i32,
+                comments_count: row.comments_count.unwrap_or(0) as i32,
                 is_liked_by_user: row.is_liked_by_user.unwrap_or(false),
             })
             .collect();
@@ -211,11 +220,13 @@ impl TweetService {
                 u.username,
                 u.image_profile,
                 COUNT(l.id) as likes_count,
+                COUNT(c.id) as comments_count,
                 CASE WHEN l2.id IS NOT NULL THEN true ELSE false END as is_liked_by_user
             FROM likes lk
             LEFT JOIN tweets t ON lk.tweet_id = t.id
             LEFT JOIN users u ON t.user_id = u.id
             LEFT JOIN likes l ON t.id = l.tweet_id
+            LEFT JOIN comments c ON t.id = c.tweet_id
             LEFT JOIN likes l2 ON t.id = l2.tweet_id AND l2.user_id = $1
             WHERE lk.user_id = $2
             GROUP BY
@@ -248,6 +259,7 @@ impl TweetService {
                     profile_image: row.image_profile,
                 },
                 likes_count: row.likes_count.unwrap_or(0) as i32,
+                comments_count: row.comments_count.unwrap_or(0) as i32,
                 is_liked_by_user: row.is_liked_by_user.unwrap_or(false),
             })
             .collect();

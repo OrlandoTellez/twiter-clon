@@ -8,6 +8,7 @@ pub struct Tweet {
     pub content: String,
     pub user: TweetUser,
     pub likes_count: i32,
+    pub comments_count: i32,
     pub is_liked_by_user: bool,
     pub image: Option<String>,
     pub created_at: Option<NaiveDateTime>,
